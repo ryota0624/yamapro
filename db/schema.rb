@@ -13,6 +13,15 @@
 
 ActiveRecord::Schema.define(version: 20150817062522) do
 
+  create_table "essays", force: :cascade do |t|
+    t.string   "text"
+    t.integer  "user_id"
+    t.string   "title"
+    t.boolean  "pickup_f"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name",                              null: false
     t.string   "crypted_password",                  null: false
