@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20150817075553) do
 
   create_table "essays", force: :cascade do |t|
@@ -20,6 +21,10 @@ ActiveRecord::Schema.define(version: 20150817075553) do
     t.boolean  "pickup_f"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+
+  create_table "user_sessions", force: :cascade do |t|
   end
 
   create_table "favs", force: :cascade do |t|
