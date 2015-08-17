@@ -1,0 +1,24 @@
+<% @page_title = "会員一覧" %>
+<h1><%= page_title %></h1>
+<p><%= link_to "会員の新規登録", :new_user %></p>
+
+<% if @users.present? %>
+<table class="list">
+  <tr>
+    <th>会員ID</th>
+    <th>名前</th>
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+    <td align="right"><%= user.number %></td>
+    <td><%= link_to user.name, user %></td>
+  </tr>
+  <% end %>
+</table>
+
+<%= will_paginate @users %>
+
+<% else %>
+<p>会員情報がありません。</p>
+<% end %>
+
