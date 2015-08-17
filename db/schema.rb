@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20150817062159) do
 
   create_table "essays", force: :cascade do |t|
@@ -20,6 +21,20 @@ ActiveRecord::Schema.define(version: 20150817062159) do
     t.boolean  "pickup_f"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+
+ActiveRecord::Schema.define(version: 20150817062522) do
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name",                              null: false
+    t.string   "crypted_password",                  null: false
+    t.string   "password_salt",                     null: false
+    t.string   "persistence_token",                 null: false
+    t.boolean  "admin",             default: false, null: false
+    t.integer  "gender",                            null: false
+    t.binary   "data"
+    t.string   "content_type"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
 end
