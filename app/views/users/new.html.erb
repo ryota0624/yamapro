@@ -13,6 +13,15 @@
       <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation %>
     </p>
+    <p>
+      <%= f.radio_button :gender, 0 %>
+      <%= f.label :gender_0, "男" %>
+      <%= f.radio_button :gender, 1 %>
+      <%= f.label :gender_1, "女" %>
+    </p>
+
+
+
 
     <%= f.submit "sign up", class: "btn btn-primary" %>
   </fieldset>
