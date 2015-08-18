@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   before_filter :require_login
 
   private
-
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
       @current_user_session = UserSession.find
@@ -18,7 +17,7 @@ class ApplicationController < ActionController::Base
 
     def require_login
       unless current_user
-        redirect_to root
+        redirect_to login_url
         return false
       end
     end
