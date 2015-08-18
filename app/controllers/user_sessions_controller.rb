@@ -1,5 +1,7 @@
 class UserSessionsController < ApplicationController
 
+  skip_before_filter :require_login, only: [:new, :create]
+
   # GET /login
   def new
     @user_session = UserSession.new
@@ -10,7 +12,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
 
     if @user_session.save
-      redirect_to root
+      redirect_to root_url
     else
       render action: :new
     end
