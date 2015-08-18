@@ -2,6 +2,7 @@ class Essay < ActiveRecord::Base
   belongs_to :user
   has_many :image_eassys
   has_many :mylists
+  default_scope {order("updated_at desc")}
 
   def essay_create(user,params)
     essay = Essay.new()
@@ -21,5 +22,10 @@ class Essay < ActiveRecord::Base
     comment.save()
   end
 
-  
+  def add_image(image_id)
+    image = Image.new();
+    image.image_id = image_id
+    image.essay_id = self.id
+    image.save()
+  end
 end
