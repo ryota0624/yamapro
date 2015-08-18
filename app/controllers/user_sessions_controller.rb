@@ -1,6 +1,4 @@
-class UserSessionController < ApplicationController
-  
-  skip_before_filter :require_login, only: [:new, :create]
+class UserSessionsController < ApplicationController
 
   # GET /login
   def new
@@ -23,5 +21,5 @@ class UserSessionController < ApplicationController
     current_user_session.destroy
     redirect_to login_url
   end
-
+  
 end
