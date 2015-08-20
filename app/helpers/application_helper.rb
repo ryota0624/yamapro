@@ -19,5 +19,4 @@ module ApplicationHelper
     def logged_in?
       current_user_session != nil
     end
-
 end

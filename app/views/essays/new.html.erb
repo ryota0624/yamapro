@@ -1,0 +1,6 @@
+<%= form_for @essay do |f|%>
+  <p>特集か否か<%= f.check_box 'pickup_f' %></p>
+  <p>文章タイトル<%= f.text_field 'title' %></p>
+  <p>文章本文<%= f.text_area 'text' %></p>
+  <p><%= f.submit '送信' %></p>
+<% end %>

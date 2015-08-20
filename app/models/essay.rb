@@ -4,11 +4,11 @@ class Essay < ActiveRecord::Base
   has_many :mylists
   default_scope {order("updated_at desc")}
 
-  def essay_create(user,params)
+  def Essay.essay_create(user,params)
     essay = Essay.new()
     essay.text = params[:text];
     essay.title = params[:title]
-    essay.pickup_f = params[:flag]
+    essay.pickup_f = params[:pickup_f]
     essay.user_id = user.id
     esssay.save()#返り値はtrue/false
     #essay 返り値をオブジェクトにしたい場合
