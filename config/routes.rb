@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   get "login" =>"user_sessions#new"
   delete "logout" => "user_sessions#destroy"
 
+  
+  resource :essays #仮ビュー用
+  resource :posts #仮ビュー用
 end

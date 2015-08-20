@@ -1,4 +1,16 @@
-TOPTOPTOPTOPTOPTOPTOPTOPTOPTOPTOPTOP
-
-
+<h1>Top Page</h1>
+<%= link_to "new_essay",new_essays_path %>
+<%= link_to "new_post",new_posts_path %>
+<h2>みんなの記事</h2>
+<% @essays.each do |essay| %>
+  <p><%= essay.title %> <%= essay.text %> <%= essay.user.name %></p>
+<% end %>
+<h2>特集</h2>
+<% @pickUps.each do |pickup| %>
+  <p><%= pickup.title %> <%= pickup.text %></p>
+<% end %>
+<h2>つぶやき</h2>
+<% @posts.each do |post| %>
+  <p><%= post.content %></p>
+<% end %>
 
