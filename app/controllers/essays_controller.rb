@@ -19,6 +19,7 @@ class EssaysController < ApplicationController
     else
       redirect_to new_essays_path
     end
+    #essay.add_tag(params[:tags])
   end
 
   private

@@ -28,4 +28,12 @@ class Essay < ActiveRecord::Base
     image.essay_id = self.id
     image.save()
   end
+
+  def add_tag(tags)
+    tags.foreach do |tag_id|
+      tag_essay = Tag_essay.new()
+      tag_essay.tag_id = tag
+      tag_essay.essay_id = self.id
+    end
+  end
 end
