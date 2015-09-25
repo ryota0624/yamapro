@@ -6,15 +6,15 @@ class EssaysController < ApplicationController
   def pickup
     @essays = Essay.where(pickup_f: true)
   end
+
   def show
     @essay = Essay.find(params[:id])
   end
-  def destory
-    @essay = Essay.find(params[:id]).destory
-  end
+
   def new
     @essay = Essay.new()
   end
+  
   def create
     essay = Essay.new(essay_params)
     essay.user_id = current_user.id
@@ -25,6 +25,12 @@ class EssaysController < ApplicationController
     end
     #essay.add_tag(params[:tags])
   end
+
+  def destory
+    @essay = Essay.find(params[:id]).destory
+  end
+
+
 
   private
   def essay_params
