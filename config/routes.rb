@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "login" =>"user_sessions#new"
   delete "logout" => "user_sessions#destroy"
 
-  
+
   resources :essays do    
     collection do
       get 'pickup'
