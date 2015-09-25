@@ -70,5 +70,8 @@ namespace :db do
       user_id: "2",
       essay_id: "1"
     )
+    Tag.create!(
+      name: "test_tag"
+    )
   end
 end

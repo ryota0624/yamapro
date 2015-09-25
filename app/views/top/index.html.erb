@@ -1,6 +1,4 @@
 <h1>Top Page</h1>
-<%= link_to "new_essay",:new_essay %>
-<%= link_to "new_post",:new_post %>
 <h2>みんなの記事</h2>
 <% @essays.each do |essay| %>
   <p>タイトル：<%= essay.title %><br/>

@@ -1,6 +1,10 @@
 class EssaysController < ApplicationController
   def index
-    @essays = Essay.all()
+    @essays = Essay.where(pickup_f: false)
+    logger.debug(@essays)
+  end
+  def pickup
+    @essays = Essay.where(pickup_f: true)
   end
 
   def show
@@ -19,6 +23,7 @@ class EssaysController < ApplicationController
     else
       redirect_to new_essays_path
     end
+    #essay.add_tag(params[:tags])
   end
 
   def destory
