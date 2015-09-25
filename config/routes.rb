@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   delete "logout" => "user_sessions#destroy"
 
   
-  resource :essays #仮ビュー用
-  resource :posts #仮ビュー用
+  resources :essays do    
+    collection do
+      get 'pickup'
+    end
+  end
+  resources :posts #仮ビュー用
 end

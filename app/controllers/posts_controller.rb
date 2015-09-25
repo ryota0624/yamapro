@@ -3,7 +3,8 @@ class PostsController < ApplicationController
     @post = Post.new()
   end
   def create
-    post= Post.create_post(params[:content],current_user)
+    logger.debug(params)
+    post= Post.create_post(params[:post][:content],current_user)
     if post
       redirect_to root_path
     else

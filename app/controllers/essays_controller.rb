@@ -1,6 +1,10 @@
 class EssaysController < ApplicationController
   def index
-    @essays = Essay.all()
+    @essays = Essay.where(pickup_f: false)
+    logger.debug(@essays)
+  end
+  def pickup
+    @essays = Essay.where(pickup_f: true)
   end
   def show
     @essay = Essay.find(params[:id])
