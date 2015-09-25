@@ -14,14 +14,15 @@ class UserSessionsController < ApplicationController
     if @user_session.save
       redirect_to root_url
     else
-      render action: :new
+      redirect_to root_url
+      #render action: :new   サイドバーからのログイン不成功の時のリダイレクト
     end
   end
 
   # DELETE /logout
   def destroy
     current_user_session.destroy
-    redirect_to login_url
+    redirect_to root_url
   end
   
 end
