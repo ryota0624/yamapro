@@ -1,1 +1,4 @@
-<%= @essays %>
+<h2>特集</h2>
+<% @essays.each do |pickup| %>
+  <p><%= pickup.title %> <%= pickup.text %></p>
+<% end %>
