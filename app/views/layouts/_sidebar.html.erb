@@ -1,0 +1,7 @@
+<h3>this is sidebar </h3>
+<% if logged_in? %>
+  <%= link_to "ログアウト", logout_path, method: :delete %>
+<% else %>
+  <%= link_to "ログイン", login_path %>
+  <%= link_to "新規登録", signup_path %>
+<% end %>
