@@ -4,9 +4,8 @@
   <p>タイトル：<%= essay.title %><br/>
   	内容：<%= essay.text %><br/>
   	作成者：<%= essay.user.name %>
-   	<%= link_to "詳細", essay %>
+    <%= link_to "詳細", essay %>
   </p>
-
 <% end %>
 
 <h2>特集</h2>
@@ -17,5 +16,8 @@
 <h2>つぶやき</h2>
 <% @posts.each do |post| %>
   <p><%= post.content %></p>
+<% end %>
+<% if logged_in? %>
+  <%= link_to "つぶやく", new_post_path %>
 <% end %>
 

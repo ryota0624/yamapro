@@ -11,7 +11,7 @@ module ApplicationHelper
 
     def require_login
       unless current_user
-        redirect_to login_url
+        redirect_to root_path
         return false
       end
     end
