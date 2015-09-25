@@ -16,4 +16,7 @@
 <% @posts.each do |post| %>
   <p><%= post.content %></p>
 <% end %>
+<% if logged_in? %>
+  <%= link_to "つぶやく", new_post_path %>
+<% end %>
 

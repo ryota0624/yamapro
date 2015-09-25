@@ -2,4 +2,5 @@
 <% @posts.each do |post| %>
   <p><%= post.content %></p>
 <% end %>
-
+<h2>つぶやく</h2>
+<%= link_to "つぶやく", new_post_path %>
