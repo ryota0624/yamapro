@@ -6,7 +6,7 @@ class Essay < ActiveRecord::Base
 
   def Essay.essay_create(user,params)
     essay = Essay.new()
-    essay.text = params[:text];
+    essay.text = params[:text]
     essay.title = params[:title]
     essay.pickup_f = params[:pickup_f]
     essay.user_id = user.id

@@ -1,6 +1,12 @@
 <h3>this is sidebar </h3>
 <% if logged_in? %>
   <%= link_to "ログアウト", logout_path, method: :delete %>
+  <%= link_to "マイページ", mypages_path %>
+  <%= link_to "記事投稿", new_essay_path %>
+  <%= link_to "my_list", my_list_mypage_path %>
+  <%= link_to "my_fav", new_essay_path %>
+  <%= link_to "つぶやき？", new_essay_path %>
+
 <% else %>
   <%= link_to "ログイン", login_path %>
   <%= link_to "新規登録", signup_path %>
