@@ -6,7 +6,7 @@ class Essay < ActiveRecord::Base
 
   def Essay.essay_create(user,params)
     essay = Essay.new()
-    essay.text = params[:text];
+    essay.text = params[:text]
     essay.title = params[:title]
     essay.pickup_f = params[:pickup_f]
     essay.user_id = user.id
@@ -23,7 +23,7 @@ class Essay < ActiveRecord::Base
   end
 
   def add_image(image_id)
-    image = Image.new();
+    image = Image.new()
     image.image_id = image_id
     image.essay_id = self.id
     image.save()

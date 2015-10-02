@@ -19,6 +19,7 @@ class EssaysController < ApplicationController
     essay = Essay.new(essay_params)
     essay.user_id = current_user.id
     if essay.save
+      essay.add_tag(params[:tags])
       redirect_to root_path
     else
       redirect_to new_essays_path
