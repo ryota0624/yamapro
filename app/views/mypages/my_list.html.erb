@@ -1,5 +1,5 @@
-<h2>my_list</h2>
-<% @my_list.each do |list| %>
-  <p>タイトル：<%= list.title %></p>
-  <p>内容：<%= list.text %></p>
+
+<p><%= link_to "マイリスト", "#" %></p>
+<% @essaylist.each do |listItem| %>
+  <p>内容：<%= listItem.text %></p>
 <% end %>

@@ -18,8 +18,8 @@ Rails.application.routes.draw do
 
   resources :posts #つぶやき
 
-  #マイページ
-  # resources :mypages, only: [:index, :my_essay, :my_list, :my_fav, :my_post]
+  # マイページ
+  resources :mypages, only: [:index, :my_essay, :my_list, :my_fav, :my_post]
   resources :mypages, only: [:index] do
     collection { get "my_essay", "my_list", "my_fav", "my_post" }
   end
