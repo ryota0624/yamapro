@@ -71,7 +71,13 @@ namespace :db do
       essay_id: "1"
     )
     Tag.create!(
-      name: "test_tag"
+      name: "father"
+    )
+    Tag.create!(
+      name: "mother"
+    )
+    Tag.create!(
+      name: "present"
     )
   end
 end
