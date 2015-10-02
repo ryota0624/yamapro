@@ -2,6 +2,7 @@ class Essay < ActiveRecord::Base
   belongs_to :user
   has_many :image_eassys
   has_many :mylists
+  has_many :tag_essays
   default_scope {order("updated_at desc")}
 
   def Essay.essay_create(user,params)
@@ -30,10 +31,12 @@ class Essay < ActiveRecord::Base
   end
 
   def add_tag(tags)
-    tags.foreach do |tag_id|
-      tag_essay = Tag_essay.new()
-      tag_essay.tag_id = tag
+    tags.each do |tag_id|
+      puts tag_id
+      tag_essay = TagEssay.new()
+      tag_essay.tag_id = tag_id
       tag_essay.essay_id = self.id
+      tag_essay.save()
     end
   end
 end
