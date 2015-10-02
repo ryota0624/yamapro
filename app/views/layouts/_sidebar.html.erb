@@ -8,6 +8,19 @@
   <%= link_to "つぶやき？", new_essay_path %>
 
 <% else %>
-  <%= link_to "ログイン", login_path %>
+  <%= form_for UserSession.new, url: user_session_path do |f| %>
+  <fieldset>
+    <legend>Login</legend>
+    <p>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </p>
+    <%= f.submit "Login", class: "btn btn-primary" %>
+  </fieldset>
+<% end %>
   <%= link_to "新規登録", signup_path %>
 <% end %>

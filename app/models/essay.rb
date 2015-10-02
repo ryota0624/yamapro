@@ -23,7 +23,7 @@ class Essay < ActiveRecord::Base
   end
 
   def add_image(image_id)
-    image = Image.new();
+    image = Image.new()
     image.image_id = image_id
     image.essay_id = self.id
     image.save()
