@@ -1,0 +1,5 @@
+<h2>マイページ</h2>
+<% @essays.each do |essay| %>
+  <p>タイトル：<%= essay.title %></p>
+  <p>内容：<%= essay.text %></p>
+<% end %>
