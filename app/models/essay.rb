@@ -40,15 +40,15 @@ class Essay < ActiveRecord::Base
     end
   end
 
-  def Essay.keyword_serch(keyword)
+  def Essay.keyword_search(keyword)
     keyword = "%" + keyword +"%"
     result = {
       pickup: nil,
-      user_post: nil
+      user_posts: nil
     }
     essays = Essay.where(["text LIKE ?",keyword])
-    result[:pickup] = Essay.where("pickup_f = true")
-    result[:user_post] = Essay.where("pickup_f = false")
+    result[:pickup] = essays.where("pickup_f = true")
+    result[:user_posts] = essays.where("pickup_f = false")
     result
   end
 end

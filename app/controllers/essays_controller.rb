@@ -11,6 +11,12 @@ class EssaysController < ApplicationController
     @essay = Essay.find(params[:id])
   end
 
+  def search
+    result = Essay.keyword_search params[:keyword]
+    @pickups = result[:pickup]
+    @user_posts = result[:user_posts]
+  end
+
   def new
     @essay = Essay.new()
   end
