@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :essays do #記事
     collection do
       get 'pickup'
+      post 'search'
     end
   end
 
