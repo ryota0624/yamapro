@@ -15,6 +15,8 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = @current_user
+    @member.build_image unless @member.image
   end
 
   def create
@@ -27,6 +29,13 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
+    @user.assign_attributes(params[:user])
+    if @user.save
+      redirect_to root_path
+    else
+      render "edit"
+    end
   end
 
   def destroy
