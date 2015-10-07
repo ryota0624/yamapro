@@ -7,12 +7,15 @@ class MypagesController < ApplicationController
   end
 
   def my_essay
-  	@my_essays = essay.where(user: 3)
+  	@my_essays = Essay.find(params[:id])
+    render template:"essays/index"
   end
 
   def my_list #記事のお気に入り
-    list = Mylists.where(params[:id])
-    @my_list = list.push(essay_id: 3)
+    @list = Mylist.where(user_id: 1)
+    @essaylist = @list.map {|listItem| listItem.essay }
+    
+    @my_list = @list.push(essay_id: 3)
 
   	# list = mylist.where(user: my_account)
   	# @my_list = list.map( (item) => {
