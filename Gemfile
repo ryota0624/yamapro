@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+#bundle install --without production
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
