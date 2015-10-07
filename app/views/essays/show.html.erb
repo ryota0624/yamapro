@@ -11,3 +11,5 @@
     <th>作成者</th>
     <td><%= @essay.user.name %></td>
 </table>
+
+<%= link_to 'つぶやく', "http://twitter.com/share?url=http://"+request.host+"/&text="+@essay.title  %>
