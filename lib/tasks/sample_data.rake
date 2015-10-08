@@ -70,6 +70,14 @@ namespace :db do
       user_id: "2",
       essay_id: "1"
     )
+    Mylist.create!(
+      user_id: "3",
+      essay_id: "1"
+    )
+    Mylist.create!(
+      user_id: "3",
+      essay_id: "2"
+    )
     Tag.create!(
       name: "father"
     )

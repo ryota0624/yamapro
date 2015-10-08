@@ -1,7 +1,12 @@
 <h3>this is sidebar </h3>
 <% if logged_in? %>
   <%= link_to "ログアウト", logout_path, method: :delete %>
+  <%= link_to "マイページ", mypages_path %>
   <%= link_to "記事投稿", new_essay_path %>
+  <%= link_to "my_list", "#" %>
+  <%= link_to "my_fav", new_essay_path %>
+  <%= link_to "つぶやき？", new_essay_path %>
+
 <% else %>
   <%= form_for UserSession.new, url: user_session_path do |f| %>
   <fieldset>
