@@ -12,4 +12,10 @@
     <td><%= @essay.user.name %></td>
 </table>
 
+<% @images.each do |image| %>
+  <tr>
+    <td><%= image_tag(url_for(:action => 'get_image', :id => image.id), :size => '100x100')%></td>
+  </tr>
+<% end %>
+
 <%= link_to 'つぶやく', "http://twitter.com/share?url=http://"+request.host+"/&text="+@essay.title  %>
