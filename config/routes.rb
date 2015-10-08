@@ -24,4 +24,10 @@ Rails.application.routes.draw do
   resources :mypages, only: [:index] do
     collection { get "my_essay", "my_list", "my_fav", "my_post" }
   end
+
+  namespace :api, {format: "json"} do
+    get "user" => "apis#user"
+    post "adduser" => "apis#add_user"
+    post "deleteuser" => "apis#delete_user"
+  end
 end
