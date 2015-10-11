@@ -30,5 +30,6 @@ Rails.application.routes.draw do
     post "adduser" => "apis#add_user"
     post "deleteuser" => "apis#delete_user"
     get "essay" => "apis#essay"
+    post "addessay" =>"apis#add_essay"
   end
 end

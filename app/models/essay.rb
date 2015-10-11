@@ -41,7 +41,7 @@ class Essay < ActiveRecord::Base
   end
 
   def Essay.keyword_search(keyword)
-    keyword = "%" + keyword +"%"
+    keyword = "%"+ keyword +"%"
     result = {
       pickup: nil,
       user_posts: nil

@@ -30,23 +30,21 @@ class EssaysController < ApplicationController
       essay.pickup_f = false
     end
     essay.user_id = current_user.id
-    image = {}
-    upload_file = params[:image]
-    if upload_file != nil
-      image[:img_name] = upload_file.original_filename
-      image[:image] = upload_file.read
-    end
-    @image = ImageEssay.new(image)
-    logger.debug(upload_file)
     if essay.save
-      @image.essay_id = essay.id
-      if @image.save
-        logger.debug("oKOKOKOKOOOKOO")
-      else
-        logger.debug(@image)
+      essay_id = essay.id
+      images = {}
+      image = {}
+      logger.debug params
+      upload_files = params[:image]
+      upload_files.each do | file |
+        logger.debug file[1]
+        image[:img_name] = file[1].original_filename
+        image[:image] = file[1].read
+        @image = ImageEssay.new(image)
+        @image.essay_id = essay_id
+        @image.save
       end
-      #essay.add_tag(params[:tags])
-      redirect_to root_path
+      redirect_to root
     else
       redirect_to new_essays_path
     end
