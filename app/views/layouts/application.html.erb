@@ -2,14 +2,21 @@
 <html>
 <head>
   <title>Yamapro</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+    <%= stylesheet_link_tag 'pc', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'reset', 'data-turbolinks-track' => true %>
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render "layouts/header" %>
-<%= render "layouts/sidebar" %>
-<%= yield %>
-<%= render "layouts/footer" %>
+  <div>
+    <%= render "layouts/header" %>
+    <article>
+      <%= render "layouts/sidebar" %>
+      <%= yield %>
+    </article>
+    <%= render "layouts/footer" %>
+  </div>
 </body>
 </html>

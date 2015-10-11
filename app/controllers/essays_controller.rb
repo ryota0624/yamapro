@@ -52,6 +52,12 @@ class EssaysController < ApplicationController
     end
     #essay.add_tag(params[:tags])
   end
+  def edit
+    @essay = Essay.find(params[:id])
+  end
+  def update
+
+  end
 
   def destory
     @essay = Essay.find(params[:id]).destory

@@ -32,6 +32,12 @@ class Api::ApisController < ApplicationController
     render json: @user
   end
 
+  def essay
+    @essays = Essay.all
+    render json: @essays
+  end
+
+
   def user_params
     params.require(:user).permit(:name, :password, :password_confirmation, :gender)
   end
