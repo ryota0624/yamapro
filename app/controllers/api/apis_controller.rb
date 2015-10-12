@@ -55,6 +55,16 @@ class Api::ApisController < ApplicationController
     end
   end
 
+  def delete_essay
+   @essay = Essay.find(params[:essay_id])
+   @essay.destroy
+   render json: @essay
+  end
+
+  def get_images
+    @images = ImageEssay.select(:id,:essay_id).where(essay_id: params[:essay_id])
+    render json: @images
+  end
 
   def user_params
     params.require(:user).permit(:name, :password, :password_confirmation, :gender)
