@@ -6,7 +6,24 @@
   	 <%= link_to "詳細", essay %>
   </p>
 <% end %>
+<table>
+  <thead>
+    <tr>
+      <th>氏名</th>
+      <th>性別</th>
+      <th>画像</th>
+    </tr>
+  </thead>
 
-  <p><%= link_to "画像の編集", "#" %></p>
-  <p><%= link_to "パスワードの再設定", "#" %></p>
+  <tbody>
+      <tr>
+        <td><%= link_to @user.name, user_path(@user) %></td>
+        <td><%= @user.gender %></td>
+        <td><%= user_image_tag @user, width: 96 %></td>
+      </tr>
+</tbody>
+</table>
 
+  <p><%= link_to "画像の編集", edit_user_path(@user) %></p>
+
+  <p><%= link_to "パスワードの再設定", editpass_user_path(@user) %></p>

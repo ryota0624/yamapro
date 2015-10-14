@@ -1,9 +1,11 @@
 class MypagesController < ApplicationController
 
-  def index
-    @essays = Essay.where(user_id: 3)
+  def index  # = show
+    @essays = Essay.where(user_id: current_user.id)
+    # @essays = Essay.where(user_id: 3)
     @essays_pickup = Essay.where(pickup_f: "true") #特集全て
-    @posts = Post.where(user_id: 3)
+    # @user = User.where(user_id: current_user.id)
+    @user = User.find(current_user.id)
   end
 
   def my_essay
@@ -12,7 +14,7 @@ class MypagesController < ApplicationController
   end
 
   def my_list #記事のお気に入り
-    @list = Mylist.where(user_id: 3)
+    @list = Mylist.where(user_id: current_user.id)
     @essaylist = @list.map {|listItem| listItem.essay }
   end
 
