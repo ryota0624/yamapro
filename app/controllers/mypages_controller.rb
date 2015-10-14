@@ -12,26 +12,17 @@ class MypagesController < ApplicationController
   end
 
   def my_list #記事のお気に入り
-    @list = Mylist.where(user_id: 1)
+    @list = Mylist.where(user_id: 3)
     @essaylist = @list.map {|listItem| listItem.essay }
-    
-    @my_list = @list.push(essay_id: 3)
-
-  	# list = mylist.where(user: my_account)
-  	# @my_list = list.map( (item) => {
-  	# 	return item.essay;
-  	# }
   end
 
-  def my_fav #つぶやきの
-  # 	fav = fav.where(user: my_account)
-  # 	@my_list = fav.map( (item) => {
-  # 		return item.post;
-  # 	}
-  end
+  # def my_fav #つぶやきのお気に入り
+  #   fav = Fav.where(user_id: 3)
+  #   @essaylist = @list.map {|listItem| listItem.essay }
+  # end
 
-  def my_post
-  	@my_posts = post.where(user: my_account)
-  end
+  # def my_post
+  # 	@my_posts = post.where(user: my_account)
+  # end
 
 end
