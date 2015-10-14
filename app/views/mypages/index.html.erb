@@ -1,0 +1,6 @@
+<h2>マイページ</h2>
+<p><%= link_to "自分の投稿", "#" %></p>
+<% @essays.each do |essay| %>
+  <p>タイトル：<%= essay.title %></p>
+  <p>内容：<%= essay.text %></p>
+<% end %>

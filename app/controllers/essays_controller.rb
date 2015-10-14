@@ -9,27 +9,63 @@ class EssaysController < ApplicationController
 
   def show
     @essay = Essay.find(params[:id])
+    @images = ImageEssay.where(essay_id: @essay.id)
+    # send_data @images[0], :type => 'image/jpeg', :disposition => 'inline'
+  end
+
+  def search
+    result = Essay.keyword_search params[:keyword]
+    @pickups = result[:pickup]
+    @user_posts = result[:user_posts]
   end
 
   def new
-    @essay = Essay.new()
+    @image = ImageEssay.new
+    @essay = Essay.new
   end
   
   def create
     essay = Essay.new(essay_params)
+    if !essay.pickup_f 
+      essay.pickup_f = false
+    end
     essay.user_id = current_user.id
     if essay.save
-      redirect_to root_path
+      essay_id = essay.id
+      images = {}
+      image = {}
+      logger.debug params
+      upload_files = params[:image]
+      upload_files.each do | file |
+        logger.debug file[1]
+        image[:img_name] = file[1].original_filename
+        image[:image] = file[1].read
+        @image = ImageEssay.new(image)
+        @image.essay_id = essay_id
+        @image.save
+      end
+      redirect_to root
     else
       redirect_to new_essays_path
     end
     #essay.add_tag(params[:tags])
+  end
+  def edit
+    @essay = Essay.find(params[:id])
+  end
+  def update
+
   end
 
   def destory
     @essay = Essay.find(params[:id]).destory
   end
 
+  def get_image
+    @image = ImageEssay.find(params[:id])
+    logger.debug @image
+    send_data(@image.image, :disposition => "inline", :type => "image/jpeg")
+  end
 
 
   private

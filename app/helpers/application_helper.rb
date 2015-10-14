@@ -19,4 +19,9 @@ module ApplicationHelper
     def logged_in?
       current_user_session != nil
     end
+
+    def post_to_fav(user_id, post_id)
+      Fav.post_to_fav(user_id, post_id)
+      redirect_to root_path
+    end
 end

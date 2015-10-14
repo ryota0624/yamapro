@@ -1,0 +1,5 @@
+
+<p><%= link_to "マイリスト", "#" %></p>
+<% @essaylist.each do |listItem| %>
+  <p>内容：<%= listItem.text %></p>
+<% end %>
