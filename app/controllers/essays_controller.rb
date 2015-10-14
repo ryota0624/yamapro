@@ -1,7 +1,7 @@
 class EssaysController < ApplicationController
   def index
+    @new_essays = Essay.where(pickup_f: false).limit(3)
     @essays = Essay.where(pickup_f: false)
-    logger.debug(@essays)
   end
   def pickup
     @essays = Essay.where(pickup_f: true)

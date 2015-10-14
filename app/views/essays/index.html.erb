@@ -1,4 +1,21 @@
-<h2>ユーザ投稿記事</h2>
-<% @essays.each do |pickup| %>
-  <p><%= pickup.title %> <%= pickup.text %></p>
-<% end %>
+
+
+<div class="dodai">
+  <div class="yohaku">
+    <a href="#" class="jyun_ima">新着順</a>/
+    <a href="#">人気順</a>/
+    <div class="minato_dai">
+      <% @new_essays.each do |essay| %>
+      <div class="minato_new">new!<br/>
+        <a href="#"><div class="minato_new_ko"><img src="./.jpg"><%= essay.title%></div></a>
+      </div>
+      <% end %>
+    </div>
+    <div class="minato_dai">
+      <% @essays.each do |essay| %>
+        <a href="#"><div class="minato_ki_ko"><img src="./.jpg"><%= essay.title%></div></a>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
