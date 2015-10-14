@@ -1,23 +1,20 @@
+<h1>ユーザ一覧</h1>
 
+<table>
+  <thead>
+    <tr>
+      <th>氏名</th>
+      <th>性別</th>
+    </tr>
+  </thead>
 
-
-<% if @users.present? %>
-<table class="list">
-  <tr>
-    <th>会員ID</th>
-    <th>名前</th>
-  </tr>
-  <% @users.each do |user| %>
-  <tr>
-    <td align="right"><%= user.number %></td>
-    <td><%= link_to user.name, user %></td>
-  </tr>
-  <% end %>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.name, user_path(user) %></td>
+        <td><%= user.gender %></td>
+        <td><%=  link_to '編集', edit_user_path(user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
-
-<%= will_paginate @users %>
-
-<% else %>
-<p>会員情報がありません。</p>
-<% end %>
-

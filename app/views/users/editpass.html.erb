@@ -1,0 +1,9 @@
+
+<p>パスワードの再設定</p>
+<p><%= link_to "マイページに戻る", mypages_path %></p>
+
+  <%= form_for @user do |form| %>
+  <%= render "passform", form: form %>
+  <p><%= form.submit %></p>
+
+<% end %>
