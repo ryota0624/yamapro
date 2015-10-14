@@ -10,6 +10,7 @@
    <p>文章タイトル<%= text_field_tag 'essay[title]' %></p>
    <p>文章<%= text_area_tag 'essay[text]' %></p>
    <label for="image">画像をアップロード</label>
-   <%= file_field_tag 'image' %>
+   <%= file_field_tag 'image[0]' %>
+   <%= file_field_tag 'image[1]' %>
    <%= submit_tag '作成' %>
 <% end %>

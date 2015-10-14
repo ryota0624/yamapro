@@ -32,6 +32,40 @@ class Api::ApisController < ApplicationController
     render json: @user
   end
 
+  def essay
+    @essays = Essay.all
+    render json: @essays
+  end
+
+  def add_essay
+    logger.debug params
+    @essay = Essay.new()
+    @essay.title = params[:title]
+    @essay.text = params[:text]
+    @essay.user_id = params[:user_id].to_i
+    if params[:pickup_f] == "true" then
+      @essay.pickup_f = true
+    else
+      @essay.pickup_f = false
+    end
+    if @essay.save
+      render json: @essay
+    else
+      render json: {"error": "error"}
+    end
+  end
+
+  def delete_essay
+   @essay = Essay.find(params[:essay_id])
+   @essay.destroy
+   render json: @essay
+  end
+
+  def get_images
+    @images = ImageEssay.select(:id,:essay_id).where(essay_id: params[:essay_id])
+    render json: @images
+  end
+
   def user_params
     params.require(:user).permit(:name, :password, :password_confirmation, :gender)
   end

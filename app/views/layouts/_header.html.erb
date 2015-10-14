@@ -1,4 +1,19 @@
-<h2>this is header</h2>
-  <%= link_to "TOP", root_path %>
-  <%= link_to "みんなの投稿", essays_path %>
-  <%= link_to "特集", pickup_essays_path %>
+    <header>
+      <h1>LOGO</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><%= link_to "TOP", root_path %></li>
+        <li><%= link_to "みんなの投稿", essays_path %></li>
+        <li><%= link_to "特集", pickup_essays_path %></li>
+        <li><a href="#">みんなの質問</a></li>
+      </ul>
+      <div class="search">
+        <div id="search_in">
+          <input type="text" placeholder="キーワードを入力">
+          <button value="button">検索</button>
+        </div>
+      </div>
+      <div class="clear">
+      </div>
+    </nav>
