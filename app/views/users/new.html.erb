@@ -1,28 +1,36 @@
-<%= form_for @user, url: users_path do |f| %>
+<%= form_for @user, url: users_path, html: { multipart: true } do |form| %>
+
   <fieldset>
     <legend>Sign up</legend>
     <p>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
     </p>
     <p>
-      <%= f.label :password %>
-      <%= f.password_field :password %>
+      <%= form.label :password %>
+      <%= form.password_field :password %>
     </p>
     <p>
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %>
+      <%= form.label :password_confirmation %>
+      <%= form.password_field :password_confirmation %>
     </p>
     <p>
-      <%= f.radio_button :gender, 0 %>
-      <%= f.label :gender_0, "男" %>
-      <%= f.radio_button :gender, 1 %>
-      <%= f.label :gender_1, "女" %>
+      <%= form.radio_button :gender, 0 %>
+      <%= form.label :gender_0, "男" %>
+      <%= form.radio_button :gender, 1 %>
+      <%= form.label :gender_1, "女" %>
+    </p>
+    <p>
+    <%= form.fields_for :image do |imgf| %>
+        <%= imgf.label :uploaded_image %>
+        <%= imgf.file_field :uploaded_image %>
+    <% end %>
     </p>
 
+    <label for="image">プロフィール画像アップロード</label>
+    <%= file_field_tag 'image' %>
 
 
-
-    <%= f.submit "sign up", class: "btn btn-primary" %>
+    <%= form.submit "sign up", class: "btn btn-primary" %>
   </fieldset>
 <% end %>

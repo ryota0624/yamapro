@@ -1,20 +1,32 @@
 namespace :db do
   task populate: :environment do
     fname = Rails.root.join("lib/tasks", "image1.jpg")
-
-    User.create!(
-      name: "test_admin",
-      password: "testpass",
-      password_confirmation: "testpass",
-      crypted_password: "400$8$21$c11ef87b15b3055a$6f8d0135427cf918c5baf4e9d205d0a7bdc822f43eb849b057a55227a7f524cc",
-      password_salt: "dSqxx3bt3jAO0F9Cxn69",
-      persistence_token: "1328e11d20e96eeb68a11f5e8a666f178e4dacd41dfa3b8916073b35e50dc4da18f28c34ecf0e1c81630725267187a7cd37f6d6aa6dc26e75116420fb356fffb",
-      admin: "true",
-      gender: "0",
+    # User.create!(
+    # { name: "test_admin",
+    #   password: "testpass",
+    #   password_confirmation: "testpass",
+    #   crypted_password: "400$8$21$c11ef87b15b3055a$6f8d0135427cf918c5baf4e9d205d0a7bdc822f43eb849b057a55227a7f524cc",
+    #   password_salt: "dSqxx3bt3jAO0F9Cxn69",
+    #   persistence_token: "1328e11d20e96eeb68a11f5e8a666f178e4dacd41dfa3b8916073b35e50dc4da18f28c34ecf0e1c81630725267187a7cd37f6d6aa6dc26e75116420fb356fffb",
+    #   admin: "true",
+    #   gender: "0"}
+    # )
+    UserImage.create!(
+      user: User.create!(
+          name: "test_admin",
+          password: "testpass",
+          password_confirmation: "testpass",
+          crypted_password: "400$8$21$c11ef87b15b3055a$6f8d0135427cf918c5baf4e9d205d0a7bdc822f43eb849b057a55227a7f524cc",
+          password_salt: "dSqxx3bt3jAO0F9Cxn69",
+          persistence_token: "1328e11d20e96eeb68a11f5e8a666f178e4dacd41dfa3b8916073b35e50dc4da18f28c34ecf0e1c81630725267187a7cd37f6d6aa6dc26e75116420fb356fffb",
+          admin: "true",
+          gender: "0"
+        ),
       data: File.open(fname, "rb").read,
       content_type: "image/jpeg"
     )
-    User.create!(
+    UserImage.create!(
+      user: User.create!(
       name: "test",
       password: "testpass",
       password_confirmation: "testpass",
@@ -22,7 +34,8 @@ namespace :db do
       password_salt: "yiTOVEo20UGYyl3rzdy2",
       persistence_token: "6a933888cd3f49a1fb420e5669635b1b5657048bee589e94cd708b349829d8be5b614e1d171a7810a3c2530b9ac42bd75d1e08c99e67c8549ed178a1fb597e08",
       admin: "false",
-      gender: "0",
+      gender: "0"
+    ),
       data: File.open(fname, "rb").read,
       content_type: "image/jpeg"
     )

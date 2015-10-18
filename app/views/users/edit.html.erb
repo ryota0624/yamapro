@@ -1,24 +1,29 @@
-
 <p>画像の編集</p>
 <p><%= link_to "マイページに戻る", mypages_path %></p>
 
-  <%= form_for @user do |form| %>
+<%= form_for @user, url: :user, html: { multipart: true } do |form| %>
 
   <table class="attr">
     <tr>
       <th><%= form.label :name %></th>
       <td><%= form.text_field :name %></td>
     </tr>
-      <tr>
-        <th><%= form.label :uploaded_image %></th>
-        multipart
-        <td>
-          <%= user_image_tag @user, size: "100" %>
-          <%= form.file_field :uploaded_image %>
-        </td>
-      </tr>
-
+      <%= form.fields_for :image do |imgf| %>
+        <tr>
+          <th><%= imgf.label :uploaded_image %></th>
+          <td>
+            <%= imgf.file_field :uploaded_image %>
+            <% if !imgf.object.new_record? && imgf.object.errors.empty? %>
+            <div>
+              <%= user_image_tag @user, size: "60" %>
+              <%= imgf.check_box :_destroy %>
+              <%= imgf.label :_destroy %>
+              <%= imgf.hidden_field :id %>
+            </div>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
   </table>
   <p><%= form.submit %></p>
-
 <% end %>

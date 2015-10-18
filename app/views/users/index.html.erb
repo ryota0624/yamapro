@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>氏名</th>
-      <th>性別</th>
+      <th>画像</th>
     </tr>
   </thead>
 
@@ -12,8 +12,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.name, user_path(user) %></td>
-        <td><%= user.gender %></td>
-        <td><%=  link_to '編集', edit_user_path(user) %></td>
+        <td><%= user_image_tag user, width: 96 %></td>
       </tr>
     <% end %>
   </tbody>

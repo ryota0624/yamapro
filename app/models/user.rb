@@ -8,8 +8,9 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :favs
   has_many :mylists
-
-  # attr_accessor :uploaded_image
+  has_one :image, class_name: "UserImage", dependent: :destroy
+  
+  accepts_nested_attributes_for :image, allow_destroy: true
 
   def add_mylist(essay_id)
     item = Mylist.new()
@@ -24,30 +25,5 @@ class User < ActiveRecord::Base
     fav.user_id = self.id
     fav.save;
   end
-
-  IMAGE_TYPES = { "image/jpeg" => "jpg", "image/gif" => "gif",
-                  "image/png" => "png" }
-
-  def extension
-    IMAGE_TYPES[content_type]
-  end
-
-  def uploaded_image=(image)
-    self.content_type = convert_content_type(image.content_type)
-    self.data = image.read
-    @uploaded_image = image
-  end
-
-  private
-    def convert_content_type(ctype)
-      ctype = ctype.rstrip.downcase
-      case ctype
-      when "image/pjpeg" then "image/jpeg"
-      when "image/jpg"   then "image/jpeg"
-      when "image/x-png" then "image/png"
-      else ctype
-      end
-    end
-
 
 end

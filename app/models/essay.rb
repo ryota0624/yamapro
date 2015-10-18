@@ -14,7 +14,7 @@ class Essay < ActiveRecord::Base
     esssay.save()#返り値はtrue/false
     #essay 返り値をオブジェクトにしたい場合
   end
-  
+
   def essay_comment(user,text)
     comment = Comment.new()
     comment.user_id = user.id
