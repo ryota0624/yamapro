@@ -51,7 +51,7 @@ class Api::ApisController < ApplicationController
     if @essay.save
       render json: @essay
     else
-      render json: {"error": "error"}
+      #render json: {"error": "error"}
     end
   end
 
