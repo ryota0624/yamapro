@@ -22,7 +22,7 @@ class Api::ApisController < ApplicationController
     if @user.save
       render json: @user
     else
-      render json: {"error": "error"}
+      #render json: {"error": "error"}
     end
   end
 
