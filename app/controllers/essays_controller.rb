@@ -13,6 +13,11 @@ class EssaysController < ApplicationController
     # send_data @images[0], :type => 'image/jpeg', :disposition => 'inline'
   end
 
+  def tag_search #現状一つのタグに対してのみ
+    tag_essay = TagEssay.where(tag_id: params[:tag_id])
+    @essays = tag_essay.map { |essay| essay.essay }
+  end
+
   def search
     result = Essay.keyword_search params[:keyword]
     @pickups = result[:pickup]
