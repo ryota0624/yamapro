@@ -37,5 +37,8 @@ Rails.application.routes.draw do
     post "addessay" =>"apis#add_essay"
     post "deleteessay" => "apis#delete_essay"
     post "getimage" => "apis#get_images"
+    get "getTags" => "apis#get_tags"
+    post "addTag" => "apis#create_tag"
+    post "deleteTag" => "apis#delete_tag"
   end
 end

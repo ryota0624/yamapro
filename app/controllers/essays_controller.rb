@@ -4,7 +4,13 @@ class EssaysController < ApplicationController
     @essays = Essay.where(pickup_f: false)
   end
   def pickup
+    @new_essays = Essay.where(pickup_f: true).limit(3)
     @essays = Essay.where(pickup_f: true)
+  end
+
+  def question
+    tag_essays = TagEssay.where(tag_id: 0)#質問タグの番号を決めて打つ
+    @essays = tag_essays.map{ |essay| essay.essay }
   end
 
   def show
@@ -14,14 +20,15 @@ class EssaysController < ApplicationController
   end
 
   def tag_search #現状一つのタグに対してのみ
-    tag_essay = TagEssay.where(tag_id: params[:tag_id])
-    @essays = tag_essay.map { |essay| essay.essay }
+    tag_essays = TagEssay.where(tag_id: params[:tag_id])
+    @essays = tag_essays.map { |essay| essay.essay }
   end
 
   def search
     result = Essay.keyword_search params[:keyword]
     @pickups = result[:pickup]
     @user_posts = result[:user_posts]
+    render :json => @user_posts
   end
 
   def new

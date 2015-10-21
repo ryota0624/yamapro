@@ -66,6 +66,26 @@ class Api::ApisController < ApplicationController
     render json: @images
   end
 
+  def get_tags
+    @tags = Tag.all
+    render json: @tags
+  end
+
+  def create_tag
+    @tag = Tag.new()
+    @tag.name = params[:name]
+    if @tag.save
+      render json: @tag
+    end
+  end
+
+  def delete_tag
+    @tag = Tag.find(params[:id])
+    @tag.destroy
+    render json: @tag
+  end
+
+
   def user_params
     params.require(:user).permit(:name, :password, :password_confirmation, :gender)
   end

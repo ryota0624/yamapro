@@ -47,8 +47,8 @@ class Essay < ActiveRecord::Base
       user_posts: nil
     }
     essays = Essay.where(["text LIKE ?",keyword])
-    result[:pickup] = essays.where("pickup_f = true")
-    result[:user_posts] = essays.where("pickup_f = false")
+    result[:pickup] = essays.where(pickup_f: true)
+    result[:user_posts] = essays.where(pickup_f: false)
     result
   end
 end

@@ -10,8 +10,10 @@
       </ul>
       <div class="search">
         <div id="search_in">
-          <input type="text" placeholder="キーワードを入力">
-          <button value="button">検索</button>
+        <%= form_tag('essays/search') do %>
+          <%= text_field_tag 'keyword' %>
+          <%= submit_tag "確認" %>
+        <% end %>
         </div>
       </div>
       <div class="clear">
