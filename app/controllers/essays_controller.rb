@@ -56,7 +56,7 @@ class EssaysController < ApplicationController
         @image.essay_id = essay_id
         @image.save
       end
-      redirect_to root
+      redirect_to root_path
     else
       redirect_to new_essays_path
     end
