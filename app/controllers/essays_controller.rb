@@ -1,9 +1,14 @@
 class EssaysController < ApplicationController
   def index
+<<<<<<< HEAD
     @essays = Essay.where(pickup_f: false).limit(3)
     @essay = Essay.where(pickup_f: false).limit(-1).offset(3)
 
     logger.debug(@essays)
+=======
+    @new_essays = Essay.where(pickup_f: false).limit(3)
+    @essays = Essay.where(pickup_f: false)
+>>>>>>> 023a633f68f437bc5ebd9e8ef28836c4b6ac3841
   end
   def pickup
     @essays = Essay.where(pickup_f: true)
@@ -13,6 +18,11 @@ class EssaysController < ApplicationController
     @essay = Essay.find(params[:id])
     @images = ImageEssay.where(essay_id: @essay.id)
     # send_data @images[0], :type => 'image/jpeg', :disposition => 'inline'
+  end
+
+  def tag_search #現状一つのタグに対してのみ
+    tag_essay = TagEssay.where(tag_id: params[:tag_id])
+    @essays = tag_essay.map { |essay| essay.essay }
   end
 
   def search

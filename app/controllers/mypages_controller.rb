@@ -16,6 +16,10 @@ class MypagesController < ApplicationController
     @list = Mylist.where(user_id: current_user.id)
     @essaylist = @list.map {|listItem| listItem.essay }
   end
+  def my_list_special #記事のお気に入り
+    @list = Mylist.where(user_id: current_user.id)
+    @essaylist = @list.map {|listItem| listItem.essay }
+  end
 
   def get_user_image
     @image = UserImage.find(user_id: current_user.id)

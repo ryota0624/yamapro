@@ -1,6 +1,6 @@
 
 <% @essaylist.each do |listItem| %>
-  <% if listItem.pickup_f == false %>
+  <% if listItem.pickup_f == true %>
     <p>id：<%= listItem.id %></p>
     <p>特集？：<%= listItem.pickup_f %></p>
 
