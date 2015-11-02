@@ -10,11 +10,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @image = UserImage.where(user_id: @user.id)
-    # if params[:format].in?(["jpg", "png", "gif"])
-    #   send_image
-    # else
-    #   # render "users/show"
-    # end
+    if params[:format].in?(["jpg", "png", "gif"])
+      send_image
+    else
+      render "users/show"
+    end
   end
 
   def new
@@ -31,12 +31,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      image = {}
-      upload_files = params[:image]
-      image[:data] = upload_files.read
-      @image = UserImage.new(image)
-      @image.user_id = @user.id
-      @image.save
       redirect_to root_path
     else
       render action: :new
@@ -45,19 +39,6 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    # if @user.update(user_params)
-    #   user_id = @user.id
-    #   image = {}
-    #   upload_files = params[:image]
-    #   image[:data] = upload_files.read
-    #   @image = UserImage.new(image)
-    #   @image.user_id = user_id
-    #   @image.save
-    #   redirect_to mypages_path , notice: "会員情報を更新しました。"
-    # else
-    #   render 'index/mypage'
-    # end
-    #
     if @user.update(user_params)
       redirect_to mypages_path , notice: "会員情報を更新しました。"
     else
@@ -71,7 +52,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation, :gender, :data, :content_type)
+      params.require(:user).permit(:name, :password, :password_confirmation, :gender, :business, :data, :content_type, image_attributes: [:image, :id, :uploaded_image])
     end
 
     def send_image

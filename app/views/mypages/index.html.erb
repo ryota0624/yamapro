@@ -7,10 +7,12 @@
   </p>
 <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>氏名</th>
+      <p>氏名：<%= link_to @user.name, user_path(@user) %></p>
+
+      <p>画像:<%= user_image_tag @user, width: 100 %></p>
+
+
+<% if false %>
       <th>画像</th>
 
     </tr>
@@ -26,7 +28,7 @@
             <td><%= image_tag(url_for(:action => 'get_user_image', :id => image.id), :size => '100x100')%></td>
         <% end %>
       </tr>
-</tbody>
-</table>
+<% end %>
+
 
   <p><%= link_to "編集", edit_user_path(@user) %></p>

@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 20151015055556) do
     t.string   "persistence_token",                 null: false
     t.boolean  "admin",             default: false, null: false
     t.integer  "gender",                            null: false
+    t.integer  "business",                          null: false
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
   end

@@ -13,7 +13,8 @@ class MypagesController < ApplicationController
   end
 
   def add_my_list
-    if Mylist.exists?(essay_id: session[:essay_id]) #存在したらtrue
+    if Mylist.exists?(essay_id: session[:essay_id], user_id: current_user.id) #存在したらtrue お気に入りしてなければfalse
+
       redirect_to my_list_mypages_path
     else
       add = User.add_mylist(current_user.id, session[:essay_id])

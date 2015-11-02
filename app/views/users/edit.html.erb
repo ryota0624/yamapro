@@ -1,18 +1,24 @@
-<p>画像の編集</p>
+<p>プロフィールの編集</p>
 <p><%= link_to "マイページに戻る", mypages_path %></p>
 
 <%= form_for @user, url: :user, html: { multipart: true } do |form| %>
 
-  <table class="attr">
-    <tr>
-      <th><%= form.label :name %></th>
-      <td><%= form.text_field :name %></td>
-    </tr>
+  <p>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </p>
+    <p>職種
+        <%= form.radio_button :business, 0 %>
+        <%= form.label :business_0, "学生/専門学生" %>
+        <%= form.radio_button :business, 1 %>
+        <%= form.label :business_1, "社会人" %>
+        <%= form.radio_button :business, 2 %>
+        <%= form.label :business_2, "その他" %>
+    </p>
 
       <%= form.fields_for :image do |imgf| %>
-        <tr>
-          <th><%= imgf.label :uploaded_image %></th>
-          <td>
+        <p>
+          <%= imgf.label :uploaded_image %>
             <%= imgf.file_field :uploaded_image %>
             <% if !imgf.object.new_record? && imgf.object.errors.empty? %>
             <div>
@@ -22,8 +28,7 @@
               <%= imgf.hidden_field :id %>
             </div>
             <% end %>
-          </td>
-        </tr>
+        </p>
       <% end %>
 
 <% if false %>
@@ -54,9 +59,7 @@
           <%= form.check_box :mother50 %>
         </td>
       </tr>
-
 <% end %>
 
-  </table>
   <p><%= form.submit %></p>
 <% end %>
