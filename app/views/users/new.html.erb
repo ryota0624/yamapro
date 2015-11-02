@@ -6,6 +6,20 @@
       <%= form.label :name %>
       <%= form.text_field :name %>
     </p>
+    <p>性別
+      <%= form.radio_button :gender, 0 %>
+      <%= form.label :gender_0, "男" %>
+      <%= form.radio_button :gender, 1 %>
+      <%= form.label :gender_1, "女" %>
+    </p>
+    <p>職種
+      <%= form.radio_button :gender, 0 %>
+      <%= form.label :gender_0, "学生/専門学生" %>
+      <%= form.radio_button :gender, 1 %>
+      <%= form.label :gender_1, "社会人" %>
+      <%= form.radio_button :gender, 2 %>
+      <%= form.label :gender_2, "その他" %>
+    </p>
     <p>
       <%= form.label :password %>
       <%= form.password_field :password %>
@@ -14,12 +28,8 @@
       <%= form.label :password_confirmation %>
       <%= form.password_field :password_confirmation %>
     </p>
-    <p>
-      <%= form.radio_button :gender, 0 %>
-      <%= form.label :gender_0, "男" %>
-      <%= form.radio_button :gender, 1 %>
-      <%= form.label :gender_1, "女" %>
-    </p>
+
+<% if false %>
     <p>
     <%= form.fields_for :image do |imgf| %>
         <%= imgf.label :uploaded_image %>
@@ -29,7 +39,7 @@
 
     <label for="image">プロフィール画像アップロード</label>
     <%= file_field_tag 'image' %>
-
+<% end %>
 
     <%= form.submit "sign up", class: "btn btn-primary" %>
   </fieldset>

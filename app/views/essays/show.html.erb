@@ -18,4 +18,6 @@
   </tr>
 <% end %>
 
+<%= link_to "お気に入り", :controller => "mypages", :action =>"add_my_list" %>
+
 <%= link_to 'つぶやく', "http://twitter.com/share?url=http://"+request.host+"/&text="+@essay.title  %>

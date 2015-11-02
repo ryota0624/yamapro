@@ -2,9 +2,7 @@ Rails.application.routes.draw do
 
   root to:'top#index'
 
-  resources :users do
-    member {get "editpass"}
-  end
+  resources :users
   get "get_user_image" => "mypages#get_user_image"
 
   get "signup" => "users#new"
@@ -27,7 +25,7 @@ Rails.application.routes.draw do
 
   # マイページ
   resources :mypages, only: [:index] do
-    collection { get "my_essay", "my_list", "my_list_special", "my_fav", "my_post" }
+    collection { get "my_essay", "my_list","add_my_list", "my_list_special", "my_fav", "my_post" }
   end
 
   namespace :api, {format: "json"} do

@@ -28,10 +28,6 @@ class UsersController < ApplicationController
     @user.build_image unless @user.image
   end
 
-  def editpass  #パスワード再設定
-    @user = User.find(params[:id])
-  end
-
   def create
     @user = User.new(user_params)
     if @user.save

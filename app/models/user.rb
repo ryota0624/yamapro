@@ -9,12 +9,12 @@ class User < ActiveRecord::Base
   has_many :favs
   has_many :mylists
   has_one :image, class_name: "UserImage", dependent: :destroy
-  
+
   accepts_nested_attributes_for :image, allow_destroy: true
 
-  def add_mylist(essay_id)
+  def User.add_mylist(user_id, essay_id)
     item = Mylist.new()
-    item.user_id = self.id
+    item.user_id = user_id
     item.essay_id = essay_id
     item.save()
   end

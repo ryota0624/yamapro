@@ -51,4 +51,5 @@ class Essay < ActiveRecord::Base
     result[:user_posts] = essays.where("pickup_f = false")
     result
   end
+
 end

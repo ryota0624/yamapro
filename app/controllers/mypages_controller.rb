@@ -12,10 +12,22 @@ class MypagesController < ApplicationController
     render template:"essays/index"
   end
 
+  def add_my_list
+    if Mylist.exists?(essay_id: session[:essay_id]) #存在したらtrue
+      redirect_to my_list_mypages_path
+    else
+      add = User.add_mylist(current_user.id, session[:essay_id])
+      if add
+        redirect_to my_list_mypages_path
+      end
+    end
+  end
+
   def my_list #記事のお気に入り
     @list = Mylist.where(user_id: current_user.id)
     @essaylist = @list.map {|listItem| listItem.essay }
   end
+
   def my_list_special #記事のお気に入り
     @list = Mylist.where(user_id: current_user.id)
     @essaylist = @list.map {|listItem| listItem.essay }

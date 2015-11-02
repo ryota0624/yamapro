@@ -8,6 +8,7 @@
       <th><%= form.label :name %></th>
       <td><%= form.text_field :name %></td>
     </tr>
+
       <%= form.fields_for :image do |imgf| %>
         <tr>
           <th><%= imgf.label :uploaded_image %></th>
@@ -24,6 +25,38 @@
           </td>
         </tr>
       <% end %>
+
+<% if false %>
+      <tr>
+        <th><%= form.label "母の年代" %></th>
+        <td>
+          <%= form.label :mother30, "30代" %>
+          <%= form.check_box :mother30 %>
+          <%= form.label :mother40, "40代" %>
+          <%= form.check_box :mother40 %>
+          <%= form.label :mother50, "50代" %>
+          <%= form.check_box :mother50 %>
+          <%= form.label :mother60, "60代" %>
+          <%= form.check_box :mother60 %>
+          <%= form.label :mother70, "70代以上" %>
+          <%= form.check_box :mother70 %>
+        </td>
+      </tr>
+
+      <tr>
+        <th><%= form.label "住んでいる場所" %></th>
+        <td>
+          <%= form.label :moth, "実家" %>
+          <%= form.check_box :mother30 %>
+          <%= form.label :mother40, "一人暮らし" %>
+          <%= form.check_box :mother40 %>
+          <%= form.label :mother50, "下宿" %>
+          <%= form.check_box :mother50 %>
+        </td>
+      </tr>
+
+<% end %>
+
   </table>
   <p><%= form.submit %></p>
 <% end %>
