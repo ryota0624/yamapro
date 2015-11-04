@@ -1,4 +1,4 @@
-<p>
-  <strong>氏名:</strong>
-  <%= @user.name %>
-</p>
+<p>氏名:<%= @user.name %></p>
+<p>性別:<%= @user.gender %></p>
+<p>職種：<%= @user.business %></p>
+<p>画像:<%= user_image_tag @user, width: 100 %></p>

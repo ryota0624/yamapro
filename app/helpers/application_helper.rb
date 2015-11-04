@@ -26,8 +26,8 @@ module ApplicationHelper
   end
 
   def user_image_tag(user, options = {})
-    if user.present?
-      path = user_path(user, format: user.extension)
+    if user.image.present?
+      path = user_path(user, format: user.image.extension)
       link_to(image_tag(path, { alt: user.name }.merge(options)), path)
     else
       ""

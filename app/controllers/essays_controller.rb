@@ -1,14 +1,17 @@
 class EssaysController < ApplicationController
   def index
     @new_essays = Essay.where(pickup_f: false).limit(3)
-    @essays = Essay.where(pickup_f: false)
+    @essays = Essay.where(pickup_f: false).limit(-1).offset(3)
+    logger.debug(@essays)
   end
+
   def pickup
     @essays = Essay.where(pickup_f: true)
   end
 
   def show
     @essay = Essay.find(params[:id])
+    session[:essay_id] = params[:id]
     @images = ImageEssay.where(essay_id: @essay.id)
     # send_data @images[0], :type => 'image/jpeg', :disposition => 'inline'
   end
@@ -28,10 +31,10 @@ class EssaysController < ApplicationController
     @image = ImageEssay.new
     @essay = Essay.new
   end
-  
+
   def create
     essay = Essay.new(essay_params)
-    if !essay.pickup_f 
+    if !essay.pickup_f
       essay.pickup_f = false
     end
     essay.user_id = current_user.id
@@ -49,15 +52,17 @@ class EssaysController < ApplicationController
         @image.essay_id = essay_id
         @image.save
       end
-      redirect_to root
+      redirect_to root_path
     else
       redirect_to new_essays_path
     end
     #essay.add_tag(params[:tags])
   end
+
   def edit
     @essay = Essay.find(params[:id])
   end
+
   def update
 
   end

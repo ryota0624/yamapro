@@ -4,29 +4,28 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @image = UserImage.where(user_id: 8)
   end
 
   def show
     @user = User.find(params[:id])
-    # @user = :current_user
+    @image = UserImage.where(user_id: @user.id)
     if params[:format].in?(["jpg", "png", "gif"])
       send_image
     else
-      # render "users/show"
+      render "users/show"
     end
   end
 
   def new
   	@user = User.new
+    # @user.bulid_image
+    @image = UserImage.new
   end
 
   def edit
     @user = User.find(params[:id])
-    # @user.build_image unless @user.image
-  end
-
-  def editpass  #パスワード再設定
-    @user = User.find(params[:id])
+    @user.build_image unless @user.image
   end
 
   def create
@@ -38,8 +37,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # user.dateにfile_read
-
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
@@ -47,21 +44,21 @@ class UsersController < ApplicationController
     else
       render 'index/mypage'
     end
-  end
 
+  end
 
   def destroy
   end
 
   private
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation, :gender, :data, :content_type)
+      params.require(:user).permit(:name, :password, :password_confirmation, :gender, :business, :data, :content_type, image_attributes: [:image, :id, :uploaded_image])
     end
 
     def send_image
       if @user.present?
-        send_data @user.data,
-          type: @user.content_type, disposition: "inline"
+        send_data @user.image.data,
+          type: @user.image.content_type, disposition: "inline"
       else
         # raise NotFound
       end
