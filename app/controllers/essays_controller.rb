@@ -14,8 +14,8 @@ class EssaysController < ApplicationController
 
   def question
     tag_essays = TagEssay.where(tag_id: 0)#質問タグの番号を決めて打つ
-    @essays = tag_essays.map{ |essay| essay.essay }
-    render :json => @essays
+    @questions = tag_essays.map{ |essay| essay.essay }
+    
   end
 
   def show
@@ -23,9 +23,10 @@ class EssaysController < ApplicationController
     logger.debug @essay
     session[:essay_id] = params[:id]
      @images = ImageEssay.where(essay_id: @essay.id)
-    # middleTags = EssayTag.where(essay_id: @essay.id)
-    # @TagIds = middleTag.map { |tag| Tag.find(tag.essay_id) }
-    @comments = Comment.where(essay_id: @essay_id)
+     middleTags = TagEssay.where(essay_id: @essay.id)
+     #render :json => middleTags
+    @tags = middleTags.map { |tag| Tag.find(tag.tag_id) }
+    @comments = Comment.where(essay_id: @essay.id)
   end
 
   def tag_search #現状一つのタグに対してのみ
@@ -42,6 +43,7 @@ class EssaysController < ApplicationController
 
   def new
     @image = ImageEssay.new
+    @tags = Tag.all 
     @essay = Essay.new
   end
 
@@ -57,20 +59,23 @@ class EssaysController < ApplicationController
       image = {}
       logger.debug params
       upload_files = params[:image]
-      upload_files.each do | file |
-        logger.debug file[1]
-        image[:img_name] = file[1].original_filename
-        image[:image] = file[1].read
-        @image = ImageEssay.new(image)
-        @image.essay_id = essay_id
-        @image.save
+      if upload_files then
+        upload_files.each do | file |
+          logger.debug file[1]
+          image[:img_name] = file[1].original_filename
+          image[:image] = file[1].read
+          @image = ImageEssay.new(image)
+          @image.essay_id = essay_id
+          @image.save
+        end
       end
       logger.debug root_path
       redirect_to root_path
     else
       redirect_to new_essays_path
     end
-    #essay.add_tag(params[:tags])
+    logger.debug params[:tags]
+    essay.add_tag(params[:tags])
   end
 
   def edit

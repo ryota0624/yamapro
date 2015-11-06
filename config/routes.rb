@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "login" =>"user_sessions#new"
   delete "logout" => "user_sessions#destroy"
 
-
+  get "about" => "top#about"
   get "get_image" => "essays#get_image"
 
   resources :essays do #記事
@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       get "question"
     end
   end
+
+  post "comment" => "comments#create"
 
   resources :posts #つぶやき
 
