@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-
   # for authlogic
   acts_as_authentic do |c|
     c.login_field = :name
@@ -9,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :favs
   has_many :mylists
   has_one :image, class_name: "UserImage", dependent: :destroy
+  has_many :tag_users
 
   accepts_nested_attributes_for :image, allow_destroy: true
 
@@ -25,5 +25,17 @@ class User < ActiveRecord::Base
     fav.user_id = self.id
     fav.save;
   end
+
+  # def User.add_usertag(usretags)
+  #   usertags.each do |tag_id|
+  #     puts tag_id
+  #     tag_user = TagUser.new()
+  #     tag_user.tag_id = tag_id
+  #     tag_user.user_id = current_user.id
+  #     tag_user.save()
+  #   end
+  # end
+
+
 
 end

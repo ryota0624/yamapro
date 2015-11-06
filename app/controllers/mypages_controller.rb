@@ -5,6 +5,8 @@ class MypagesController < ApplicationController
     @essays_pickup = Essay.where(pickup_f: "true") #特集全て
     @user = User.find(current_user.id)
     @image = UserImage.where(user_id: current_user.id)
+    work = TagUser.where(user_id: current_user.id)
+    @tag = Usertag.where(id: work[0].tag_id)
   end
 
   def my_essay
