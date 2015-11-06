@@ -15,8 +15,8 @@ class EssaysController < ApplicationController
 
   def show
     @essay = Essay.find(params[:id])
+    logger.debug @essay
     @images = ImageEssay.where(essay_id: @essay.id)
-    # send_data @images[0], :type => 'image/jpeg', :disposition => 'inline'
   end
 
   def tag_search #現状一つのタグに対してのみ
