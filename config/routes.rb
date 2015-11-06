@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     collection do
       get 'pickup'
       post 'search'
+      get "question"
     end
   end
 

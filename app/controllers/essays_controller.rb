@@ -15,13 +15,17 @@ class EssaysController < ApplicationController
   def question
     tag_essays = TagEssay.where(tag_id: 0)#質問タグの番号を決めて打つ
     @essays = tag_essays.map{ |essay| essay.essay }
+    render :json => @essays
   end
 
   def show
     @essay = Essay.find(params[:id])
     logger.debug @essay
     session[:essay_id] = params[:id]
-    @images = ImageEssay.where(essay_id: @essay.id)
+     @images = ImageEssay.where(essay_id: @essay.id)
+    # middleTags = EssayTag.where(essay_id: @essay.id)
+    # @TagIds = middleTag.map { |tag| Tag.find(tag.essay_id) }
+    @comments = Comment.where(essay_id: @essay_id)
   end
 
   def tag_search #現状一つのタグに対してのみ
