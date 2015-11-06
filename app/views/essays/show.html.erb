@@ -1,23 +1,74 @@
-<table class="attr">
-  <tr>
-    <th>タイトル</th>
-    <td><%= @essay.title %></td>
-  </tr>
-  <tr>
-    <th>本文</th>
-    <td><%= @essay.text %></td>
-  </tr>
-  <tr>
-    <th>作成者</th>
-    <td><%= @essay.user.name %></td>
-</table>
+  <div class="dodai"><div class="yohaku2">
+        <div class="kisyowa">
+          <div class="kipro">
+            <img src="./slime.png" class="kicon">
+            yamapuro
+          </div>
+          <div class="tihibu">
+              <p class="day"><%= @essay.created_at%></p>
+              <p class="kiti"><%= @essay.title %></p>
+              
+            <div class="kijibu">
+              <%=@essay.text %>
 
-<% @images.each do |image| %>
-  <tr>
-    <td><%= image_tag(url_for(:action => 'get_image', :id => image.id), :size => '100x100')%></td>
-  </tr>
-<% end %>
 
-<%= link_to "お気に入り", :controller => "mypages", :action =>"add_my_list" %>
-
-<%= link_to 'つぶやく', "http://twitter.com/share?url=http://"+request.host+"/&text="+@essay.title  %>
+              </p></div>
+              <div class="favowa">
+                <div class="fav">
+                  <img src="./hoshi_y.png" class="fav_icon">★25
+                </div>
+                <div class="sns">
+                  <img src="./Twitter.png" class="sns_icon">
+                  <img src="./FB.png" class="sns_icon_fb">
+                  <img src="./LINE.png" class="sns_icon">
+                </div>
+              </div>
+              <div class="totawa">
+                <div class="tota">タグタグタグ</div>
+                <div class="tota">タグタグ</div>
+                <div class="tota">タグ</div>
+                <div class="tota">タグ</div>
+                <div class="tota">タグ</div>
+                <div class="tota">タグタグ</div>
+                <div class="tota">タグ</div>
+                <div class="tota">タグタグ</div>
+                <div class="tota">タグ</div>
+                <div class="tota">タグタグタグタグ</div>
+                <div class="tota">タグ</div>
+                <div class="tota">タグタグタグ</div>
+                <div class="tota">タグ</div>
+                <div class="tota">タグ</div>
+                <div class="tota">タグ</div>
+                <div class="tota">タグ</div>
+              </div>
+          </div>
+          <div class="tihibu">
+            <div class="kowa">
+              <p>コメントを入力</p>
+              <textarea id="inkome" placeholder="コメントを入力"></textarea>
+              <div class="sousin"><a href="#">送信</a></div>
+            </div>
+            <div class="kowa">
+              <p class="k">コメント(3)</p>
+              <div id="komewaku">
+                <div class="kome">
+                  <img src="./slime.png" class="koi">yamapuro<br>
+                  <p class="coco">ああああああああああああああああああああああああああああああああああああああああああああああああ</p>
+                </div>
+                <div class="kome">
+                  <img src="./slime.png" class="koi">yamapuro<br>
+                  <p class="coco">ああああ</p>
+                  </div>
+                <div class="kome">
+                  <img src="./slime.png" class="koi">yamapuro<br>
+                  <p class="coco">ああああ</p>
+                </div>
+            </div>
+            </div>
+          </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      <div class="clear"></div>
