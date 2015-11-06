@@ -26,4 +26,16 @@ class User < ActiveRecord::Base
     fav.save;
   end
 
+  # def User.add_usertag(usretags)
+  #   usertags.each do |tag_id|
+  #     puts tag_id
+  #     tag_user = TagUser.new()
+  #     tag_user.tag_id = tag_id
+  #     tag_user.user_id = current_user.id
+  #     tag_user.save()
+  #   end
+  # end
+
+
+
 end

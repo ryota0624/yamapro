@@ -25,6 +25,9 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    work = TagUser.where(user_id: current_user.id)
+    @tag = Usertag.where(id: work[0].tag_id)
+
     @user.build_image unless @user.image
   end
 
@@ -35,6 +38,8 @@ class UsersController < ApplicationController
     else
       render action: :new
     end
+    # User.add_usertag(params[:usertags])
+
   end
 
   def update
@@ -52,7 +57,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation, :gender, :business, :data, :content_type, image_attributes: [:image, :id, :uploaded_image])
+      params.require(:user).permit(:name, :password, :password_confirmation, :gender, :business, :data, :content_type, :usertags, :fage, :mage, :place, image_attributes: [:image, :id, :uploaded_image] )
     end
 
     def send_image

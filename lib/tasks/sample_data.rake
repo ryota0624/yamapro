@@ -100,7 +100,7 @@ namespace :db do
     Usertag.create!(
       fage: "40代",
       mage: "40代",
-      place: "single"
+      place: "一人暮らし"
     )
     TagUser.create!(
       tag_id: "1",
