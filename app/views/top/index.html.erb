@@ -2,8 +2,8 @@
 <div class="dodai">
   <div class="touko">
     <h2>みんなの投稿</h2>
-    <% @essays.each do |essay| %>
-    <div id="tou1">
+    <% @essays.each_with_index do |essay, i| %>
+    <div id="tou<%= i+1 %>">
     <%= link_to essay.title, essay %>
     </div>
     <% end %>
@@ -11,8 +11,8 @@
   <div class="tokusyu">
     <h2>特集</h2>
     <div class="toku">
-      <% @posts.each do |post| %>
-      <div id="toku_1">
+      <% @posts.each_with_index do |post, i| %>
+      <div id="toku_<%= i+1 %>">
       <p><%= post.content %></p>
       </div>
       <% end %>
