@@ -4,18 +4,28 @@
     <a href="#">人気順</a>/
     <div class="minato_dai">
       <% @new_essays.each do |essay| %>
-      <div class="minato_new">new!<br/>
-        <a href="/essays/<%= essay.id %>">
-        <div class="minato_new_ko"><img src="./.jpg"><%= essay.title%></div></a>
-
-      </div>
+      <div class="minato_new">new!<br>
+        <div class="minato_new_ko">
+          <a href="/essays/<%= essay.id %>">
+            <div class="mi_ti">
+              <img src="./.jpg">
+              <p><%= essay.title%></p>
+            </div>
+            <p class="mina_toko">
+              <%= essay.text %>
+            </p>
+          </a>
+        </div>
+        </div>
       <% end %>
+      </div>
     </div>
     <div class="minato_dai">
       <% @essays.each do |essay| %>
         <a href="/essays/<%= essay.id %>">
         <div class="minato_ki_ko"><img src="./.jpg"><%= essay.title%></div></a>
       <% end %>
+      <%= will_paginate @essays %>
     </div>
   </div>
 </div>

@@ -3,14 +3,18 @@
   <div class="touko">
     <h2>みんなの投稿</h2>
     <% @essays.each do |essay| %>
+    <div id="tou1">
     <%= link_to essay.title, essay %>
+    </div>
     <% end %>
   </div>
   <div class="tokusyu">
     <h2>特集</h2>
     <div class="toku">
       <% @posts.each do |post| %>
+      <div id="toku_1">
       <p><%= post.content %></p>
+      </div>
       <% end %>
     </div>
   </div>

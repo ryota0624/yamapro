@@ -1,13 +1,15 @@
 class EssaysController < ApplicationController
   def index
     @new_essays = Essay.where(pickup_f: false).limit(3)
-    @essays = Essay.where(pickup_f: false).limit(-1).offset(3)
+    #@essays = Essay.where(pickup_f: false).limit(-1).offset(3)
+    @essays = Essay.where(pickup_f: false).limit(-1).offset(3).paginate(:page => params[:page], :per_page => 8)
     logger.debug(@essays)
   end
 
   def pickup
     @new_essays = Essay.where(pickup_f: true).limit(3)
-    @essays = Essay.where(pickup_f: true)
+    @essays = Essay.where(pickup_f: true).limit(-1).offset(3).paginate(:page => params[:page], :per_page => 8)
+    #@essays = Essay.where(pickup_f: true)
   end
 
   def question
