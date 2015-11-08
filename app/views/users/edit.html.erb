@@ -17,66 +17,64 @@
   </p>
 
   <%= form.fields_for :image do |imgf| %>
-  <p>
-    <%= imgf.label :uploaded_image %>
-    <%= imgf.file_field :uploaded_image %>
-    <% if !imgf.object.new_record? && imgf.object.errors.empty? %>
-    <div>
-      <%= user_image_tag @user, size: "60" %>
-      <%= imgf.check_box :_destroy %>
-      <%= imgf.label :_destroy %>
-      <%= imgf.hidden_field :id %>
-    </div>
-    <% end %>
-  </p>
+    <p>
+      <%= imgf.label :uploaded_image %>
+      <%= imgf.file_field :uploaded_image %>
+      <% if !imgf.object.new_record? && imgf.object.errors.empty? %>
+      <div>
+        <%= user_image_tag @user, size: "60" %>
+        <%= imgf.check_box :_destroy %>
+        <%= imgf.label :_destroy %>
+        <%= imgf.hidden_field :id %>
+      </div>
+      <% end %>
+    </p>
   <% end %>
 
-  <%= form.fields_for :usertags do |tag| %>
+  <%= fields_for @tag do |tag| %>
 
-  <p>父の年代
-    <%= tag.radio_button :fage, "30代" %>
-    <%= tag.label :fage_30, "30代" %>
-    <%= tag.radio_button :fage, "40代" %>
-    <%= tag.label :fage_40, "40代" %>
-    <%= tag.radio_button :fage, "50代" %>
-    <%= tag.label :fage_50, "50代" %>
-    <%= tag.radio_button :fage, "60代" %>
-    <%= tag.label :fage_60, "60代" %>
-    <%= tag.radio_button :fage, "70代" %>
-    <%= tag.label :fage_70, "70代以上" %>
-    <%= tag.radio_button :fage, "未設定" %>
-    <%= tag.label :fage_no, "未設定" %>
-  </p>
+    <p>父の年代
+      <%= tag.radio_button :fage, "30代" %>
+      <%= tag.label :fage_30, "30代" %>
+      <%= tag.radio_button :fage, "40代" %>
+      <%= tag.label :fage_40, "40代" %>
+      <%= tag.radio_button :fage, "50代" %>
+      <%= tag.label :fage_50, "50代" %>
+      <%= tag.radio_button :fage, "60代" %>
+      <%= tag.label :fage_60, "60代" %>
+      <%= tag.radio_button :fage, "70代" %>
+      <%= tag.label :fage_70, "70代以上" %>
+      <%= tag.radio_button :fage, "未設定" %>
+      <%= tag.label :fage_no, "未設定" %>
+    </p>
 
-  <p>母の年代
-    <%= tag.radio_button :mage, "30代"  %>
-    <%= tag.label :mage_30, "30代" %>
-    <%= tag.radio_button :mage, "40代"  %>
-    <%= tag.label :mage_40, "40代" %>
-    <%= tag.radio_button :mage, "50代"  %>
-    <%= tag.label :mage_50, "50代" %>
-    <%= tag.radio_button :mage, "60代"  %>
-    <%= tag.label :mage_60, "60代" %>
-    <%= tag.radio_button :mage, "70代"  %>
-    <%= tag.label :mage_70, "70代以上" %>
-    <%= tag.radio_button :mage, "未設定" %>
-    <%= tag.label :mage_no, "未設定" %>
-  </p>
-  <p>住んでいる場所
-    <%= tag.radio_button :place, "実家" %>
-    <%= tag.label :place, "実家" %>
-    <%= tag.radio_button :place, "一人暮らし" %>
-    <%= tag.label :place, "一人暮らし" %>
-    <%= tag.radio_button :place, "下宿" %>
-    <%= tag.label :place, "下宿" %>
-    <%= tag.radio_button :place, "その他" %>
-    <%= tag.label :place, "その他" %>
-    <%= tag.radio_button :place, "未設定" %>
-    <%= tag.label :place_no, "未設定" %>
-  </p>
-
+    <p>母の年代
+      <%= tag.radio_button :mage, "30代"  %>
+      <%= tag.label :mage_30, "30代" %>
+      <%= tag.radio_button :mage, "40代"  %>
+      <%= tag.label :mage_40, "40代" %>
+      <%= tag.radio_button :mage, "50代"  %>
+      <%= tag.label :mage_50, "50代" %>
+      <%= tag.radio_button :mage, "60代"  %>
+      <%= tag.label :mage_60, "60代" %>
+      <%= tag.radio_button :mage, "70代"  %>
+      <%= tag.label :mage_70, "70代以上" %>
+      <%= tag.radio_button :mage, "未設定" %>
+      <%= tag.label :mage_no, "未設定" %>
+    </p>
+    <p>住んでいる場所
+      <%= tag.radio_button :place, "実家" %>
+      <%= tag.label :place_0, "実家" %>
+      <%= tag.radio_button :place, "一人暮らし" %>
+      <%= tag.label :place_1, "一人暮らし" %>
+      <%= tag.radio_button :place, "下宿" %>
+      <%= tag.label :place_2, "下宿" %>
+      <%= tag.radio_button :place, "その他" %>
+      <%= tag.label :place_3, "その他" %>
+      <%= tag.radio_button :place, "未設定" %>
+      <%= tag.label :place_no, "未設定" %>
+    </p>
   <% end %>
-
 
   <p><%= form.submit %></p>
 <% end %>

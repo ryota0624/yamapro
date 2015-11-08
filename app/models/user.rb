@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :tag_users
 
   accepts_nested_attributes_for :image, allow_destroy: true
+  accepts_nested_attributes_for :tag_users, allow_destroy: true
+
 
   def User.add_mylist(user_id, essay_id)
     item = Mylist.new()
@@ -25,17 +27,5 @@ class User < ActiveRecord::Base
     fav.user_id = self.id
     fav.save;
   end
-
-  # def User.add_usertag(usretags)
-  #   usertags.each do |tag_id|
-  #     puts tag_id
-  #     tag_user = TagUser.new()
-  #     tag_user.tag_id = tag_id
-  #     tag_user.user_id = current_user.id
-  #     tag_user.save()
-  #   end
-  # end
-
-
 
 end
