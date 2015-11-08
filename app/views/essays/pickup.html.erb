@@ -9,10 +9,10 @@
           <a href="/essays/<%= essay.id %>">
             <div class="mi_ti">
               <img src="./.jpg">
-              <p><%= essay.title%></p>
+              <p><%= essay.title.slice(0,15)%></p>
             </div>
             <p class="mina_toko">
-              <%= essay.text %>
+              <%= essay.text.slice(0,100) %>
             </p>
           </a>
         </div>
@@ -25,7 +25,9 @@
         <a href="/essays/<%= essay.id %>">
         <div class="minato_ki_ko"><img src="./.jpg"><%= essay.title%></div></a>
       <% end %>
+      <div class="page">
       <%= will_paginate @essays %>
+      </div>
     </div>
   </div>
 </div>
