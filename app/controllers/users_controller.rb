@@ -19,32 +19,36 @@ class UsersController < ApplicationController
 
   def new
   	@user = User.new
-    # @user.bulid_image
     @image = UserImage.new
+    # @user.bulid_image
   end
 
   def edit
     @user = User.find(params[:id])
     work = TagUser.where(user_id: current_user.id)
     @tag = Usertag.where(id: work[0].tag_id)
+    @tag = @tag[0]
 
     @user.build_image unless @user.image
   end
 
   def create
     @user = User.new(user_params)
-    if @user.save
+    @tag = Usertag.new(fage: "未設定", mage: "未設定", place: "未設定")
+    @middle = TagUser.new(user_id: User.count + 1, tag_id: Usertag.count + 1)
+    if @user.save && @tag.save && @middle.save
       redirect_to root_path
     else
       render action: :new
     end
-    # User.add_usertag(params[:usertags])
 
   end
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    work = TagUser.where(user_id: current_user.id)
+    @tag = Usertag.where(id: work[0].tag_id)
+    if @user.update(user_params) && @tag[0].update(user_tag_params)
       redirect_to mypages_path , notice: "会員情報を更新しました。"
     else
       render 'index/mypage'
@@ -57,7 +61,11 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation, :gender, :business, :data, :content_type, :usertags, :fage, :mage, :place, image_attributes: [:image, :id, :uploaded_image] )
+      params.require(:user).permit(:name, :password, :password_confirmation, :gender, :business, :data, :content_type, :usertag, image_attributes: [:image, :id, :uploaded_image])
+    end
+
+    def user_tag_params
+      params.require(:usertag).permit(:fage, :mage, :place)
     end
 
     def send_image

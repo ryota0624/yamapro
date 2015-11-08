@@ -29,18 +29,6 @@
       <%= form.password_field :password_confirmation %>
     </p>
 
-<% if false %>
-    <p>
-    <%= form.fields_for :image do |imgf| %>
-        <%= imgf.label :uploaded_image %>
-        <%= imgf.file_field :uploaded_image %>
-    <% end %>
-    </p>
-
-    <label for="image">プロフィール画像アップロード</label>
-    <%= file_field_tag 'image' %>
-<% end %>
-
     <%= form.submit "sign up", class: "btn btn-primary" %>
   </fieldset>
 <% end %>

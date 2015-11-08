@@ -5,7 +5,6 @@
   	 <%= link_to "詳細", essay %></p>
 <% end %>
 
-  <p><%= link_to "編集", edit_user_path(@user) %></p>
 
 
   <div class="dodai">
@@ -20,7 +19,7 @@
             <tr>
               <th>名前</th>
               <td>：</td>
-              <td><%= @user.name %>：<%= link_to @user.name, user_path(@user) %></td>
+              <td><%= @user.name %></td>
             </tr>
             <tr>
               <th>性別</th>
@@ -41,7 +40,6 @@
                 <%end%>
               </td>
             </tr>
-
 
             <tr>
               <th>環境</th>
@@ -64,10 +62,10 @@
               <td><%= @tag[0].fage %></td>
             </tr>
 
-
           </table>
 
-        <div id="pass"><a href="./setting.html">プロフィール編集</a></div>
+        <div id="pass"><a href="./setting.html">  <p><%= link_to "編集", edit_user_path(@user) %></p>
+</a></div>
       </div>
 
       <div id="myto">
