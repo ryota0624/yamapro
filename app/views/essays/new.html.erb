@@ -1,12 +1,33 @@
 <%= form_tag("/essays", :multipart => true ) do %>
-   <p>特集か否か<%= check_box_tag "essay[pickup_f]", "1" %></p>
-   <p>文章タイトル<%= text_field_tag 'essay[title]' %></p>
-   <p>文章<%= text_area_tag 'essay[text]' %></p>
-   <% @tags.each do |i| %>
-   <%= check_box_tag 'tags[]', i.id, checked = false, :id => "tags_#{i.id}" %>
-   <% end %>
-   <label for="image">画像をアップロード</label>
-   <%= file_field_tag 'image[0]' %>
-   <%= file_field_tag 'image[1]' %>
-   <%= submit_tag '作成' %>
+<p>特集か否か<%= check_box_tag "essay[pickup_f]", "1" %></p>         
+<div class="dodai">
+   <div class="yohaku2">
+      <h1 class="pageti">記事投稿</h1>
+      <div class="kijiwaku">
+         <div class="kito">
+            <%= text_field_tag 'essay[title]', "", class: "kijiti" %>
+            <%= text_area_tag 'essay[text]', "", class: "toran" %>
+            <%= file_field_tag 'image[0]' %>
+         </div>
+         <div class="taguwaku">
+            <p class="ta">タグを選択</p>
+            <div class="tawa">
+               <ul class="tagu">
+               <% @tags.each do |i| %>
+               <li>
+               <%= check_box_tag 'tags[]', i.id, checked = false, :id => "tags_#{i.id}",:class => "checkbox" %>
+               <%= i.name %>
+               <% end %>
+               </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+      <div class="sousin">
+         <%= submit_tag '作成' %>
+      </div>
+   </div>
+
+</div>
 <% end %>
+<div class="clear"></div>

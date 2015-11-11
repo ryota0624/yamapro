@@ -2,7 +2,7 @@
         <div class="kisyowa">
           <div class="kipro">
           <% if @images.length > 0 then %>
-            <%= image_tag(url_for(:action => 'get_image', :id => @images.first.id), :size => '100x100')%>
+            <%= image_tag(url_for(:action => 'get_image', :id => @images.first.id), :size => '80x80')%>
             yamapuro
             <% end %>
           </div>

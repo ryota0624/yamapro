@@ -4,7 +4,12 @@
     <h2>みんなの投稿</h2>
     <% @essays.each_with_index do |essay, i| %>
     <div id="tou<%= i+1 %>">
-    <%= link_to essay.title, essay %>
+    <a href="">
+      <div class="moji">
+        <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @essay_img[i]), :size => '80x80', :class => "tou_ti")%>
+        <p><%= essay.title.slice(0,9) %></p>
+      </div>
+    </a>
     </div>
     <% end %>
   </div>
