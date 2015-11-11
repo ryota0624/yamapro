@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @image = UserImage.where(user_id: @user.id)
+    @essays = @user.essays
     if params[:format].in?(["jpg", "png", "gif"])
       send_image
     else

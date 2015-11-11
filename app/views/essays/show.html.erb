@@ -3,20 +3,19 @@
           <div class="kipro">
           <% if @images.length > 0 then %>
             <%= image_tag(url_for(:action => 'get_image', :id => @images.first.id), :size => '80x80')%>
-            yamapuro
             <% end %>
           </div>
           <div class="tihibu">
               <p class="day"><%= @essay.created_at%></p>
               <p class="kiti"><%= @essay.title %></p>
             <div class="kijibu">
-              <%=@essay.text %>
-
-
-              </p></div>
+              <textarea readonly="true" rows="50">
+              <%= " \n" %><%=@essay.text.chomp %>
+              </textarea>
+              </div>
               <div class="favowa">
                 <div class="fav">
-                  <img src="/images/hoshi_y.png" class="fav_icon">★25
+                  <img src="/images/hoshi_y.png" class="fav_icon">★<%= @mylist_num.length %>
                 </div>
                 <div class="sns">
                   <img src="/images/Twitter.png" class="sns_icon">
@@ -46,7 +45,7 @@
               <div id="komewaku">
                 <% @comments.each do |comment| %>
                 <div class="kome">
-                  <img src="./slime.png" class="koi">yamapuro<br>
+  
                   <p class="coco"><%= comment.text %></p>
             </div>
             <% end %>
