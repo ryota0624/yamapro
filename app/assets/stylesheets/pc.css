@@ -54,7 +54,7 @@ nav ul li{
 	display: block;
 	width: 20%;
 	height: 45px;
-	border-left: #ffaa9d 1px solid; 
+	border-left: #ffaa9d 1px solid;
 	letter-spacing:0.1em;
 }
 nav ul li a{
@@ -103,7 +103,7 @@ nav div.search div#search_in{
 	height: 30px;
 }
 div.clear{
-	clear: both;	
+	clear: both;
 }
 
 
@@ -133,7 +133,7 @@ img.icon{
 	 vertical-align:middle;
 	 padding-right:4%;
 	 width:15%;
-	 height:15%; 
+	 height:15%;
 }
 
 article div.sub ul{
@@ -155,7 +155,7 @@ article div.sub ul li{
 	font-size:0.9em;
 }
 article div.sub ul li a{
-	
+
 	color:#fff;
 	text-decoration:none;
 	box-sizing:border-box;
@@ -281,7 +281,7 @@ table.Input_form td{
 }
 
 div.clear{
-	clear: both; 
+	clear: both;
 }
 
 div#agreement{
@@ -351,7 +351,7 @@ div#agreement div#btn button a{
 	content:"";
 	display: block;
 }
-#tou1 a{	
+#tou1 a{
 	box-sizing:border-box;
 	-webkit-border-radius: 50%;
 	display: block;
@@ -385,7 +385,7 @@ div#agreement div#btn button a{
 #tou2:before{
 	content:"";
 	display: block;
-	
+
 }
 #tou3{
 	box-sizing:border-box;
@@ -401,7 +401,7 @@ div#agreement div#btn button a{
 #tou3:before{
 	content:"";
 	display: block;
-	
+
 }
 #tou4{
 	box-sizing:border-box;
@@ -417,7 +417,7 @@ div#agreement div#btn button a{
 #tou4:before{
 	content:"";
 	display: block;
-	
+
 }
 
 .tokusyu{
@@ -435,7 +435,7 @@ div#agreement div#btn button a{
 	float:left;
 }
 #toku_1 a:hover,#toku_2 a:hover,#toku_3 a:hover,.situ a:hover,.osusume a:hover{
-	
+
 	filter:alpha(opacity=50);
 	-moz-opacity: 0.5;
     	opacity: 0.5;
@@ -460,7 +460,7 @@ div#agreement div#btn button a{
 	padding:5% 5% 15% 5%;
 	display: block;
 	text-decoration:none;
-	
+
 
 }
 #toku_2{
@@ -522,7 +522,7 @@ div#agreement div#btn button a{
 	vertical-align:middle;
 	padding-right:5px;
 	width:30px;
-	height:30px; 
+	height:30px;
 }
 
 
@@ -822,6 +822,10 @@ div#agreement div#btn button a{
 	float:left;
 	border-bottom: #caceca 1px solid;
 	padding-bottom:1%;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp:12;
 }
 .myto_ko{
 	box-sizing:border-box;
@@ -833,7 +837,7 @@ div#agreement div#btn button a{
 	float:left;
 	-webkit-border-radius: 5px;
 	padding-bottom:1%;
-	
+
 }
 .myto_ko a{
 	text-decoration:none;
@@ -876,6 +880,9 @@ table.prof tr th {
 	text-decoration:none;
 	display: block;
 }
+
+
+
 
 
 
@@ -1054,7 +1061,7 @@ ul.tagu3 li{
 	float:right;
 	width:86%;
 	border: #caceca 1px solid;
-	
+
 	margin-bottom:2%;
 }
 
@@ -1117,7 +1124,7 @@ ul.tagu3 li{
 	width:40px;
 	vertical-align:middle;
 	margin-left:5px;
-	
+
 }
 .sns_icon_fb{
 	box-sizing:border-box;
@@ -1274,7 +1281,7 @@ footer ul li a,footer ul li a:link,footer ul li a:visited{
 }
 footer p#copy{
 	text-align:center;
-	font-size:9pt; 
+	font-size:9pt;
 	padding:10px;
 }
 
@@ -1299,7 +1306,7 @@ footer p#copy{
 #tou4{
 	float:right;
 	margin-right:10%;
-	
+
 }
 
 }
@@ -1442,7 +1449,7 @@ footer p#copy{
 /*各写真の並び位置を設定
 #photo1, #photo2, #photo3, #photo4, #photo5 */
 #photo0 { left:  0%; }
-#photo1 { left:100%; } 
+#photo1 { left:100%; }
 #photo2 { left:200%; }
 #photo3 { left:300%; }
 #photo4 { left:400%; }
@@ -1467,7 +1474,7 @@ footer p#copy{
 	color:#EEE;
 }
 .b_left span {
-	left: 5%;;	
+	left: 5%;;
 }
 .b_right span {
 	left: 91%;
@@ -1483,14 +1490,14 @@ footer p#copy{
 }
 /* 各送りボタンクリック時のanimation設定 */
 #next1:checked ~ #photos {
-	animation: imgPassToLeft1 30s infinite;	
+	animation: imgPassToLeft1 30s infinite;
 	animation-delay: -4.8s;
-	-webkit-animation: imgPassToLeft1 30s infinite;	
+	-webkit-animation: imgPassToLeft1 30s infinite;
 	-webkit-animation-delay: -4.8s;
 }
 #next2:checked ~ #photos {
-	
-	
+
+
 	animation: imgPassToLeft2 30s infinite;
 	animation-delay: -10.8s;
 	-webkit-animation: imgPassToLeft2 30s infinite;
