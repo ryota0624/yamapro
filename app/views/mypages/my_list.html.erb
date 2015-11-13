@@ -1,8 +1,23 @@
+<div class="dodai">
+  <div class="yohaku">
+  	<div id="favoto">
+  		<h2 class="pageti">お気に入り：投稿</h2>
+      <% @essaylist.each_with_index do |listItem, i| %>
+      <% if listItem.pickup_f == false %>
+  			<div class="danwake">
+          <a href="/essays/<%= listItem.id %>">
+  					<img src="./slime.png" class="tou_ti"><p class="mina_ti"><%= listItem.title %></p>
+  				<p class="mytoko"><%= listItem.text + "..."%></p>
+  					<div class="totawa">
+              <% @essay_tags[i].each do |tag| %>
+                <div class="tota"><%= tag.name %></div>
+              <% end %>
+            </div>
+        <% end %>
+  			</a></div>
+      <% end %>
+  	</div>
 
-<% @essaylist.each do |listItem| %>
-  <% if listItem.pickup_f == false %>
-    <p>id：<%= listItem.id %></p>
-    <p>タイトル：<%= listItem.title %></p>
-    <p>内容：<%= listItem.text %></p>
-  <% end %>
-<% end %>
+  </div>
+</div>
+  <div class="clear"></div>

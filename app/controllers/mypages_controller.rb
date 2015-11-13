@@ -7,6 +7,12 @@ class MypagesController < ApplicationController
     @image = UserImage.where(user_id: current_user.id)
     work = TagUser.where(user_id: current_user.id)
     @tag = Usertag.where(id: work[0].tag_id)
+
+    @essay_tags = Array.new
+    @essays.each_with_index do |essay, i|
+      middle = TagEssay.where(essay_id: essay.id)
+      @essay_tags[i] = middle.map { |tag| Tag.find(tag.tag_id) }
+    end
   end
 
   def my_essay
@@ -16,7 +22,6 @@ class MypagesController < ApplicationController
 
   def add_my_list
     if Mylist.exists?(essay_id: session[:essay_id], user_id: current_user.id) #存在したらtrue お気に入りしてなければfalse
-
       redirect_to my_list_mypages_path
     else
       add = User.add_mylist(current_user.id, session[:essay_id])
@@ -29,11 +34,23 @@ class MypagesController < ApplicationController
   def my_list #記事のお気に入り
     @list = Mylist.where(user_id: current_user.id)
     @essaylist = @list.map {|listItem| listItem.essay }
+
+    @essay_tags = Array.new
+    @essaylist.each_with_index do |essay, i|
+      middle = TagEssay.where(essay_id: essay.id)
+      @essay_tags[i] = middle.map { |tag| Tag.find(tag.tag_id) }
+    end
   end
 
   def my_list_special #記事のお気に入り
     @list = Mylist.where(user_id: current_user.id)
     @essaylist = @list.map {|listItem| listItem.essay }
+
+    @essay_tags = Array.new
+    @essaylist.each_with_index do |essay, i|
+      middle = TagEssay.where(essay_id: essay.id)
+      @essay_tags[i] = middle.map { |tag| Tag.find(tag.tag_id) }
+    end
   end
 
   def get_user_image

@@ -1,97 +1,80 @@
-
-<% @essays.each do |essay| %>
-  <p>タイトル：<%= essay.title %></p>
-  <p>内容：<%= essay.text %>
-  	 <%= link_to "詳細", essay %></p>
-<% end %>
-
-
-
-  <div class="dodai">
-    <div class="yohaku">
-      <div id="my">
-        <h2>マイページ</h2>
-
-        <%= user_image_tag @user, width: 40 %><br />
-        <img src="./slime.png" class="myicon"><br/>
-
-          <table class="prof">
-            <tr>
-              <th>名前</th>
-              <td>：</td>
-              <td><%= @user.name %></td>
-            </tr>
-            <tr>
-              <th>性別</th>
-              <td>：</td>
-              <td><%= @user.gender == 0 ? "男" : "女" %></td>
-            </tr>
-            <tr>
-              <th>職種</th>
-              <td>：</td>
-              <td>
-                <% case @user.business
-                  when 0 %>
-                    学生/専門学生
-                <% when 1 %>
-                  社会人
-                <%when 2%>
-                  その他
-                <%end%>
-              </td>
-            </tr>
-
-            <tr>
-              <th>環境</th>
-              <td>：</td>
-              <td><%= @tag[0].place %></td>
-            </tr>
-            <tr>
-              <th>[孝行相手]</th>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>母親</th>
-              <td>：</td>
-              <td><%= @tag[0].mage %></td>
-            </tr>
-            <tr>
-              <th>父親</th>
-              <td>：</td>
-              <td><%= @tag[0].fage %></td>
-            </tr>
-
-          </table>
-
-        <div id="pass"><a href="./setting.html">  <p><%= link_to "編集", edit_user_path(@user) %></p>
-</a></div>
+<div class="dodai">
+  <div class="yohaku">
+    <div id="my">
+      <h2>マイページ</h2>
+      <div class="myicon">
+        <%= user_image_tag @user, width: 150 %><br />
       </div>
 
-      <div id="myto">
-        <h2>自分の投稿</h2>
-          <div class="myto_ko">
-            <a href="/">
-              <h4>タイトル</h4>
-            <p class="mytoko">
-          ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああここに載せるのは500文字までで、最後の「…」は残す感じで…</p>
+        <table class="prof">
+          <tr>
+            <th>名前</th>
+            <td>：</td>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th>性別</th>
+            <td>：</td>
+            <td><%= @user.gender == 0 ? "男" : "女" %></td>
+          </tr>
+          <tr>
+            <th>職種</th>
+            <td>：</td>
+            <td>
+              <% case @user.business
+                when 0 %>
+                  学生/専門学生
+              <% when 1 %>
+                社会人
+              <%when 2%>
+                その他
+              <%end%>
+            </td>
+          </tr>
+          <tr>
+            <th>環境</th>
+            <td>：</td>
+            <td><%= @tag[0].place %></td>
+          </tr>
+          <tr>
+            <th>[孝行相手]</th>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>母親</th>
+            <td>：</td>
+            <td><%= @tag[0].mage %></td>
+          </tr>
+          <tr>
+            <th>父親</th>
+            <td>：</td>
+            <td><%= @tag[0].fage %></td>
+          </tr>
+        </table>
 
+      <div id="pass"><a href="./setting.html">
+        <p><%= link_to "編集", edit_user_path(@user) %></p>
+     </a></div>
+    </div>
+
+    <div id="myto">
+      <h2 class="pageti">自分の投稿</h2>
+        <% @essays.each_with_index do |essay, i| %>
+        <div class="myto_ko">
+          <a href="/essays/<%= essay.id %>">
+            <h4><%= essay.title %></h4>
+            <p class="mytoko">
+            <%= essay.text + "..." %>
               <div class="totawa">
-                <div class="tota">タグタグタグ</div>
-                <div class="tota">タグタグ</div>
-                <div class="tota">タグ</div>
-                <div class="tota">タグ</div>
-                <div class="tota">タグ</div>
-                <div class="tota">タグタグ</div>
-                <div class="tota">タグ</div>
-                <div class="tota">タグタグ</div>
-                <div class="tota">タグ</div>
-                <div class="tota">タグタグタグタグ</div>
-                <div class="tota">タグ</div>
-                <div class="tota">タグタグタグ</div>
-                <div class="tota">タグ</div>
-                <div class="tota">タグ</div>
-                <div class="tota">タグ</div>
-                <div class="tota">タグ</div>
+              <% @essay_tags[i].each do |tag| %>
+                <div class="tota"><%= tag.name %></div>
+              <% end %>
               </div>
-          </a></div>
+            </div>
+          </a>
+        <% end %>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
