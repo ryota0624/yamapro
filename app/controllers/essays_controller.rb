@@ -15,7 +15,7 @@ class EssaysController < ApplicationController
   def question
     tag_essays = TagEssay.where(tag_id: 0)#質問タグの番号を決めて打つ
     @questions = tag_essays.map{ |essay| essay.essay }
-    
+    render :json => @questions
   end
 
   def show

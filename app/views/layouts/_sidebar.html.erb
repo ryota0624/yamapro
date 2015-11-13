@@ -3,8 +3,6 @@
 <% if logged_in? %>
 
   <ul>
-    <li><a href="./mypage.html"><div id="login">
-            <img src="./slime.png" width="30" height="30" class="icon">yamaprojectさん</div></a></li>
     <li><%= link_to "マイページ", mypages_path %></li>
     <li><%= link_to "記事投稿", new_essay_path %></li>
   </ul>
