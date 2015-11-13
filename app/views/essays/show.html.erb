@@ -9,7 +9,6 @@
               <p class="day"><%= @essay.created_at.strftime("%Y年 %m月 %d日")%></p>
               <p class="kiti"><%= @essay.title %></p>
             <div class="kijibu">
-<<<<<<< HEAD
               <textarea readonly="true" rows="50">
               <%= " \n" %><%=@essay.text.chomp %>
               </textarea>
@@ -17,14 +16,7 @@
               <div class="favowa">
                 <div class="fav">
                   <img src="/images/hoshi_y.png" class="fav_icon">★<%= @mylist_num.length %>
-=======
-              <%=@essay.text %>
-              </p></div>
-              <div class="favowa">
-                <div class="fav">
-                  <img src="/images/hoshi_y.png" class="fav_icon">★25
                   <%= link_to "お気に入り", :controller => "mypages", :action =>"add_my_list" %>
->>>>>>> 95de17146c8bc7da3b75e8cf739250fdd3face29
                 </div>
                 <div class="sns">
                   <% @tweet_text = @essay.title+" \n"+"YamasitaProject "+request.url %>
