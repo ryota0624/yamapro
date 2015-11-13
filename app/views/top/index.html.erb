@@ -17,11 +17,11 @@
   <div class="tokusyu">
     <h2>特集</h2>
     <div class="toku">
-      <% @posts.each_with_index do |post, i| %>
+      <% @posts.limit(4).each_with_index do |post, i| %>
       <div id="toku_<%= i+1 %>">
       <a href="/essays/<%= post.id%>">
-      <p><%= post.title %></p>
-      <p><%= post.text %></p>
+      <p><%= post.title.slice(0,9) %></p>
+      <p><%= post.text.slice(0, 30) %></p>
       </a>
       </div>
       <% end %>
