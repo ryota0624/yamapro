@@ -1,81 +1,80 @@
-  <div class="dodai">
-    <div class="yohaku">
-      <div id="my">
-        <h2>マイページ</h2>
-        <div class="myicon">
-          <%= user_image_tag @user, width: 150 %><br />
-        </div>
-
-          <table class="prof">
-            <tr>
-              <th>名前</th>
-              <td>：</td>
-              <td><%= @user.name %></td>
-            </tr>
-            <tr>
-              <th>性別</th>
-              <td>：</td>
-              <td><%= @user.gender == 0 ? "男" : "女" %></td>
-            </tr>
-            <tr>
-              <th>職種</th>
-              <td>：</td>
-              <td>
-                <% case @user.business
-                  when 0 %>
-                    学生/専門学生
-                <% when 1 %>
-                  社会人
-                <%when 2%>
-                  その他
-                <%end%>
-              </td>
-            </tr>
-            <tr>
-              <th>環境</th>
-              <td>：</td>
-              <td><%= @tag[0].place %></td>
-            </tr>
-            <tr>
-              <th>[孝行相手]</th>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <th>母親</th>
-              <td>：</td>
-              <td><%= @tag[0].mage %></td>
-            </tr>
-            <tr>
-              <th>父親</th>
-              <td>：</td>
-              <td><%= @tag[0].fage %></td>
-            </tr>
-          </table>
-
-        <div id="pass"><a href="./setting.html">
-          <p><%= link_to "編集", edit_user_path(@user) %></p>
-       </a></div>
+<div class="dodai">
+  <div class="yohaku">
+    <div id="my">
+      <h2>マイページ</h2>
+      <div class="myicon">
+        <%= user_image_tag @user, width: 150 %><br />
       </div>
 
-      <div id="myto">
-        <h2 class="pageti">自分の投稿</h2>
-          <%# @essays.each do |essay| %>
-          <% @essays.each_with_index do |essay, i| %>
-          <div class="myto_ko">
-            <a href="/essays/<%= essay.id %>">
-              <h4><%= essay.title %></h4>
-              <p class="mytoko">
-              <%= essay.text + "..." %>
-                <div class="totawa">
-                  <div class="tota"><%= @essay_tags[i].name %></div>
-                  <%# @essay_tags.each do |tag| %>
-                  <!-- <div class="tota"><%#= tag %></div> -->
-                  <%#{} end %>
-                </div>
+        <table class="prof">
+          <tr>
+            <th>名前</th>
+            <td>：</td>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th>性別</th>
+            <td>：</td>
+            <td><%= @user.gender == 0 ? "男" : "女" %></td>
+          </tr>
+          <tr>
+            <th>職種</th>
+            <td>：</td>
+            <td>
+              <% case @user.business
+                when 0 %>
+                  学生/専門学生
+              <% when 1 %>
+                社会人
+              <%when 2%>
+                その他
+              <%end%>
+            </td>
+          </tr>
+          <tr>
+            <th>環境</th>
+            <td>：</td>
+            <td><%= @tag[0].place %></td>
+          </tr>
+          <tr>
+            <th>[孝行相手]</th>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>母親</th>
+            <td>：</td>
+            <td><%= @tag[0].mage %></td>
+          </tr>
+          <tr>
+            <th>父親</th>
+            <td>：</td>
+            <td><%= @tag[0].fage %></td>
+          </tr>
+        </table>
+
+      <div id="pass"><a href="./setting.html">
+        <p><%= link_to "編集", edit_user_path(@user) %></p>
+     </a></div>
+    </div>
+
+    <div id="myto">
+      <h2 class="pageti">自分の投稿</h2>
+        <% @essays.each_with_index do |essay, i| %>
+        <div class="myto_ko">
+          <a href="/essays/<%= essay.id %>">
+            <h4><%= essay.title %></h4>
+            <p class="mytoko">
+            <%= essay.text + "..." %>
+              <div class="totawa">
+              <% @essay_tags[i].each do |tag, k| %>
+                <div class="tota"><%= tag.name %></div>
+              <% end %>
               </div>
-            </a>
-          <% end %>
-      </div>
-
-            <div class="clear"></div>
+            </div>
+          </a>
+        <% end %>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

@@ -8,19 +8,12 @@ class MypagesController < ApplicationController
     work = TagUser.where(user_id: current_user.id)
     @tag = Usertag.where(id: work[0].tag_id)
 
-    # essays_id = Mylist.where(user_id: current_user.id)
-    # essay_id[0]で先頭だけ
-    # middle = Array.new
     @essay_tags = Array.new
     @essays.each_with_index do |essay, i|
       middle = TagEssay.where(essay_id: essay.id)
-      @essay_tags[i] = Tag.find(middle[0].tag_id)
-      # @essay_tags[i] = @essay_tags[i].name
-      # @essay_ta = Tag.find(middletag_id)
-
+      @essay_tags[i] = middle.map { |tag| Tag.find(tag.tag_id) }
     end
   end
-
 
   def my_essay
   	@my_essays = Essay.find(params[:id])
@@ -29,7 +22,6 @@ class MypagesController < ApplicationController
 
   def add_my_list
     if Mylist.exists?(essay_id: session[:essay_id], user_id: current_user.id) #存在したらtrue お気に入りしてなければfalse
-
       redirect_to my_list_mypages_path
     else
       add = User.add_mylist(current_user.id, session[:essay_id])
