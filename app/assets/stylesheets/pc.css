@@ -638,6 +638,7 @@ div#agreement div#btn button a{
 	vertical-align:middle;
 	padding-right:2%;
 	width:30px;
+  height: 30px;
 	float:left;
 }
 
@@ -784,7 +785,7 @@ div#agreement div#btn button a{
 
 .myicon{
 	width:150px;
-	margin:0% 0% 2% 0%;
+	margin:0 auto;
 }
 #pass{
 	background:#eb967b;
