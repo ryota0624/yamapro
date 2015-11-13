@@ -6,7 +6,7 @@
             <% end %>
           </div>
           <div class="tihibu">
-              <p class="day"><%= @essay.created_at%></p>
+              <p class="day"><%= @essay.created_at.strftime("%Y年 %m月 %d日")%></p>
               <p class="kiti"><%= @essay.title %></p>
             <div class="kijibu">
               <textarea readonly="true" rows="50">
@@ -18,7 +18,10 @@
                   <img src="/images/hoshi_y.png" class="fav_icon">★<%= @mylist_num.length %>
                 </div>
                 <div class="sns">
-                  <img src="/images/Twitter.png" class="sns_icon">
+                  <% @tweet_text = @essay.title+" \n"+"YamasitaProject "+request.url %>
+                  <a href="https://twitter.com/intent/tweet?text=<%= @tweet_text%>">
+                    <img src="/images/Twitter.png" class="sns_icon">
+                  </a>
                   <img src="/images/FB.png" class="sns_icon_fb">
                   <img src="/images/LINE.png" class="sns_icon">
                 </div>
@@ -30,16 +33,18 @@
               </div>
           </div>
           <div class="tihibu">
+          <%if logged_in? %>
             <div class="kowa">
               <p>コメントを入力</p>
               <%= form_tag("/comment" ) do %>
                 <%= hidden_field_tag 'essay_id', @essay.id %>
-                <%= text_area_tag 'text',"", :id => "in_kome" %>
+                <%= text_area_tag 'text',"", :id => "inkome" %>
                 <div class="sousin">
                 <%= submit_tag '作成' %>
                 </div>
               <% end %>
             </div>
+            <% end %>
             <div class="kowa">
               <p class="k">コメント<%= @comments.length %></p>
               <div id="komewaku">
