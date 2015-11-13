@@ -2,15 +2,17 @@
   <div class="yohaku">
   	<div id="favoto">
   		<h2 class="pageti">お気に入り：投稿</h2>
-      <% @essaylist.each.each_with_index do |listItem, i| %>
+      <% @essaylist.each_with_index do |listItem, i| %>
       <% if listItem.pickup_f == false %>
   			<div class="danwake">
           <a href="/essays/<%= listItem.id %>">
   					<img src="./slime.png" class="tou_ti"><p class="mina_ti"><%= listItem.title %></p>
   				<p class="mytoko"><%= listItem.text + "..."%></p>
   					<div class="totawa">
-  						<div class="tota">タグ</div>
-  					</div>
+              <% @essay_tags[i].each do |tag| %>
+                <div class="tota"><%= tag.name %></div>
+              <% end %>
+            </div>
         <% end %>
   			</a></div>
       <% end %>
