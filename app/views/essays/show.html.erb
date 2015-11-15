@@ -9,9 +9,13 @@
               <p class="day"><%= @essay.created_at.strftime("%Y年 %m月 %d日")%></p>
               <p class="kiti"><%= @essay.title %></p>
             <div class="kijibu">
-              <textarea readonly="true" rows="50">
-              <%= " \n" %><%=@essay.text.chomp %>
-              </textarea>
+              <% if @essay.pickup_f?  then %>
+                <%=@essay.text.chomp.html_safe %>
+              <% else %>
+                <textarea readonly="true" rows="50">
+                <%= " \n" %><%=@essay.text.chomp.html_safe %>
+                </textarea>
+              <% end %>
               </div>
               <div class="favowa">
                 <div class="fav">
