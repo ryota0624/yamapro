@@ -5,7 +5,7 @@
 
 職種：
   <%= form.radio_button :business, 0 %>
-  <%= form.label :business_0, "学生/専門学生" %>
+  <%= form.label :business_0, "大学生/専門学生" %>
   <%= form.radio_button :business, 1 %>
   <%= form.label :business_1, "社会人" %>
   <%= form.radio_button :business, 2 %>
@@ -13,13 +13,13 @@
   <br />
 画像：
   <%= form.fields_for :image do |imgf| %>
-      <%= imgf.label :uploaded_image %>
+      <%= imgf.label "画像をアップロード" %>
       <%= imgf.file_field :uploaded_image %>
       <% if !imgf.object.new_record? && imgf.object.errors.empty? %>
       <div>
         <%= user_image_tag @user, size: "60" %>
         <%= imgf.check_box :_destroy %>
-        <%= imgf.label :_destroy %>
+        <%= imgf.label "削除" %>
         <%= imgf.hidden_field :id %>
       </div>
       <% end %>
@@ -73,7 +73,8 @@
     新しいパスワード再確認：
       <%= form.password_field :password_confirmation %>
       <br />
-  <div class="mysou"><%= form.submit %></div>
+  <div class="mysou"><%= form.submit "送信" %></div>
+
   <% end %>
 </div>
 <div class="clear"></div>
