@@ -1,15 +1,14 @@
 <div class="sub">
   <div class="name">投稿管理</div>
 <% if logged_in? %>
-
   <ul>
-    <li><%= link_to "マイページ", mypages_path %></li>
     <li><%= link_to "記事投稿", new_essay_path %></li>
+    <li><%= link_to "自分の投稿", my_essay_mypages_path %></li>
+    <li><%= link_to "お気に入り", my_list_mypages_path %></li>
   </ul>
     <div class="name">お気に入り</div>
   <ul>
-    <li><%= link_to "マイリストユーザ", my_list_mypages_path %></li>
-  <li><%= link_to "マイリスト特集", my_list_special_mypages_path %></li>
+
   <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
 
   </ul>

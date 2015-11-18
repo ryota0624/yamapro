@@ -1,0 +1,23 @@
+<div class="dodai">
+  <div class="yohaku">
+
+    <div id="myto">
+    <h2 class="pageti">自分の投稿</h2>
+      <% @my_essays.each_with_index do |essay, i| %>
+      <div class="myto_ko">
+        <a href="/essays/<%= essay.id %>">
+          <h4><%= essay.title %></h4>
+          <p class="mytoko">
+          <%= essay.text + "..." %>
+            <div class="totawa">
+            <% @essay_tags[i].each do |tag| %>
+              <div class="tota"><%= tag.name %></div>
+            <% end %>
+            </div>
+          </div>
+        </a>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
