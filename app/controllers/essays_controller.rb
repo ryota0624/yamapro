@@ -39,7 +39,7 @@ class EssaysController < ApplicationController
     result = Essay.keyword_search params[:keyword]
     @pickups = result[:pickup]
     @user_posts = result[:user_posts]
-    render :json => @user_posts
+    render :json => @pickups
   end
 
   def new

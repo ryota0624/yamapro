@@ -1,5 +1,6 @@
 class Api::ApisController < ApplicationController
-  protect_from_forgery
+  #protect_from_forgery
+  protect_from_forgery with: :null_session
   def user
     @users = User.all
     render json: @users
@@ -22,13 +23,14 @@ class Api::ApisController < ApplicationController
     if @user.save
       render json: @user
     else
-      #render json: {"error": "error"}
+      render json: {"error": "error"}
     end
   end
 
   def delete_user
-    logger.debug params[:id].to_i
-    @user = User.find(params[:id].to_i).destroy
+    #logger.debug params[:id]
+    @user = User.find(params[:id].to_i)#.destroy
+    @user.destroy
     render json: @user
   end
 
