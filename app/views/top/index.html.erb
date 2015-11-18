@@ -4,10 +4,11 @@
     <h2>みんなの投稿</h2>
     <% @essays.each_with_index do |essay, i| %>
     <div id="tou<%= i+1 %>">
-    <a href="">
+    <a href="/essays/<%= essay.id %>">
       <div class="moji">
-        <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @essay_img[i]), :size => '80x80', :class => "tou_ti")%>
-        <p><%= essay.title.slice(0,9) %></p>
+        <% image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @essay_img[i]), :size => '80x80', :class => "tou_ti")%>
+        <p class="init"><%= essay.title.slice(0,9) %></p>
+        <p><%= essay.text.slice(0,30) %></p>
       </div>
     </a>
     </div>
@@ -16,9 +17,12 @@
   <div class="tokusyu">
     <h2>特集</h2>
     <div class="toku">
-      <% @posts.each_with_index do |post, i| %>
+      <% @posts.limit(3).each_with_index do |post, i| %>
       <div id="toku_<%= i+1 %>">
-      <p><%= post.content %></p>
+        <a href="/essays/<%= post.id%>">
+          <p><%= post.title.slice(0,9) %></p>
+          <p><%= post.text.slice(0, 30) %></p>
+        </a>
       </div>
       <% end %>
     </div>

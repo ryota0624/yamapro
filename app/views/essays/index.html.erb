@@ -8,11 +8,11 @@
         <div class="minato_new_ko">
           <a href="/essays/<%= essay.id %>">
             <div class="mi_ti">
-              <img src="./.jpg">
+              <!-- <img src="./.jpg"> -->
               <p><%= essay.title.slice(0,14)%></p>
             </div>
             <p class="mina_toko">
-              <%= essay.text.slice(0,99) %>
+              <%= essay.text.slice(0,20)+" ..." %>
             </p>
           </a>
         </div>
@@ -25,11 +25,11 @@
     <div class="minato_ki_ko">
       <a href="/essays/<%= essay.id %>">
         <div class="mi_ti">
-          <img src="./.jpg" class="tou_ti">
-          <%= essay.title%>
+          <!-- <img src="./.jpg" class="tou_ti"> -->
+          <%= essay.title.slice(0,14) %>
         </div>
         <p class="mina_toko">
-          <%= essay.text %>
+          <%= essay.text.slice(0,20)+" ..." %>
         </p>
       </a>
     </div>

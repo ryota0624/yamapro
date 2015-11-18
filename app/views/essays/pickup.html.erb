@@ -8,27 +8,36 @@
         <div class="minato_new_ko">
           <a href="/essays/<%= essay.id %>">
             <div class="mi_ti">
-              <img src="./.jpg">
-              <p><%= essay.title.slice(0,15)%></p>
+              <!-- <img src="./.jpg"> -->
+              <p><%= essay.title.slice(0,14)%></p>
             </div>
             <p class="mina_toko">
-              <%= essay.text.slice(0,100) %>
+              <%= essay.text.html_safe.slice(0,50)+" ..." %>
             </p>
           </a>
         </div>
-        </div>
-      <% end %>
       </div>
+      <% end %>
     </div>
-    <div class="minato_dai">
-      <% @essays.each do |essay| %>
-        <a href="/essays/<%= essay.id %>">
-        <div class="minato_ki_ko"><img src="./.jpg"><%= essay.title%></div></a>
-      <% end %>
-      <div class="page">
+  
+  <div class="minato_dai">
+    <% @essays.each do |essay| %>
+    <div class="minato_ki_ko">
+      <a href="/essays/<%= essay.id %>">
+        <div class="mi_ti">
+          <!-- <img src="./.jpg" class="tou_ti"> -->
+          <%= essay.title.slice(0,14) %>
+        </div>
+        <p class="mina_toko">
+          <%= essay.text.html_safe.slice(0,50)+" ..." %>
+        </p>
+      </a>
+    </div>
+    <% end %>
+    <div class="page">
       <%= will_paginate @essays %>
-      </div>
     </div>
   </div>
+</div>
 </div>
 <div class="clear"></div>

@@ -15,18 +15,19 @@ class EssaysController < ApplicationController
   def question
     tag_essays = TagEssay.where(tag_id: 0)#質問タグの番号を決めて打つ
     @questions = tag_essays.map{ |essay| essay.essay }
-    
+    render :json => { error: "ごめんちゃいまで用意してないんご"}
   end
 
   def show
     @essay = Essay.find(params[:id])
     logger.debug @essay
     session[:essay_id] = params[:id]
-     @images = ImageEssay.where(essay_id: @essay.id)
-     middleTags = TagEssay.where(essay_id: @essay.id)
-     #render :json => middleTags
+    @images = ImageEssay.where(essay_id: @essay.id)
+    middleTags = TagEssay.where(essay_id: @essay.id)
+    #render :json => middleTags
     @tags = middleTags.map { |tag| Tag.find(tag.tag_id) }
     @comments = Comment.where(essay_id: @essay.id)
+    @mylist_num = @essay.mylists
   end
 
   def tag_search #現状一つのタグに対してのみ
@@ -38,7 +39,7 @@ class EssaysController < ApplicationController
     result = Essay.keyword_search params[:keyword]
     @pickups = result[:pickup]
     @user_posts = result[:user_posts]
-    render :json => @user_posts
+    render :json => @pickups
   end
 
   def new
@@ -69,13 +70,14 @@ class EssaysController < ApplicationController
           @image.save
         end
       end
-      logger.debug root_path
       redirect_to root_path
     else
       redirect_to new_essays_path
     end
     logger.debug params[:tags]
-    essay.add_tag(params[:tags])
+    if params[:tags] then
+      essay.add_tag(params[:tags])
+    end
   end
 
   def edit
