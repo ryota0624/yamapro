@@ -1,12 +1,12 @@
 <%= form_tag("/essays", :multipart => true ) do %>
-<p>特集か否か<%= check_box_tag "essay[pickup_f]", "1" %></p>         
+<p>特集か否か<%= check_box_tag "essay[pickup_f]", "1" %></p>
 <div class="dodai">
    <div class="yohaku2">
       <h1 class="pageti">記事投稿</h1>
       <div class="kijiwaku">
          <div class="kito">
-            <%= text_field_tag 'essay[title]', "", class: "kijiti" %>
-            <%= text_area_tag 'essay[text]', "", class: "toran" %>
+            <%= text_field_tag 'essay[title]', "", class: "kijiti", placeholder: "title" %>
+            <%= text_area_tag 'essay[text]', "", class: "toran", placeholder: "text" %>
             <%= file_field_tag 'image[0]' %>
          </div>
          <div class="taguwaku">
@@ -24,7 +24,7 @@
          </div>
       </div>
       <div class="sousin">
-         <%= submit_tag '作成' %>
+         <%= submit_tag "投稿" %>
       </div>
    </div>
 
