@@ -1,7 +1,6 @@
 <div class="sub">
   <div class="name">投稿管理</div>
 <% if logged_in? %>
-
   <ul>
     <li><%= link_to "記事投稿", new_essay_path %></li>
     <li><%= link_to "自分の投稿", my_essay_mypages_path %></li>
@@ -11,10 +10,8 @@
   <ul>
   <li><%= link_to "マイページ", mypages_path %></li>
   <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
-
   </ul>
   <div class="clear"></div>
-
 
 <% else %>
   <%= form_for UserSession.new, url: user_session_path do |f| %>

@@ -3,22 +3,30 @@
           <div class="kipro">
           <% if @images.length > 0 then %>
             <%= image_tag(url_for(:action => 'get_image', :id => @images.first.id), :size => '80x80')%>
-            yamapuro
             <% end %>
           </div>
           <div class="tihibu">
-              <p class="day"><%= @essay.created_at%></p>
+              <p class="day"><%= @essay.created_at.strftime("%Y年 %m月 %d日")%></p>
               <p class="kiti"><%= @essay.title %></p>
             <div class="kijibu">
-              <%=@essay.text %>
-              </p></div>
+              <% if @essay.pickup_f?  then %>
+                <%=@essay.text.chomp.html_safe %>
+              <% else %>
+                <textarea readonly="true" rows="50">
+                <%= " \n" %><%=@essay.text.chomp.html_safe %>
+                </textarea>
+              <% end %>
+              </div>
               <div class="favowa">
                 <div class="fav">
-                  <img src="/images/hoshi_y.png" class="fav_icon">★25
+                  <img src="/images/hoshi_y.png" class="fav_icon">★<%= @mylist_num.length %>
                   <%= link_to "お気に入り", :controller => "mypages", :action =>"add_my_list" %>
                 </div>
                 <div class="sns">
-                  <img src="/images/Twitter.png" class="sns_icon">
+                  <% @tweet_text = @essay.title+" \n"+"YamasitaProject "+request.url %>
+                  <a href="https://twitter.com/intent/tweet?text=<%= @tweet_text%>">
+                    <img src="/images/Twitter.png" class="sns_icon">
+                  </a>
                   <img src="/images/FB.png" class="sns_icon_fb">
                   <img src="/images/LINE.png" class="sns_icon">
                 </div>
@@ -30,22 +38,24 @@
               </div>
           </div>
           <div class="tihibu">
+          <%if logged_in? %>
             <div class="kowa">
               <p>コメントを入力</p>
               <%= form_tag("/comment" ) do %>
                 <%= hidden_field_tag 'essay_id', @essay.id %>
-                <%= text_area_tag 'text',"", :id => "in_kome" %>
+                <%= text_area_tag 'text',"", :id => "inkome" %>
                 <div class="sousin">
                 <%= submit_tag '作成' %>
                 </div>
               <% end %>
             </div>
+            <% end %>
             <div class="kowa">
               <p class="k">コメント<%= @comments.length %></p>
               <div id="komewaku">
                 <% @comments.each do |comment| %>
                 <div class="kome">
-                  <img src="./slime.png" class="koi">yamapuro<br>
+  
                   <p class="coco"><%= comment.text %></p>
             </div>
             <% end %>

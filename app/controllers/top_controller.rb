@@ -1,6 +1,6 @@
 class TopController < ApplicationController
   def index 
-    @posts = Post.limit(5).order("created_at ASC")
+    @posts = Essay.where(pickup_f: true).limit(4)
     @essays = Essay.where(pickup_f: false).limit(4)
     essay_img = @essays.map {|essay| ImageEssay.where(essay_id: essay.id).first }
     @essay_img = essay_img.map {|essay|  
