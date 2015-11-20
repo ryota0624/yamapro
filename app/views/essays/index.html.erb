@@ -23,7 +23,7 @@
   <div class="minato_dai">
     <% @essays.each do |essay| %>
     <div class="minato_ki_ko">
-      <a href="/essays/<%= essay.id %>">
+      <a href="/essays/<%= essay.id %>?page=1">
         <div class="mi_ti">
           <!-- <img src="./.jpg" class="tou_ti"> -->
           <%= essay.title.slice(0,14) %>
