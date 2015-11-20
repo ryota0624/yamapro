@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   def new
   	@user = User.new
     @image = UserImage.new
+    @tag = Usertag.new
     # @user.bulid_image
   end
 
@@ -29,13 +30,13 @@ class UsersController < ApplicationController
     work = TagUser.where(user_id: current_user.id)
     @tag = Usertag.where(id: work[0].tag_id)
     @tag = @tag[0]
-
     @user.build_image unless @user.image
   end
 
   def create
     @user = User.new(user_params)
-    @tag = Usertag.new(fage: "未設定", mage: "未設定", place: "未設定")
+    @tag = Usertag.new(user_tag_params)
+    # @tag = Usertag.new(fage: "未設定", mage: "未設定", place: "未設定")
     @middle = TagUser.new(user_id: User.count + 1, tag_id: Usertag.count + 1)
     if @user.save && @tag.save && @middle.save
       redirect_to root_path
