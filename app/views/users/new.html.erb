@@ -1,34 +1,62 @@
-<%= form_for @user, url: users_path, html: { multipart: true } do |form| %>
+<div>
+  <%= form_for @user, url: users_path, html: { multipart: true } do |form| %>
+<div id="hisu">
+  <table class="Input_form">
+   <tbody>
+   <tr>
+     <th>ニックネーム<p class="red">*</p></th>
+     <td>
+       <%= form.text_field :name %>
+       <p class="kasi">※半角英数8文字まで</p>
+     </td>
+   </tr>
+   <tr>
+     <th>性別<p class="red">*</p></th>
+     <td>
+       <p>
+         <%= form.radio_button :gender, 0 %>
+         <%= form.label :gender_0, "男" %>
+         <%= form.radio_button :gender, 1 %>
+         <%= form.label :gender_1, "女" %>
+       </p>
+     </td>
+   </tr>
+   <tr>
+     <th>職種<p class="red">*</p></th>
+     <td>
+     <p>
+       <%= form.radio_button :business, 0 %>
+       <%= form.label :business_0, "大学生/専門学生" %>
+       <%= form.radio_button :business, 1 %>
+       <%= form.label :business_1, "社会人" %>
+       <%= form.radio_button :business, 2 %>
+       <%= form.label :business_2, "その他" %>
+     </p>
+    </td>
+   </tr>
+   <tr>
+     <th>パスワード<p class="red">*</p></th>
+     <td>
+       <%= form.password_field :password %>
+       <p class="kasi">※半角英数</p>
+     </td>
+   </tr>
+   <tr>
+     <th>パスワード確認<p class="red">*</p></th>
+     <td>
+       <%= form.password_field :password_confirmation %>
+     </td>
+   </tr>
+   </tbody>
+ </table>
+ <div id="tyu">※「<p class="red">*</p>」は必須項目</div>
+</div>
 
-  <fieldset>
-    <legend>Sign up</legend>
-    <p>
-      <%= form.label :name %>
-      <%= form.text_field :name %>
-    </p>
-    <p>性別
-      <%= form.radio_button :gender, 0 %>
-      <%= form.label :gender_0, "男" %>
-      <%= form.radio_button :gender, 1 %>
-      <%= form.label :gender_1, "女" %>
-    </p>
-    <p>職種
-      <%= form.radio_button :business, 0 %>
-      <%= form.label :business_0, "学生/専門学生" %>
-      <%= form.radio_button :business, 1 %>
-      <%= form.label :business_1, "社会人" %>
-      <%= form.radio_button :business, 2 %>
-      <%= form.label :business_2, "その他" %>
-    </p>
-    <p>
-      <%= form.label :password %>
-      <%= form.password_field :password %>
-    </p>
-    <p>
-      <%= form.label :password_confirmation %>
-      <%= form.password_field :password_confirmation %>
-    </p>
 
-    <%= form.submit "sign up", class: "btn btn-primary" %>
-  </fieldset>
+<div id="agreement">
+ <div id="btn">
+   <%= form.submit "登録", class: "btn btn-primary" %>
+ </div>
+</div>
 <% end %>
+</div>

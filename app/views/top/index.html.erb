@@ -1,13 +1,12 @@
-
 <div class="dodai">
   <div class="touko">
-    <h2>みんなの投稿</h2>
+    <h2 class="top_title">みんなの投稿</h2>
     <% @essays.each_with_index do |essay, i| %>
     <div id="tou<%= i+1 %>">
     <a href="/essays/<%= essay.id %>?page=1">
       <div class="moji">
         <% image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @essay_img[i]), :size => '80x80', :class => "tou_ti")%>
-        <p class="init"><%= essay.title.slice(0,9) %></p>
+        <p class="inti"><%= essay.title.slice(0,9) %></p>
         <p><%= essay.text.slice(0,30) %></p>
       </div>
     </a>
