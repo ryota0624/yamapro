@@ -34,6 +34,67 @@
      </p>
     </td>
    </tr>
+  <tr>
+   <%= fields_for @tag do |tag| %>
+   <th>住んでいる場所：</th>
+   <td>
+     <p>
+     <%= tag.radio_button :place, "実家" %>
+     <%= tag.label :place_0, "実家" %>
+     <%= tag.radio_button :place, "一人暮らし" %>
+     <%= tag.label :place_1, "一人暮らし" %>
+     <%= tag.radio_button :place, "下宿" %>
+     <%= tag.label :place_2, "下宿" %>
+     <%= tag.radio_button :place, "その他" %>
+     <%= tag.label :place_3, "その他" %>
+     <%= tag.radio_button :place, "未設定" %>
+     <%= tag.label :place_no, "未設定" %>
+   </p>
+   </td>
+   </tr>
+
+   <tr>
+     <th>[孝行相手]<br />父親：</th>
+     <td>
+       <p>
+         <%= tag.radio_button :fage, "30代" %>
+         <%= tag.label :fage_30, "30代" %>
+         <%= tag.radio_button :fage, "40代" %>
+         <%= tag.label :fage_40, "40代" %>
+         <%= tag.radio_button :fage, "50代" %>
+         <%= tag.label :fage_50, "50代" %>
+         <%= tag.radio_button :fage, "60代" %>
+         <%= tag.label :fage_60, "60代" %>
+         <%= tag.radio_button :fage, "70代" %>
+         <%= tag.label :fage_70, "70代以上" %>
+         <%= tag.radio_button :fage, "未設定" %>
+         <%= tag.label :fage_no, "未設定" %>
+       </p>
+     </td>
+   </tr>
+   <br />
+   <tr>
+     <th>母親：</th>
+     <td>
+       <p>
+         <%= tag.radio_button :mage, "30代"  %>
+         <%= tag.label :mage_30, "30代" %>
+         <%= tag.radio_button :mage, "40代"  %>
+         <%= tag.label :mage_40, "40代" %>
+         <%= tag.radio_button :mage, "50代"  %>
+         <%= tag.label :mage_50, "50代" %>
+         <%= tag.radio_button :mage, "60代"  %>
+         <%= tag.label :mage_60, "60代" %>
+         <%= tag.radio_button :mage, "70代"  %>
+         <%= tag.label :mage_70, "70代以上" %>
+         <%= tag.radio_button :mage, "未設定" %>
+         <%= tag.label :mage_no, "未設定" %>
+       </p>
+     </td>
+   </tr>
+   <br />
+   <br />
+ <% end %>
    <tr>
      <th>パスワード<p class="red">*</p></th>
      <td>
