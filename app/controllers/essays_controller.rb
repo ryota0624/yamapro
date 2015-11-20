@@ -24,10 +24,19 @@ class EssaysController < ApplicationController
     session[:essay_id] = params[:id]
     @images = ImageEssay.where(essay_id: @essay.id)
     middleTags = TagEssay.where(essay_id: @essay.id)
-    #render :json => middleTags
     @tags = middleTags.map { |tag| Tag.find(tag.tag_id) }
     @comments = Comment.where(essay_id: @essay.id)
     @mylist_num = @essay.mylists
+    if params[:page] then
+      text = @essay.text.split "-"
+      text.unshift("")
+      page = params[:page].to_i
+      if text[page] then
+        @essay.text = text[page]
+        @now_page_num = page
+        @page_num = text.length
+      end
+    end
   end
 
   def tag_search #現状一つのタグに対してのみ

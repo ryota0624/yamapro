@@ -29,6 +29,13 @@ class MypagesController < ApplicationController
     end
   end
 
+  def destroy
+    essay = Mylist.where(essay_id: params[:essay_id], user_id: current_user)[0]
+    if essay.destroy then
+      redirect_to my_list_mypages_path
+    end
+  end
+
   def my_list #記事のお気に入り
     @list = Mylist.where(user_id: current_user.id)
     @essaylist = @list.map {|listItem| listItem.essay }
