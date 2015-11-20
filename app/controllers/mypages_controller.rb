@@ -7,17 +7,15 @@ class MypagesController < ApplicationController
     @image = UserImage.where(user_id: current_user.id)
     work = TagUser.where(user_id: current_user.id)
     @tag = Usertag.where(id: work[0].tag_id)
-
-    @essay_tags = Array.new
-    @essays.each_with_index do |essay, i|
-      middle = TagEssay.where(essay_id: essay.id)
-      @essay_tags[i] = middle.map { |tag| Tag.find(tag.tag_id) }
-    end
   end
 
   def my_essay
-  	@my_essays = Essay.find(params[:id])
-    render template:"essays/index"
+    @my_essays = Essay.where(user_id: current_user.id)
+    @essay_tags = Array.new
+    @my_essays.each_with_index do |essay, i|
+      middle = TagEssay.where(essay_id: essay.id)
+      @essay_tags[i] = middle.map { |tag| Tag.find(tag.tag_id) }
+    end
   end
 
   def add_my_list
@@ -39,17 +37,6 @@ class MypagesController < ApplicationController
   end
 
   def my_list #記事のお気に入り
-    @list = Mylist.where(user_id: current_user.id)
-    @essaylist = @list.map {|listItem| listItem.essay }
-
-    @essay_tags = Array.new
-    @essaylist.each_with_index do |essay, i|
-      middle = TagEssay.where(essay_id: essay.id)
-      @essay_tags[i] = middle.map { |tag| Tag.find(tag.tag_id) }
-    end
-  end
-
-  def my_list_special #記事のお気に入り
     @list = Mylist.where(user_id: current_user.id)
     @essaylist = @list.map {|listItem| listItem.essay }
 

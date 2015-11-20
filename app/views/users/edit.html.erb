@@ -1,23 +1,18 @@
-<p>プロフィールの編集</p>
-<p><%= link_to "マイページに戻る", mypages_path %></p>
+<div id="myto">
+  <p>プロフィールの編集</p>
+  <p><%= link_to "マイページに戻る", mypages_path %></p>
+  <%= form_for @user, url: :user, html: { multipart: true } do |form| %>
 
-<%= form_for @user, url: :user, html: { multipart: true } do |form| %>
-
-  <p>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </p>
-  <p>職種
-    <%= form.radio_button :business, 0 %>
-    <%= form.label :business_0, "学生/専門学生" %>
-    <%= form.radio_button :business, 1 %>
-    <%= form.label :business_1, "社会人" %>
-    <%= form.radio_button :business, 2 %>
-    <%= form.label :business_2, "その他" %>
-  </p>
-
+職種：
+  <%= form.radio_button :business, 0 %>
+  <%= form.label :business_0, "学生/専門学生" %>
+  <%= form.radio_button :business, 1 %>
+  <%= form.label :business_1, "社会人" %>
+  <%= form.radio_button :business, 2 %>
+  <%= form.label :business_2, "その他" %>
+  <br />
+画像：
   <%= form.fields_for :image do |imgf| %>
-    <p>
       <%= imgf.label :uploaded_image %>
       <%= imgf.file_field :uploaded_image %>
       <% if !imgf.object.new_record? && imgf.object.errors.empty? %>
@@ -28,12 +23,9 @@
         <%= imgf.hidden_field :id %>
       </div>
       <% end %>
-    </p>
   <% end %>
-
   <%= fields_for @tag do |tag| %>
-
-    <p>父の年代
+    父の年代：
       <%= tag.radio_button :fage, "30代" %>
       <%= tag.label :fage_30, "30代" %>
       <%= tag.radio_button :fage, "40代" %>
@@ -46,9 +38,8 @@
       <%= tag.label :fage_70, "70代以上" %>
       <%= tag.radio_button :fage, "未設定" %>
       <%= tag.label :fage_no, "未設定" %>
-    </p>
-
-    <p>母の年代
+      <br />
+    母の年代：
       <%= tag.radio_button :mage, "30代"  %>
       <%= tag.label :mage_30, "30代" %>
       <%= tag.radio_button :mage, "40代"  %>
@@ -61,8 +52,8 @@
       <%= tag.label :mage_70, "70代以上" %>
       <%= tag.radio_button :mage, "未設定" %>
       <%= tag.label :mage_no, "未設定" %>
-    </p>
-    <p>住んでいる場所
+      <br />
+    住んでいる場所：
       <%= tag.radio_button :place, "実家" %>
       <%= tag.label :place_0, "実家" %>
       <%= tag.radio_button :place, "一人暮らし" %>
@@ -73,8 +64,16 @@
       <%= tag.label :place_3, "その他" %>
       <%= tag.radio_button :place, "未設定" %>
       <%= tag.label :place_no, "未設定" %>
-    </p>
-  <% end %>
+      <br />
+    <% end %>
 
-  <p><%= form.submit %></p>
-<% end %>
+    新しいパスワード：
+      <%= form.password_field :password %><span class="kasi">※半角英数</span>
+      <br />
+    新しいパスワード再確認：
+      <%= form.password_field :password_confirmation %>
+      <br />
+  <div class="mysou"><%= form.submit %></div>
+  <% end %>
+</div>
+<div class="clear"></div>
