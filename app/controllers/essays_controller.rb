@@ -37,6 +37,10 @@ class EssaysController < ApplicationController
         @page_num = text.length
       end
     end
+    if logged_in? then 
+      @fav = Mylist.where(user_id: current_user.id,essay_id: @essay.id)
+      @fav = @fav[0]
+    end
   end
 
   def tag_search #現状一つのタグに対してのみ

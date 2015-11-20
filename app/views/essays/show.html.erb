@@ -20,7 +20,11 @@
               <div class="favowa">
                 <div class="fav">
                   <img src="/images/hoshi_y.png" class="fav_icon">★<%= @mylist_num.length %>
-                  <%= link_to "お気に入り", :controller => "mypages", :action =>"add_my_list" %>
+                  <% if @fav %>
+                    <%= link_to "お気に入りをはずす", :controller => "mypages", :action =>"destroy", :essay_id => @essay.id %>
+                  <% else %>
+                    <%= link_to "お気に入り", :controller => "mypages", :action =>"add_my_list" %>
+                  <% end %>
                 </div>
                 <% if @now_page_num && @now_page_num > 1 %>
                 <a href="/essays/<%= @essay.id%>?page=<%= @now_page_num-1%>">←</a>

@@ -24,15 +24,17 @@ class MypagesController < ApplicationController
     else
       add = User.add_mylist(current_user.id, session[:essay_id])
       if add
-        redirect_to my_list_mypages_path
+        redirect_to essay_path session[:essay_id]
+        #redirect_to my_list_mypages_path
       end
     end
   end
 
   def destroy
-    essay = Mylist.where(essay_id: params[:essay_id], user_id: current_user)[0]
+    essay = Mylist.where(essay_id: params[:essay_id], user_id: current_user.id)[0]
     if essay.destroy then
-      redirect_to my_list_mypages_path
+      essay = Essay.find(params[:essay_id])
+      redirect_to essay_path params[:essay_id]
     end
   end
 
