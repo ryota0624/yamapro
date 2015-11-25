@@ -1,24 +1,23 @@
 <div class="dodai">
   <div class="yohaku">
     <div id="my">
-      <h2>マイページ</h2>
-      <div class="myicon">
-        <%= user_image_tag @user, width: 150 %><br />
-      </div>         
+      <h2 class="top_title">マイページ</h2>
+      <div id="myicon_waku" class="myicon">
+        <%= user_image_tag @user, size: "150" %>
+      </div>
+
+      <div id="prof_waku">
         <table class="prof">
           <tr>
             <th>名前</th>
-            <td>：</td>
             <td><%= @user.name %></td>
           </tr>
           <tr>
             <th>性別</th>
-            <td>：</td>
-            <td><%= @user.gender == 0 ? "男" : "女" %></td>
+            <td><%= @user.gender == 0 ? "男性" : "女性" %></td>
           </tr>
           <tr>
             <th>職種</th>
-            <td>：</td>
             <td>
               <% case @user.business
                 when 0 %>
@@ -32,30 +31,21 @@
           </tr>
           <tr>
             <th>環境</th>
-            <td>：</td>
             <td><%= @tag[0].place %></td>
           </tr>
           <tr>
-            <th>[孝行相手]</th>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>母親</th>
-            <td>：</td>
-            <td><%= @tag[0].mage %></td>
-          </tr>
-          <tr>
-            <th>父親</th>
-            <td>：</td>
+            <th>[孝行相手]父親</th>
             <td><%= @tag[0].fage %></td>
+          </tr>
+          <tr>
+            <th>[孝行相手]母親</th>
+            <td><%= @tag[0].mage %></td>
           </tr>
         </table>
       <div id="pass">
-        <p><%= link_to "編集", edit_user_path(@user) %></p>
+        <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
       </div>
     </div>
   </div>
 </div>
 <div class="clear"></div>
-

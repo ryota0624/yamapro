@@ -30,9 +30,9 @@ class MypagesController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy #お気に入り削除
     essay = Mylist.where(essay_id: params[:essay_id], user_id: current_user.id)[0]
-    if essay.destroy then
+    if essay.destroy
       essay = Essay.find(params[:essay_id])
       redirect_to essay_path params[:essay_id]
     end

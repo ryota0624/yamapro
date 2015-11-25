@@ -11,8 +11,8 @@
       </ul>
       <div class="search">
         <div id="search_in">
-        <%= form_tag('/essays/search') do %>
-          <%= text_field_tag 'keyword' %>
+        <%= form_tag('essays/search') do %>
+          <%= text_field_tag 'keyword', "", placeholder: "キーワードを入力"  %>
           <%= submit_tag "検索" %>
         <% end %>
         </div>
