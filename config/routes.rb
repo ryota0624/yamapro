@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   # マイページ
   resources :mypages, only: [:index] do
-    collection { get "my_essay", "my_list","add_my_list", "my_post", "destroy" }
+    collection { get "my_essay", "my_list","add_my_list", "my_post", "destroy_my_list" }
   end
 
   namespace :api, {format: "json"} do
