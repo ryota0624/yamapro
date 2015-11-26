@@ -5,7 +5,7 @@
     <div id="tou<%= i+1 %>">
     <a href="/essays/<%= essay.id %>?page=1">
       <div class="moji">
-        <% image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @essay_img[i]), :size => '80x80', :class => "tou_ti")%>
+        <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => essay.user.id), :size => '80x80',:class => 'tou_ti')%>
         <p class="inti"><%= essay.title.slice(0,9) %></p>
         <p class="inbu_tou1"><%= essay.text.slice(0,30) %></p>
       </div>
@@ -20,11 +20,31 @@
       <div id="toku_<%= i+1 %>">
         <a href="/essays/<%= post.id%>?page=1">
           <p class="inti"><%= post.title.slice(0,9) %></p>
-          <p class="inbu_toku"><%= post.text.slice(0, 30) %></p>
+          <p class="inbu_toku">
+          <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :height => '150')%>
+          <%= @posts_img %>
+          <%= post.text.slice(0, 30) %>
+          </p>
         </a>
       </div>
       <% end %>
     </div>
+  </div>
+  <div id="osukiji">
+    <h2 class="top_title">おすすめ記事</h2>
+    <% @recommends.each do |recommend| %>
+      <div class="osusume">
+        <a>
+          <div class="mi_ti">
+            <%= user_image_tag recommend.user, {class: "osuicon"} %>
+            <p class="mina_ti"><%= recommend.title %></p>
+          </div>
+          <p class="inbu_osu">
+            <%= recommend.text %>
+          </p>
+        </a>
+      </div>
+    <% end %>
   </div>
 </div>
 <div class="clear"></div>

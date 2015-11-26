@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   root to:'top#index'
 
-  resources :users
+  resources :users do
+    collection { get "image"}
+  end
 
   get "signup" => "users#new"
 
@@ -27,7 +29,7 @@ Rails.application.routes.draw do
 
   # マイページ
   resources :mypages, only: [:index] do
-    collection { get "my_essay", "my_list","add_my_list", "my_post", "destroy" }
+    collection { get "my_essay", "my_list","add_my_list", "my_post", "destroy","get_user_image" }
   end
 
   namespace :api, {format: "json"} do

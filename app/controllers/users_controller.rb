@@ -61,6 +61,11 @@ class UsersController < ApplicationController
   def destroy
   end
 
+  def image
+    @image = UserImage.where(user_id: params[:id])
+    send_data(@image.first.data, :disposition => "inline", :type => "image/jpeg")
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :password, :password_confirmation, :gender, :business, :data, :content_type, :usertag, image_attributes: [:image, :id, :uploaded_image])

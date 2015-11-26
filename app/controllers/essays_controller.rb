@@ -13,9 +13,10 @@ class EssaysController < ApplicationController
   end
 
   def question
-    tag_essays = TagEssay.where(tag_id: 0)#質問タグの番号を決めて打つ
-    @questions = tag_essays.map{ |essay| essay.essay }
-    render :json => { error: "ごめんちゃいまで用意してないんご"}
+    # tag_essays = TagEssay.where(tag_id: 1)#質問タグの番号を決めて打つ
+    # @questions = tag_essays.map{ |essay| essay.essay }
+    #render :json => { error: "ごめんちゃいまで用意してないんご"}
+    @questions = Essay.all
   end
 
   def show
@@ -107,7 +108,6 @@ class EssaysController < ApplicationController
 
   def get_image
     @image = ImageEssay.find(params[:id])
-    logger.debug @image
     send_data(@image.image, :disposition => "inline", :type => "image/jpeg")
   end
 

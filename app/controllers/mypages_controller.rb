@@ -52,7 +52,7 @@ class MypagesController < ApplicationController
   def get_user_image
     @image = UserImage.find(user_id: current_user.id)
     # logger.debug @image
-    # send_data(@image.image, :disposition => "inline", :type => "image/jpeg")
+    send_data(@image.image, :disposition => "inline", :type => "image/jpeg")
   end
 
   # def my_fav #つぶやきのお気に入り

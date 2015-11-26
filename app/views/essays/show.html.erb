@@ -67,7 +67,9 @@
               <div id="komewaku">
                 <% @comments.each do |comment| %>
                 <div class="kome">
-  
+                   <%= user_image_tag comment.user, {class: "koi"} %>
+                  <%= comment.user.name %>
+                  <br>
                   <p class="coco"><%= comment.text %></p>
             </div>
             <% end %>

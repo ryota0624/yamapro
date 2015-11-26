@@ -6,13 +6,12 @@
       <% @new_essays.each do |essay| %>
       <div class="minato_new">new!<br>
         <div class="minato_new_ko">
-          <a href="/essays/<%= essay.id %>">
+          <a href="/essays/<%= essay.id %>?page=1">
             <div class="mi_ti">
-              <!-- <img src="./.jpg"> -->
-              <p><%= essay.title.slice(0,14)%></p>
+              <p class="mina_ti"><%= essay.title%></p>
             </div>
             <p class="mina_toko">
-              <%= essay.text.slice(0,20)+" ..." %>
+              <%= essay.text %>
             </p>
           </a>
         </div>

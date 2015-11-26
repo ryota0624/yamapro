@@ -1,9 +1,10 @@
 class TopController < ApplicationController
   def index 
-    @posts = Essay.where(pickup_f: true).limit(4)
-    @essays = Essay.where(pickup_f: false).limit(4)
-    essay_img = @essays.map {|essay| ImageEssay.where(essay_id: essay.id).first }
-    @essay_img = essay_img.map {|essay|  
+    @posts = Essay.where(pickup_f: true).limit 4
+    @essays = Essay.where(pickup_f: false).limit 4
+    @recommends = Essay.all.limit 4
+    post_img = @essays.map {|essay| ImageEssay.where(essay_id: essay.id).first }
+    @posts_img = post_img.map {|essay|  
       if essay.nil? then 
         re = 0
       else
