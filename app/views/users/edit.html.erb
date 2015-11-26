@@ -3,27 +3,23 @@
     <div id="myto">
       <h2 class="top_title">プロフィール設定</h2>
 
-
       <p><%= link_to "マイページに戻る", mypages_path %></p>
       <%= form_for @user, url: :user, html: { multipart: true } do |form| %>
-
       <div id="myicon_waku">
-
         <%= form.fields_for :image do |imgf| %>
             <% if !imgf.object.new_record? && imgf.object.errors.empty? %>
-            <div>
-              <%= user_image_tag @user, size: "150" %>
-              <%= imgf.check_box :_destroy %>
-              <%= imgf.label "削除" %>
-              <%= imgf.hidden_field :id %>
-            </div>
+              <div>
+                <%= user_image_tag @user, size: "150" %>
+                <%= imgf.check_box :_destroy , {:checked => true} %>
+                <%= imgf.label "削除" %>
+                <%= imgf.hidden_field :id %>
+              </div>
+            <% else %>
+              <%= image_tag '/images/sample_image.png', :size => '150x150' %>
             <% end %>
-            <%#= imgf.label "画像をアップロード" %>
             <%= imgf.file_field :uploaded_image %>
         <% end %>
       </div>
-
-
         <br />
         職種：
           <%= form.radio_button :business, 0 %>
@@ -86,7 +82,7 @@
           新しいパスワード確認：
             <%= form.password_field :password_confirmation %>
             <br />
-        <div class="mysou"><%= form.submit "登録" %></div>
+            <%= form.submit "登録" ,:class => "mysou" %>
       <% end %>
 
     </div>

@@ -20,9 +20,8 @@ class UsersController < ApplicationController
 
   def new
   	@user = User.new
-    @image = UserImage.new
     @tag = Usertag.new
-    # @user.bulid_image
+    @user.build_image
   end
 
   def edit
@@ -36,14 +35,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @tag = Usertag.new(user_tag_params)
-    # @tag = Usertag.new(fage: "未設定", mage: "未設定", place: "未設定")
     @middle = TagUser.new(user_id: User.count + 1, tag_id: Usertag.count + 1)
     if @user.save && @tag.save && @middle.save
       redirect_to root_path
     else
       render action: :new
     end
-
   end
 
   def update
@@ -53,9 +50,8 @@ class UsersController < ApplicationController
     if @user.update(user_params) && @tag[0].update(user_tag_params)
       redirect_to mypages_path , notice: "会員情報を更新しました。"
     else
-      render 'index/mypage'
+      render 'index/mypages'
     end
-
   end
 
   def destroy
