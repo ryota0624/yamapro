@@ -1,4 +1,12 @@
-<div>
+<div class="shinkou">
+  <div class="pankusu_list" id="now">登録事項</div>
+  <div id="yajirushi_1"></div>
+  <div class="pankusu_list" id="kakunin">登録内容確認</div>
+  <div id="yajirushi_2"></div>
+  <div class="pankusu_list" id="kakunin2">登録完了</div>
+  <div class="clear"></div>
+</div>
+
   <%= form_for @user, url: users_path, html: { multipart: true } do |form| %>
 <div id="hisu">
   <table class="Input_form">
@@ -36,7 +44,7 @@
    </tr>
   <tr>
    <%= fields_for @tag do |tag| %>
-   <th>住んでいる場所：</th>
+   <th>住んでいる場所</th>
    <td>
      <p>
      <%= tag.radio_button :place, "実家" %>
@@ -54,7 +62,7 @@
    </tr>
 
    <tr>
-     <th>[孝行相手]<br />父親：</th>
+     <th>[孝行相手]<br />父親</th>
      <td>
        <p>
          <%= tag.radio_button :fage, "30代" %>
@@ -74,7 +82,7 @@
    </tr>
    <br />
    <tr>
-     <th>母親：</th>
+     <th>[孝行相手]<br />母親</th>
      <td>
        <p>
          <%= tag.radio_button :mage, "30代"  %>
@@ -120,4 +128,3 @@
  </div>
 </div>
 <% end %>
-</div>
