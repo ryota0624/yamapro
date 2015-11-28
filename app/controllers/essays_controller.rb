@@ -16,7 +16,7 @@ class EssaysController < ApplicationController
     # tag_essays = TagEssay.where(tag_id: 1)#質問タグの番号を決めて打つ
     # @questions = tag_essays.map{ |essay| essay.essay }
     #render :json => { error: "ごめんちゃいまで用意してないんご"}
-    @questions = Essay.all
+    @questions = Essay.all.paginate(:page => params[:page], :per_page => 8)
   end
 
   def show
@@ -51,9 +51,9 @@ class EssaysController < ApplicationController
 
   def search
     result = Essay.keyword_search params[:keyword]
-    @pickups = result[:pickup]
-    @user_posts = result[:user_posts]
-    render :json => @pickups
+    pickups = result[:pickup]
+    user_posts = result[:user_posts]
+    @results = pickups.concat user_posts
   end
 
   def new
@@ -63,6 +63,7 @@ class EssaysController < ApplicationController
   end
 
   def create
+    logger.debug params
     essay = Essay.new(essay_params)
     if !essay.pickup_f
       essay.pickup_f = false
@@ -88,8 +89,12 @@ class EssaysController < ApplicationController
     else
       redirect_to new_essays_path
     end
-    logger.debug params[:tags]
-    if params[:tags] then
+    tags = params[:tags]
+    if params[:tou] == "question" then
+      essay.add_tag([1])
+    end
+    if tags then
+      tags.uniq!
       essay.add_tag(params[:tags])
     end
   end
