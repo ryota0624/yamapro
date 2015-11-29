@@ -41,7 +41,19 @@ class UsersController < ApplicationController
     else
       render action: :new
     end
+
+    # respond_to do |format|
+    #   if @user.save && @tag.save && @middle.save
+    #     format.html { redirect_to @user, notice: '登録を完了しました' }
+    #   else
+    #     # 一度目の「確認」ボタンクリック時は、confirmingがセットされていないのsaveでエラーが発生しこっちに来る
+    #     # ただし、ここに到達した時点で model の after_validation 後なので、confirmingはセットされている状態で new アクションへ
+    #     format.html { render action: 'new' }
+    #   end
+    # end
+
   end
+
 
   def update
     @user = User.find(params[:id])
@@ -64,7 +76,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation, :gender, :business, :data, :content_type, :usertag, image_attributes: [:image, :id, :uploaded_image])
+      params.require(:user).permit(:confirming, :name, :password, :password_confirmation, :gender, :business, :data, :content_type, :usertag, image_attributes: [:image, :id, :uploaded_image])
     end
 
     def user_tag_params

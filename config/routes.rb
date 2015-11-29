@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :users do
     collection { get "image"}
   end
-
   get "signup" => "users#new"
 
   resource :user_session, only: :create
@@ -31,6 +30,7 @@ Rails.application.routes.draw do
   resources :mypages, only: [:index] do
     collection { get "my_essay", "my_list","add_my_list", "my_post", "destroy_my_list","get_user_image" }
   end
+
   namespace :api, {format: "json"} do
     get "user" => "apis#user"
     post "adduser" => "apis#add_user"
