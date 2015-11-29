@@ -1,13 +1,14 @@
 <div class="dodai">
-        <div class="yohaku"><a href="/" class="jyun_ima">新着順</a>/<a href="#">人気順</a>
-          <div id="situ_dai">
-          <% @questions.each do |item| %>
-            <div class="situ_ko">
-            <a href="/essays/<%= item.id%>?page=1">
-            <img src="./slime.png" class="situ_icon">
-            <%= item.title %></a></div>
-        <% end %>
+  <div class="yohaku"><a href="/" class="jyun_ima">新着順</a>/<a href="#">人気順</a>
+    <div id="situ_dai">
+      <% @questions.each do |item| %>
+      <div class="situ_ko">
+        <a href="/essays/<%= item.id%>?page=1">
+          <img src="./slime.png" class="situ_icon">
+          <%= item.title %></a></div>
+          <% end %>
+          <%= will_paginate @questions %>
         </div>
       </div>
-      </div>
-<div class="clear"></div>
+    </div>
+    <div class="clear"></div>
