@@ -36,7 +36,7 @@
       <div class="osusume">
         <a>
           <div class="mi_ti">
-            <%= user_image_tag recommend.user, {class: "osuicon"} %>
+            <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => recommend.user.id), :height => '150',:class => "osuicon")%>
             <p class="mina_ti"><%= recommend.title %></p>
           </div>
           <p class="inbu_osu">

@@ -13,6 +13,13 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :image, allow_destroy: true
   accepts_nested_attributes_for :tag_users, allow_destroy: true
 
+  validates_acceptance_of :confirming
+  after_validation :check_confirming
+
+  def check_confirming
+    errors.delete(:confirming)
+    self.confirming = errors.empty? ? "1" : "0"
+  end
 
   def User.add_mylist(user_id, essay_id)
     item = Mylist.new()
