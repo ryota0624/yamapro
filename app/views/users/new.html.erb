@@ -63,7 +63,6 @@
      </p>
      </td>
      </tr>
-
      <tr>
        <th>[孝行相手] 父親</th>
        <td>
@@ -129,7 +128,7 @@
 
   <div id="agreement">
    <div id="btn">
-     <%= form.submit "内容を確認", class: "btn btn-primary" %>
+       <%= form.submit "内容を確認", class: "btn btn-primary" %>
    </div>
   </div>
 
@@ -194,17 +193,22 @@
        <td><%= @user.password_confirmation %></td>
        <%= form.hidden_field :password_confirmation %>
      </tr>
+
      </tbody>
    </table>
-     <div id="tyu">※「<p class="red">*</p>」は必須項目です。<br />
-                  ニックネーム、性別以外後から変更することが可能です。
-     </div>
   </div>
 
-    <div id="agreement">
-     <div id="btn">
-       <%= form.submit "登録", class: "btn btn-primary" %>
-     </div>
+  <div id="agreement">
+    <p id="caution">
+      上記の内容でよければ「登録」ボタンを押して登録を完了させてください。<br>
+      修正したい場合は「修正」ボタンを押してください。<br/>
+    </p>
+    <div id="btn">
+      <button id="entry">
+        <%= link_to "修正", :back , class: "btn btn-primary" %>
+        <%= form.submit "登録", class: "btn btn-primary", id: "entry" %>
+      </buton>
     </div>
-    <% end %>
+  </div>
+  <% end %>
 <% end %>

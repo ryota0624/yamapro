@@ -5,7 +5,11 @@
     <div id="tou<%= i+1 %>">
     <a href="/essays/<%= essay.id %>?page=1">
       <div class="moji">
-        <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => essay.user.id), :size => '80x80',:class => 'tou_ti')%>
+        <% if essay.user.image.present? %>
+          <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => essay.user.id), :size => '80x80',:class => 'tou_ti')%>
+        <% else %>
+          <%= image_tag '/images/sample_image.png', :size => '30x30' %>
+        <% end %>
         <p class="inti"><%= essay.title.slice(0,9) %></p>
         <p class="inbu_tou1"><%= essay.text.slice(0,30) %></p>
       </div>
@@ -36,7 +40,11 @@
       <div class="osusume">
         <a>
           <div class="mi_ti">
-            <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => recommend.user.id), :height => '150',:class => "osuicon")%>
+            <% if recommend.user.image.present? %>
+              <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => recommend.user.id), :height => '150',:class => "osuicon")%>
+            <% else %>
+              <%= image_tag '/images/sample_image.png', :size => '30x30' %>
+            <% end %>
             <p class="mina_ti"><%= recommend.title %></p>
           </div>
           <p class="inbu_osu">
