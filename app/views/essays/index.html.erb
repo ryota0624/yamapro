@@ -7,6 +7,11 @@
       <div class="minato_new">new!<br>
         <div class="minato_new_ko">
           <a href="/essays/<%= essay.id %>?page=1">
+            <% if essay.user.image.present? %>
+              <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => essay.user.id), :size => '80x80',:class => 'tou_ti')%>
+            <% else %>
+              <%= image_tag '/images/sample_image.png', :size => '30x30' %>
+            <% end %>
             <div class="mi_ti">
               <p class="mina_ti"><%= essay.title%></p>
             </div>
@@ -18,11 +23,16 @@
       </div>
       <% end %>
     </div>
-  
+
   <div class="minato_dai">
     <% @essays.each do |essay| %>
     <div class="minato_ki_ko">
       <a href="/essays/<%= essay.id %>?page=1">
+        <% if essay.user.image.present? %>
+          <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => essay.user.id), :size => '80x80',:class => 'tou_ti')%>
+        <% else %>
+          <%= image_tag '/images/sample_image.png', :size => '30x30' %>
+        <% end %>
         <div class="mi_ti">
           <!-- <img src="./.jpg" class="tou_ti"> -->
           <%= essay.title.slice(0,14) %>
