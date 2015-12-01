@@ -4,7 +4,13 @@
       <% @questions.each do |item| %>
       <div class="situ_ko">
         <a href="/essays/<%= item.id%>?page=1">
-          <img src="./slime.png" class="situ_icon">
+          <div class="situ_icon">
+          <% if item.user.image.present? %>
+            <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => item.user.id), :size => '80x80',:class => 'tou_ti')%>
+          <% else %>
+            <%= image_tag '/images/sample_image.png', :size => '30x30' %>
+          <% end %>
+        </div>
           <%= item.title %></a></div>
           <% end %>
           <%= will_paginate @questions %>
