@@ -113,6 +113,8 @@ class EssaysController < ApplicationController
 
   def get_image
     @image = ImageEssay.find(params[:id])
+    logger.debug "@@@@@@@@@@@@@@@@@"
+    logger.debug @image.created_at
     send_data(@image.image, :disposition => "inline", :type => "image/jpeg")
   end
 
