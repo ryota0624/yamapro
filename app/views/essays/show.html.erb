@@ -1,4 +1,3 @@
-
 <div class="dodai">
   <div class="yohaku2">
     <div class="tk_kisyowa">
@@ -22,12 +21,12 @@
       </div>
       <div class="favowa">
         <div class="fav">
-          <img src="/images/hoshi_y.png" class="fav_icon">★<%= @mylist_num.length %>
-          <% if @fav %>
-          <%= link_to "お気に入りをはずす", :controller => "mypages", :action =>"destroy_my_list", :essay_id => @essay.id %>
+        <% if @fav %>
+            <%= link_to image_tag("/images/hoshi_y.png", :class => "fav_icon"), :controller => "mypages", :action =>"destroy_my_list", :essay_id => @essay.id %>
           <% else %>
-          <%= link_to "お気に入り", :controller => "mypages", :action =>"add_my_list" %>
+            <%= link_to image_tag("/images/hoshi_h.png", :class => "fav_icon"), :controller => "mypages", :action =>"add_my_list" %>
           <% end %>
+          ★<%= @mylist_num.length %>
         </div>
         <% if @now_page_num && @now_page_num > 1 %>
         <a href="/essays/<%= @essay.id%>?page=<%= @now_page_num-1%>">←</a>
