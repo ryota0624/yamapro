@@ -24,11 +24,8 @@
       <div id="toku_<%= i+1 %>">
         <a href="/essays/<%= post.id%>?page=1">
           <p class="inti"><%= post.title.slice(0,9) %></p>
-          <p class="inbu_toku">
-            <div class="topic">
-          <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :height => '150')%>
-            </div>
-          <%= @posts_img %>
+          <p class="inbu_toku<%= i+1%>">
+          <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "topic"+(i+1).to_s) %>
           <%= post.text.slice(0, 30) %>
           </p>
         </a>
@@ -40,7 +37,7 @@
     <h2 class="top_title">おすすめ記事</h2>
     <% @recommends.each do |recommend| %>
       <div class="osusume">
-        <a>
+        <a href="/essays/<%= recommend.id%>?page=1">
           <div class="mi_ti">
             <% if recommend.user.image.present? %>
               <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => recommend.user.id), :height => '150',:class => "osuicon")%>
