@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     @tag = Usertag.new(user_tag_params)
     @middle = TagUser.new(user_id: User.count + 1, tag_id: Usertag.count + 1)
     if @user.save && @tag.save && @middle.save
-      redirect_to root_path
+      render action: :complete
     else
       render action: :new
     end
@@ -56,6 +56,10 @@ class UsersController < ApplicationController
 
   def destroy
   end
+
+  def complete
+  end
+
 
   def image
     @image = UserImage.where(user_id: params[:id])

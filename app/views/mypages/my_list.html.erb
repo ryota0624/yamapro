@@ -7,7 +7,13 @@
         <% if listItem.pickup_f == false %>
           <div class="danwake">
             <a href="/essays/<%= listItem.id %>">
-              <img src="./slime.png" class="tou_ti">
+              <div class="tou_ti">
+              <% if listItem.user.image.present? %>
+                <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => listItem.user.id), :size => '80x80',:class => 'tou_ti')%>
+              <% else %>
+                <%= image_tag '/images/sample_image.png', :size => '30x30' %>
+              <% end %>
+            </div>
               <p class="mina_ti"><%= listItem.title %></p>
               <p class="mytoko"><%= listItem.text + "..."%></p>
     					<div class="totawa">

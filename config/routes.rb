@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to:'top#index'
 
   resources :users do
-    collection { get "image"}
+    collection { get "image", "complete"}
   end
   get "signup" => "users#new"
 
