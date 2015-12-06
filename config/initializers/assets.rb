@@ -12,3 +12,4 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( pc.css )
 Rails.application.config.assets.precompile += %w( reset.css )
 Rails.application.config.assets.precompile += %w( suma1.css )
+Rails.application.config.assets.precompile += %w( essay_new.js )
