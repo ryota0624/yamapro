@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resource :user_session, only: :create
   get "login" =>"user_sessions#new"
   delete "logout" => "user_sessions#destroy"
+  get "logout" => "user_sessions#destroy"
+
 
   get "about" => "top#about"
   get "get_image" => "essays#get_image"
