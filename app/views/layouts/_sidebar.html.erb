@@ -18,7 +18,15 @@
 <div class="name">ログイン</div>
 <div id="top_log">
   <table class="logt">
-    <%= form_for UserSession.new, url: user_session_path do |f| %>
+
+      <%= form_for UserSession.new, url: user_session_path do |f| %>
+
+    <tr>
+    <div class="error">
+      <%= flash[:alert] %>
+    </div>
+    </tr>
+
     <tr>
       <th><%= f.label "Nickname：" %></th>
       <td><%= f.text_field :name %></td>
