@@ -126,7 +126,7 @@
 
   <div id="agreement">
     <div id="btn">
-       <%= form.submit "内容を確認", class: "btn btn-primary" %>
+       <%= form.submit "内容を確認", class: "btn btn-primary", id: 'submit-btn' %>
     </div>
   </div>
 
@@ -205,3 +205,4 @@
   </div>
   <% end %>
 <% end %>
+<%= javascript_include_tag "addjs/signup.js" %>
