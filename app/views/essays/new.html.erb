@@ -27,10 +27,12 @@
             </div>
          </div>
       </div>
-         <%= submit_tag "投稿",:class => "sousin" %>
+         <%= submit_tag "投稿",:class => "sousin" ,:id => 'post-btn' %>
 
    </div>
 
 </div>
 <% end %>
 <div class="clear"></div>
+
+<%= javascript_include_tag "essay_new.js" %>
