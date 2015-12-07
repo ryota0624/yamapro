@@ -21,11 +21,13 @@
       </div>
       <div class="favowa">
         <div class="fav">
+        <% if  logged_in?%>
         <% if @fav %>
             <%= link_to image_tag("/images/hoshi_y.png", :class => "fav_icon"), :controller => "mypages", :action =>"destroy_my_list", :essay_id => @essay.id %>
           <% else %>
             <%= link_to image_tag("/images/hoshi_h.png", :class => "fav_icon"), :controller => "mypages", :action =>"add_my_list" %>
           <% end %>
+        <% end %>
           ★<%= @mylist_num.length %>
         </div>
         <% if @now_page_num && @now_page_num > 1 %>
