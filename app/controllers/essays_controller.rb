@@ -10,6 +10,18 @@ class EssaysController < ApplicationController
     @new_essays = Essay.where(pickup_f: true).limit(3)
     @essays = Essay.where(pickup_f: true).limit(-1).offset(3).paginate(:page => params[:page], :per_page => 8)
     #@essays = Essay.where(pickup_f: true)
+
+
+    post_img = @essays.map {|essay| ImageEssay.where(essay_id: essay.id).first }
+    @posts_img = post_img.map {|essay|
+      if essay.nil? then
+        re = 0
+      else
+        re =  essay.id
+      end
+      re
+    }
+
   end
 
   def question
@@ -38,7 +50,7 @@ class EssaysController < ApplicationController
         @page_num = text.length
       end
     end
-    if logged_in? then 
+    if logged_in? then
       @fav = Mylist.where(user_id: current_user.id,essay_id: @essay.id)
       @fav = @fav[0]
     end
@@ -58,7 +70,7 @@ class EssaysController < ApplicationController
 
   def new
     @image = ImageEssay.new
-    @tags = Tag.all 
+    @tags = Tag.all
     @essay = Essay.new
   end
 
