@@ -1,7 +1,6 @@
 namespace :db do
   task populate: :environment do
     fname = Rails.root.join("lib/tasks", "image1.jpg")
-
     UserImage.create!(
       user: User.create!(
           name: "test_admin",
@@ -162,15 +161,12 @@ namespace :db do
       user_id: "1",
       essay_id: "3"
     )
-    Tag.create!(
-      name: "father"
-    )
-    Tag.create!(
-      name: "mother"
-    )
-    Tag.create!(
-      name: "present"
-    )
+    tag_names = ['父','母','プレゼント','趣味','手伝い','帰省','旅行','料理','誕生日','勤労感謝の日','正月','クリスマス','父の日','母の日','サプライズ']
+    tag_names.each do |tag|
+      Tag.create!(
+        name: tag
+      )
+    end
     Usertag.create!(
       fage: "40代",
       mage: "40代",
