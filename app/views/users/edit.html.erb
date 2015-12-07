@@ -1,17 +1,16 @@
 <div class="dodai">
   <div class="yohaku">
-    <div id="myto">
+    <div id="my">
+      <div id="prof_waku">
       <h2 class="top_title">プロフィール設定</h2>
-
-      <p><%= link_to "マイページに戻る", mypages_path %></p>
       <%= form_for @user, url: :user, html: { multipart: true } do |form| %>
       <div id="myicon_waku">
         <%= form.fields_for :image do |imgf| %>
             <% if !imgf.object.new_record? && imgf.object.errors.empty? %>
               <div>
                 <%= user_image_tag @user, size: "150" %>
-                <%= imgf.check_box :_destroy , {:checked => true} %>
-                <%= imgf.label "削除" %>
+                <%#= imgf.check_box :_destroy , {:checked => true} %>
+                <%#= imgf.label "削除" %>
                 <%= imgf.hidden_field :id %>
               </div>
             <% else %>
@@ -20,6 +19,10 @@
             <%= imgf.file_field :uploaded_image %>
         <% end %>
       </div>
+      <div id="prof_waku">
+
+      <div id="myto">
+
         <br />
         職種：
           <%= form.radio_button :business, 0 %>
@@ -78,13 +81,13 @@
           新しいパスワード：
             <%= form.password_field :password %><span class="kasi">※半角英数</span>
             <br />
-
           新しいパスワード確認：
             <%= form.password_field :password_confirmation %>
             <br />
             <%= form.submit "登録" ,:class => "mysou" %>
       <% end %>
-
+        </div>
+      </div>
     </div>
   </div>
 </div>

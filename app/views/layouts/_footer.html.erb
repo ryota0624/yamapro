@@ -1,14 +1,13 @@
 <footer>
-        <ul>
-          <a href="#"><li>ヘルプ</a><br/>
-          <a href="#">よくある質問</a><br/>
-          <a href="#">お問い合わせ</a><br/></li>
-          <a href="./minato.html"><li>みんなの投稿</li></a>
-          <a href="#"><li>みんなの質問</li></a>
-          <a href="./tokusyu.html"><li>特集</li></a>
-        </ul>
-        <div class="clear"></div>
-        <p id="copy">
-          &copy; Copyright  by YamashitaPROJECT2015
-        </p>
-      </footer>
+  <ul>
+    <li><%= link_to "ヘルプ", "#" %></li>
+    <li><%= link_to "サイトについて", about_path %></li>
+    <li><%= link_to "みんなの投稿", essays_path %></li>
+    <li><%= link_to "みんなの質問", question_essays_path %></li>
+    <li><%= link_to "特集", pickup_essays_path %></li>
+  </ul>
+  <div class="clear"></div>
+  <p id="copy">
+    &copy; Copyright  by YamashitaPROJECT2015
+  </p>
+</footer>

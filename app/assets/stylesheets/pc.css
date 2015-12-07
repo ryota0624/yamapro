@@ -180,7 +180,12 @@ table.logt tr th {
 	text-align:left;
 }
 
-
+.error{
+	color:red;
+	padding: 2% 0% 2% 3%;
+	font-size:9pt;
+	line-height:1em;
+}
 
 
 
@@ -1595,7 +1600,8 @@ ul.tagu2 li{
 .koi{
 	vertical-align:middle;
 	padding-right:1%;
-	width:3%;
+	width:30px;
+	height:30px;
 }
 .coco{
 	box-sizing:border-box;
