@@ -49,7 +49,7 @@
         <% end %>
       </div>
     </div>
-    <div class="tk_tihibu">
+    <div class="tihibu">
       <%if logged_in? %>
       <div class="kowa">
         <p>コメントを入力</p>
@@ -65,7 +65,7 @@
         <div id="komewaku">
           <% @comments.each do |comment| %>
           <div class="kome">
-           <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => comment.user.id),:class => "tou_ti")%>
+           <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => comment.user.id),:class => "koi")%>
            <%= comment.user.name %>
            <br>
            <p class="coco"><%= comment.text %></p>

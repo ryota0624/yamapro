@@ -3,15 +3,19 @@
     <a href="#" class="jyun_ima">新着順</a>/
     <a href="#">人気順</a>/
     <div class="minato_dai">
-      <% @new_essays.each do |essay| %>
+      <% @new_essays.each_with_index do |essay, i| %>
+
       <div class="minato_new">new!<br>
-        <div class="minato_new_ko">
-          <a href="/essays/<%= essay.id %>?page=1">
-            <div class="mi_ti">
+        <div class="tokusyu_new_ko">
+            <a href="/essays/<%= essay.id %>?page=1">
+            <div class="mi_ti"><p class="mina_ti">
               <!-- <img src="./.jpg"> -->
-              <p><%= essay.title.slice(0,14)%></p>
+              <%= essay.title.slice(0,14)%></p>
             </div>
-            <p class="mina_toko">
+            <div class="topic_p">
+              <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "topic"+(i+1).to_s) %>
+            </div>
+            <p class="toku_toko">
               <%= essay.text.html_safe.slice(0,50)+" ..." %>
             </p>
           </a>
@@ -19,7 +23,10 @@
       </div>
       <% end %>
     </div>
-  
+
+
+
+
   <div class="minato_dai">
     <% @essays.each do |essay| %>
     <div class="minato_ki_ko">
