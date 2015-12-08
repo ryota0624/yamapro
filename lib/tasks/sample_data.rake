@@ -31,6 +31,19 @@ namespace :db do
       data: File.open(fname, "rb").read,
       content_type: "image/jpeg"
     )
+    UserImage.create!(
+      user: User.create!(
+        name: "yamapro",
+        password: "yamasita",
+        password_confirmation: "yamasita",
+        admin: "true",
+        gender: "0",
+        business: "0"
+        ),
+      data: File.open(fname, "rb").read,
+      content_type: "image/jpeg"
+    )
+
     Essay.create!(
       text: "sample text",
       user_id: "1",
@@ -161,7 +174,6 @@ namespace :db do
       user_id: "1",
       essay_id: "3"
     )
-<<<<<<< HEAD
     piety_tag_names = ['質問','旅行','プレゼント','手伝い','食事','ショッピング','趣味','帰省','外出','報告','運動','料理','サプライズ', 'その他']
     piety_tag_names.each do |tag|
       Tag.create!(
