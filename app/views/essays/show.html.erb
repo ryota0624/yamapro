@@ -2,19 +2,21 @@
   <div class="yohaku2">
     <div class="kisyowa">
       <div class="kipro">
-        <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => @essay.user.id), :class => 'kicon')%>
+        <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => @essay.user.id), :class => 'kicon')%><%= @user.name%>
       </div>
       <div class="tihibu">
         <p class="day"><%= @essay.created_at.strftime("%Y年 %m月 %d日")%></p>
-        <p class="kiti"><%= @essay.title %></p>
-        <div class="kijibu">
-        <textarea readonly="true" class="text_kiji">
+        <p class="kiti" ><%= @essay.title %></p>
+        <div>
           <% if @essay.pickup_f?  then %>
-            <%= " \n" %><%=@essay.text.chomp.html_safe %>
+          <div  class="kijibu" style="background-color: #ffffff">
+            <%= " \n" %><%=@essay.text.html_safe %>
+          </div>
           <% else %>
+          <textarea readonly="true" class="text_kiji">
             <%= " \n" %><%=@essay.text.chomp.html_safe %>
-          <% end %>
           </textarea>
+          <% end %>
         </div>
       
       <div class="favowa">

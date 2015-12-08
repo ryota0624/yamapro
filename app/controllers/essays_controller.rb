@@ -65,6 +65,7 @@ class EssaysController < ApplicationController
 
   def show
     @essay = Essay.find(params[:id])
+    @user = @essay.user
     logger.debug @essay
     session[:essay_id] = params[:id]
     @images = ImageEssay.where(essay_id: @essay.id)
