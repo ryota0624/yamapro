@@ -1,9 +1,29 @@
 class EssaysController < ApplicationController
   def index
+    @link_bool = false
     @new_essays = Essay.where(pickup_f: false).limit(3)
-    #@essays = Essay.where(pickup_f: false).limit(-1).offset(3)
     @essays = Essay.where(pickup_f: false).limit(-1).offset(3).paginate(:page => params[:page], :per_page => 8)
-    logger.debug(@essays)
+  end
+
+  def fav
+    @link_bool = true
+    essayLength = Essay.where(pickup_f: false).map do |item| 
+      item.mylists.length
+    end
+    essays = Essay.where(pickup_f: false)
+    essayArray = essays.map.with_index do |item, i| 
+      [item, essayLength[i]]
+    end
+
+    essayArray.reverse! do |item|
+      item[1]
+    end
+    essayArray.map! do |item| 
+      item[0]
+    end
+    @new_essays = essayArray.slice(0,3)
+    @essays = essayArray.slice(@new_essays.length, (essayArray.length) - (@new_essays.length))
+    render :template => 'essays/index'
   end
 
   def pickup
@@ -21,7 +41,6 @@ class EssaysController < ApplicationController
       end
       re
     }
-
   end
 
   def question
@@ -125,8 +144,6 @@ class EssaysController < ApplicationController
 
   def get_image
     @image = ImageEssay.find(params[:id])
-    logger.debug "@@@@@@@@@@@@@@@@@"
-    logger.debug @image.created_at
     send_data(@image.image, :disposition => "inline", :type => "image/jpeg")
   end
 
