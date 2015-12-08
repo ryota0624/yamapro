@@ -1,5 +1,4 @@
 'use strict'
-window.onload = () => {
   let state = {pass: "", passConf: ""}
   const passHandle = passChange(state);
   const passConfHandle = passConfChange(state);
@@ -26,7 +25,7 @@ window.onload = () => {
       btnStateChangeFunc(false);
     }
   };  
-}
+
 
 function toggleBtnState(btn) {
   return (bool) => {

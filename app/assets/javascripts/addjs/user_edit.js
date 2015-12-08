@@ -1,32 +1,30 @@
 'use strict';
 
-window.onload = function () {
-  var state = { pass: "", passConf: "" };
-  var passHandle = passChange(state);
-  var passConfHandle = passConfChange(state);
-  var btn = document.getElementById('submit-btn');
-  var btnStateChangeFunc = toggleBtnState(btn);
+var state = { pass: "", passConf: "" };
+var passHandle = passChange(state);
+var passConfHandle = passConfChange(state);
+var btn = document.getElementById('submit-btn');
+var btnStateChangeFunc = toggleBtnState(btn);
 
-  var pass = document.getElementById('user_password');
-  pass.onkeyup = function (ev) {
-    passHandle(ev);
-    if (signFormState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };
+var pass = document.getElementById('user_password');
+pass.onkeyup = function (ev) {
+  passHandle(ev);
+  if (signFormState(state)) {
+    btnStateChangeFunc(true);
+  } else {
+    btnStateChangeFunc(false);
+  }
+};
 
-  var passConf = document.getElementById('user_password_confirmation');
-  passConf.onkeyup = function (ev) {
-    console.log(ev.target.value);
-    passConfHandle(ev);
-    if (signFormState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };
+var passConf = document.getElementById('user_password_confirmation');
+passConf.onkeyup = function (ev) {
+  console.log(ev.target.value);
+  passConfHandle(ev);
+  if (signFormState(state)) {
+    btnStateChangeFunc(true);
+  } else {
+    btnStateChangeFunc(false);
+  }
 };
 
 function toggleBtnState(btn) {
