@@ -172,8 +172,14 @@ class EssaysController < ApplicationController
   end
 
   def get_image
-    @image = ImageEssay.find(params[:id])
-    send_data(@image.image, :disposition => "inline", :type => "image/jpeg")
+    @image = ImageEssay.find_by(id: params[:id])
+    logger.debug @image
+    if @image then 
+      send_data(@image.image, :disposition => "inline", :type => "image/jpeg")
+    else
+      send_file("./public/images/no_img.png", :disposition => "inline", :type => "image/png")
+    end
+    
   end
 
 
