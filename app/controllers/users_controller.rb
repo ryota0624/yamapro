@@ -27,8 +27,10 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     work = TagUser.where(user_id: current_user.id)
-    @tag = Usertag.where(id: work[0].tag_id)
-    @tag = @tag[0]
+    if work.length > 0 then 
+      @tag = Usertag.where(id: work[0].tag_id)
+      @tag = @tag[0]
+    end
     @user.build_image unless @user.image
   end
 

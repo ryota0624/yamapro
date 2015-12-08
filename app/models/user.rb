@@ -3,12 +3,12 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
     c.login_field = :name
   end
-  has_many :essays
-  has_many :posts
-  has_many :favs
-  has_many :mylists
+  has_many :essays , :dependent => :destroy
+  has_many :posts , :dependent => :destroy
+  has_many :favs , :dependent => :destroy
+  has_many :mylists , :dependent => :destroy
   has_one :image, class_name: "UserImage", dependent: :destroy
-  has_many :tag_users
+  has_many :tag_users , :dependent => :destroy
 
   accepts_nested_attributes_for :image, allow_destroy: true
   accepts_nested_attributes_for :tag_users, allow_destroy: true

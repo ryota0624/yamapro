@@ -57,7 +57,7 @@
         <%= form_tag("/comment" ) do %>
         <%= hidden_field_tag 'essay_id', @essay.id %>
         <%= text_area_tag 'text',"", :id => "inkome" %>
-        <%= submit_tag '作成',:class => "sousin"  %>
+        <%= submit_tag '作成',:class => "sousin",:id => 'submit-btn'  %>
         <% end %>
       </div>
       <% end %>
@@ -79,3 +79,5 @@
  </div>
 </div>
 <div class="clear"></div>
+<%= javascript_include_tag "addjs/comment.js" %>
+
