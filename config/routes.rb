@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get 'pickup'
       post 'search'
       get "question"
+      get 'fav'
     end
   end
 
