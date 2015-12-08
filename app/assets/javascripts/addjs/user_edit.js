@@ -1,24 +1,12 @@
-"use strict";
+'use strict';
 
 window.onload = function () {
-  var state = { name: 0, pass: "", passConf: "" };
-  var nameHandle = nameChange(state);
+  var state = { pass: "", passConf: "" };
   var passHandle = passChange(state);
   var passConfHandle = passConfChange(state);
-
   var btn = document.getElementById('submit-btn');
   var btnStateChangeFunc = toggleBtnState(btn);
   btnStateChangeFunc();
-
-  var userName = document.getElementById('user_name');
-  userName.onchange = function (ev) {
-    nameHandle(ev);
-    if (signFormState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };
 
   var pass = document.getElementById('user_password');
   pass.onchange = function (ev) {
@@ -72,18 +60,13 @@ function passConfChange(state) {
 }
 
 function signFormState(state) {
-  var name = state.name;
   var pass = state.pass;
   var passConf = state.passConf;
 
-  if (name > 0 && pass === passConf) {
+  if (pass === passConf) {
     return alertForm(true);
   } else {
-    if (pass === passConf) {
-      return false;
-    } else {
-      return alertForm(false);
-    }
+    return alertForm(false);
   }
 }
 

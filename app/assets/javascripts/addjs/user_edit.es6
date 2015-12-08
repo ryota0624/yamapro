@@ -1,22 +1,11 @@
+'use strict'
 window.onload = () => {
-  let state = {name: 0, pass: "", passConf: ""}
-  const nameHandle = nameChange(state);
+  let state = {pass: "", passConf: ""}
   const passHandle = passChange(state);
   const passConfHandle = passConfChange(state);
-
   let btn = document.getElementById('submit-btn');
   const btnStateChangeFunc = toggleBtnState(btn);
    btnStateChangeFunc();
-
-  let userName = document.getElementById('user_name');
-  userName.onchange = (ev) => {
-    nameHandle(ev);
-    if(signFormState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };
 
   let pass = document.getElementById('user_password');
   pass.onchange = (ev) => {
@@ -63,15 +52,11 @@ function passConfChange(state) {
 }
 
 function signFormState(state) {
-  let {name, pass, passConf} = state;
-  if(name > 0 && pass === passConf) {
+  let {pass, passConf} = state;
+  if(pass === passConf) {
     return alertForm(true)
   } else {
-    if(pass === passConf) {
-      return false
-    } else {
-      return alertForm(false)
-    }
+    return alertForm(false);
   }
 }
 
