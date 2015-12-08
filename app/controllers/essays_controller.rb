@@ -94,6 +94,7 @@ class EssaysController < ApplicationController
   end
 
   def search
+    @message = '検索キーワード: '+ params[:keyword]
     result = Essay.keyword_search params[:keyword]
     pickups = result[:pickup]
     user_posts = result[:user_posts]
@@ -152,10 +153,12 @@ class EssaysController < ApplicationController
   end
 
   def tag
+    @message = '検索タグ: '
     @results = Essay.all
     if params[:tag_id] then
       tag_id = params[:tag_id]
       tag = Tag.find_by(id: tag_id)
+      @message += tag.name
       @results = tag.tag_essays.map do |essay|
         Essay.find(essay.essay_id)
       end
