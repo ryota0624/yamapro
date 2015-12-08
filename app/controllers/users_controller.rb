@@ -48,8 +48,11 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     work = TagUser.where(user_id: current_user.id)
-    @tag = Usertag.where(id: work[0].tag_id)
-    if @user.update(user_params) && @tag[0].update(user_tag_params)
+    if work.length > 0 then
+      @tag = Usertag.where(id: work[0].tag_id)
+      @tag[0].update(user_tag_params)
+    end
+    if @user.update(user_params)
       redirect_to mypages_path , notice: "会員情報を更新しました。"
     else
       render 'index/mypages'
