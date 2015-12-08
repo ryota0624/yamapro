@@ -68,7 +68,12 @@ class UsersController < ApplicationController
 
   def image
     @image = UserImage.where(user_id: params[:id])
-    send_data(@image.first.data, :disposition => "inline", :type => "image/jpeg")
+    if @image.first then 
+      send_data(@image.first.data, :disposition => "inline", :type => "image/jpeg")
+    else
+      send_file("./public/images/sample_image.png", :disposition => "inline", :type => "image/png")
+    end
+    
   end
 
   private
