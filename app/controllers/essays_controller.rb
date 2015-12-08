@@ -2,7 +2,8 @@ class EssaysController < ApplicationController
   def index
     @link_bool = false
     @new_essays = Essay.where(pickup_f: false).limit(3)
-    @essays = Essay.where(pickup_f: false).limit(-1).offset(3).paginate(:page => params[:page], :per_page => 8)
+    @essays = Essay.where(pickup_f: false)
+    .paginate(:page => params[:page], :per_page => 4)
   end
 
   def fav
@@ -22,7 +23,7 @@ class EssaysController < ApplicationController
       item[0]
     end
     @new_essays = essayArray.slice(0,3)
-    @essays = essayArray.slice(@new_essays.length, (essayArray.length) - (@new_essays.length))
+    @essays = essayArray.slice(@new_essays.length, 4)
     render :template => 'essays/index'
   end
 
@@ -44,10 +45,22 @@ class EssaysController < ApplicationController
   end
 
   def question
-    # tag_essays = TagEssay.where(tag_id: 1)#質問タグの番号を決めて打つ
-    # @questions = tag_essays.map{ |essay| essay.essay }
-    #render :json => { error: "ごめんちゃいまで用意してないんご"}
-    @questions = Essay.all.paginate(:page => params[:page], :per_page => 8)
+    @link_bool = false
+    tag_essays = TagEssay.where(tag_id: 1)
+    @test = tag_essays.map do |item| 
+      item.essay_id
+    end
+    @questions = Essay.where(id: @test).paginate(:page => params[:page], :per_page => 8)
+  end
+
+  def question_fav
+    @link_bool = true
+    tag_essays = TagEssay.where(tag_id: 1)
+    @test = tag_essays.map do |item| 
+      item.essay_id
+    end
+    @questions = Essay.where(id: @test)
+    render :template => 'essays/question'
   end
 
   def show
@@ -56,7 +69,7 @@ class EssaysController < ApplicationController
     session[:essay_id] = params[:id]
     @images = ImageEssay.where(essay_id: @essay.id)
     middleTags = TagEssay.where(essay_id: @essay.id)
-    @tags = middleTags.map { |tag| Tag.find(tag.tag_id) }
+    @tags = middleTags.map { |tag| Tag.find_by id: tag.tag_id }
     @comments = Comment.where(essay_id: @essay.id)
     @mylist_num = @essay.mylists
     if params[:page] then
@@ -89,7 +102,7 @@ class EssaysController < ApplicationController
 
   def new
     @image = ImageEssay.new
-    @tags = Tag.all
+    @tags = Tag.all.offset(1)
     @essay = Essay.new
   end
 

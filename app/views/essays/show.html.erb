@@ -1,12 +1,10 @@
 <div class="dodai">
   <div class="yohaku2">
-    <div class="tk_kisyowa">
+    <div class="kisyowa">
       <div class="kipro">
-        <% if @images.length > 0 then %>
-        <%= image_tag(url_for(:action => 'get_image', :id => @images.first.id), :size => '80x80')%>
-        <% end %>
+        <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => @essay.user.id), :class => 'kicon')%>
       </div>
-      <div class="tk_tihibu">
+      <div class="tihibu">
         <p class="day"><%= @essay.created_at.strftime("%Y年 %m月 %d日")%></p>
         <p class="kiti"><%= @essay.title %></p>
         <div class="kijibu">
@@ -18,7 +16,7 @@
           </textarea>
           <% end %>
         </div>
-      </div>
+      
       <div class="favowa">
         <div class="fav">
         <% if  logged_in?%>
@@ -47,10 +45,11 @@
       </div>
       <div class="totawa">
         <% @tags.each do |tag| %>
-        <div class="tota"><%= tag.name %></div>
+        <div class="tota"><%= if tag then tag.name end %></div>
         <% end %>
       </div>
     </div>
+    
     <div class="tihibu">
       <%if logged_in? %>
       <div class="kowa">
@@ -63,18 +62,19 @@
       </div>
       <% end %>
       <div class="kowa">
-        <p class="k">コメント<%= @comments.length %></p>
+        <p class="k">コメント(<%= @comments.length %>)</p>
         <div id="komewaku">
           <% @comments.each do |comment| %>
           <div class="kome">
            <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => comment.user.id),:class => "koi")%>
            <%= comment.user.name %>
            <br>
-           <p class="coco"><%= comment.text %></p>
+           <textarea class='coco'><%= comment.text %></textarea>
          </div>
          <% end %>
        </div>
      </div>
+   </div>
    </div>
  </div>
 </div>
