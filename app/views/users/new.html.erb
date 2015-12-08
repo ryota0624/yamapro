@@ -152,12 +152,21 @@
      </tr>
      <tr>
        <th>性別<p class="red">*</p></th>
-       <td><%= @user.gender %></td>
+       <td><%= @user.gender == 0 ? "男性" : "女性" %></td>
        <%= form.hidden_field :gender %>
      </tr>
      <tr>
        <th>職種<p class="red">*</p></th>
-         <td><%= @user.business %></td>
+         <td>
+           <% case @user.business
+             when 0 %>
+               学生/専門学生
+           <% when 1 %>
+             社会人
+           <%when 2%>
+             その他
+           <%end%>
+         </td>         
          <%= form.hidden_field :business %>
      </tr>
     <tr>

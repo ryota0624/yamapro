@@ -1,7 +1,7 @@
 namespace :db do
   task tag_reset: :environment do
     Tag.destroy_all
-        tag_names = ['父','母','プレゼント','趣味','手伝い','帰省','旅行','料理','誕生日','勤労感謝の日','正月','クリスマス','父の日','母の日','サプライズ']
+        tag_names = ['手伝い','食事','ショッピング','趣味','帰省','外出','報告','運動','料理','サプライズ', 'その他']
     tag_names.each do |tag|
       Tag.create!(
         name: tag
