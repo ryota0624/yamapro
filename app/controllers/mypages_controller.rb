@@ -6,7 +6,9 @@ class MypagesController < ApplicationController
     @user = User.find(current_user.id)
     @image = UserImage.where(user_id: current_user.id)
     work = TagUser.where(user_id: current_user.id)
-    @tag = Usertag.where(id: work[0].tag_id)
+    if work[0] then
+      @tag = Usertag.where(id: work[0].tag_id)
+    end
   end
 
   def my_essay

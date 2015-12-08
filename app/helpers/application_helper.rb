@@ -20,6 +20,14 @@ module ApplicationHelper
     current_user_session != nil
   end
 
+  def admin?
+    if logged_in? then 
+      current_user.admin
+    else 
+      false
+    end
+  end
+
   def post_to_fav(user_id, post_id)
     Fav.post_to_fav(user_id, post_id)
     redirect_to root_path

@@ -1,5 +1,7 @@
 <%= form_tag("/essays", :multipart => true ) do %>
+<% if admin? then %>
 <p>特集か否か<%= check_box_tag "essay[pickup_f]", "1" %></p>
+<% end %>
 <div class="dodai">
    <div class="yohaku2">
      <h2 class="top_title">記事投稿</h2>

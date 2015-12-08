@@ -32,6 +32,7 @@
               <%end%>
             </td>
           </tr>
+          <% if @tag then %>
           <tr>
             <th>環境</th>
             <td><%= @tag[0].place %></td>
@@ -44,6 +45,7 @@
             <th>[孝行相手]母親</th>
             <td><%= @tag[0].mage %></td>
           </tr>
+          <% end %>
         </table>
       <div id="pass">
         <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
