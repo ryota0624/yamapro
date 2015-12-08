@@ -1,11 +1,12 @@
 class EssaysController < ApplicationController
   def index
+    @link_bool = false
     @new_essays = Essay.where(pickup_f: false).limit(3)
-    #@essays = Essay.where(pickup_f: false).limit(-1).offset(3)
     @essays = Essay.where(pickup_f: false).limit(-1).offset(3).paginate(:page => params[:page], :per_page => 8)
   end
 
   def fav
+    @link_bool = true
     essayLength = Essay.where(pickup_f: false).map do |item| 
       item.mylists.length
     end
