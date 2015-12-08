@@ -17,6 +17,14 @@ window.onload = () => {
       btnStateChangeFunc(false);
     }
   };
+  userName.onkeypress = (ev) => {
+    nameHandle(ev);
+    if(signFormState(state)) {
+      btnStateChangeFunc(true);
+    } else {
+      btnStateChangeFunc(false);
+    }
+  };
 
   let pass = document.getElementById('user_password');
   pass.onchange = (ev) => {
@@ -27,9 +35,25 @@ window.onload = () => {
       btnStateChangeFunc(false);
     }
   };
+  pass.onkeypress = (ev) => {
+    passHandle(ev);
+    if(signFormState(state)) {
+      btnStateChangeFunc(true);
+    } else {
+      btnStateChangeFunc(false);
+    }
+  };
 
   let passConf = document.getElementById('user_password_confirmation');
   passConf.onchange = (ev) => {
+    passConfHandle(ev);
+    if(signFormState(state)) {
+      btnStateChangeFunc(true);
+    } else {
+      btnStateChangeFunc(false);
+    }
+  };  
+  passConf.onkeypress = (ev) => {
     passConfHandle(ev);
     if(signFormState(state)) {
       btnStateChangeFunc(true);

@@ -16,7 +16,7 @@ window.onload = function () {
       btnStateChangeFunc(false);
     }
   };
-  pass.onblur = function (ev) {
+  pass.onkeypress = function (ev) {
     passHandle(ev);
     if (signFormState(state)) {
       btnStateChangeFunc(true);
@@ -27,6 +27,14 @@ window.onload = function () {
 
   var passConf = document.getElementById('user_password_confirmation');
   passConf.onchange = function (ev) {
+    passConfHandle(ev);
+    if (signFormState(state)) {
+      btnStateChangeFunc(true);
+    } else {
+      btnStateChangeFunc(false);
+    }
+  };
+  passConf.onkeypress = function (ev) {
     passConfHandle(ev);
     if (signFormState(state)) {
       btnStateChangeFunc(true);

@@ -16,10 +16,26 @@ window.onload = () => {
       btnStateChangeFunc(false);
     }
   };
+  title.onkeypress = (ev) => {
+    titleChangeHandle(ev);
+    if(essayState(state)) {
+      btnStateChangeFunc(true);
+    } else {
+      btnStateChangeFunc(false);
+    }
+  };
 
 
   let text = document.getElementById('essay_text');
   text.onchange = (ev) => {
+    textChangeHandle(ev);
+    if(essayState(state)) {
+      btnStateChangeFunc(true);
+    } else {
+      btnStateChangeFunc(false);
+    }
+  };
+  text.onkeypress = (ev) => {
     textChangeHandle(ev);
     if(essayState(state)) {
       btnStateChangeFunc(true);

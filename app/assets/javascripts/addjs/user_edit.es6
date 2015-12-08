@@ -15,7 +15,7 @@ window.onload = () => {
       btnStateChangeFunc(false);
     }
   };
-  pass.onblur = (ev) => {
+  pass.onkeypress = (ev) => {
     passHandle(ev);
     if(signFormState(state)) {
       btnStateChangeFunc(true);
@@ -26,6 +26,14 @@ window.onload = () => {
 
   let passConf = document.getElementById('user_password_confirmation');
   passConf.onchange = (ev) => {
+    passConfHandle(ev);
+    if(signFormState(state)) {
+      btnStateChangeFunc(true);
+    } else {
+      btnStateChangeFunc(false);
+    }
+  };  
+  passConf.onkeypress = (ev) => {
     passConfHandle(ev);
     if(signFormState(state)) {
       btnStateChangeFunc(true);

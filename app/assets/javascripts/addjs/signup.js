@@ -19,9 +19,25 @@ window.onload = function () {
       btnStateChangeFunc(false);
     }
   };
+  userName.onkeypress = function (ev) {
+    nameHandle(ev);
+    if (signFormState(state)) {
+      btnStateChangeFunc(true);
+    } else {
+      btnStateChangeFunc(false);
+    }
+  };
 
   var pass = document.getElementById('user_password');
   pass.onchange = function (ev) {
+    passHandle(ev);
+    if (signFormState(state)) {
+      btnStateChangeFunc(true);
+    } else {
+      btnStateChangeFunc(false);
+    }
+  };
+  pass.onkeypress = function (ev) {
     passHandle(ev);
     if (signFormState(state)) {
       btnStateChangeFunc(true);
@@ -39,11 +55,18 @@ window.onload = function () {
       btnStateChangeFunc(false);
     }
   };
+  passConf.onkeypress = function (ev) {
+    passConfHandle(ev);
+    if (signFormState(state)) {
+      btnStateChangeFunc(true);
+    } else {
+      btnStateChangeFunc(false);
+    }
+  };
 };
 
 function toggleBtnState(btn) {
   return function (bool) {
-    console.log('fuck');
     if (bool) {
       btn.removeAttribute('disabled');
     } else {
