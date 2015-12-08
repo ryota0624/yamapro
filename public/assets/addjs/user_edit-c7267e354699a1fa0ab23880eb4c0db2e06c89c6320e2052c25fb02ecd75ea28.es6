@@ -16,14 +16,6 @@ window.onload = () => {
       btnStateChangeFunc(false);
     }
   };
-  pass.onblur = (ev) => {
-    passHandle(ev);
-    if(signFormState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };
 
   let passConf = document.getElementById('user_password_confirmation');
   passConf.onchange = (ev) => {
@@ -61,9 +53,8 @@ function passConfChange(state) {
 
 function signFormState(state) {
   let {pass, passConf} = state;
-  console.log(pass, passConf)
   if(pass === passConf && pass.length === 0) {
-    return alertForm(true);
+    return alertForm(false);
   }
   if(pass === passConf) {
     return alertForm(true)
