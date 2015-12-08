@@ -7,22 +7,14 @@ window.onload = () => {
   btnStateChangeFunc();
 
   let comment = document.getElementById('inkome');
-  comment.onkeypress = (ev) => {
+  comment.onkeyup = (ev) => {
     commentChangeHandle(ev);
     if(commentState(state)) {
       btnStateChangeFunc(true);
     } else {
       btnStateChangeFunc(false);
     }
-  };  
-  comment.onchange = (ev) => {
-    commentChangeHandle(ev);
-    if(commentState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };  
+  };
 }
 
 function toggleBtnState(btn) {

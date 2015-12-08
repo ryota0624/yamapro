@@ -8,7 +8,7 @@ window.onload = () => {
    btnStateChangeFunc();
 
   let title = document.getElementById('essay_title');
-  title.onchange = (ev) => {
+  title.onkeyup = (ev) => {
     titleChangeHandle(ev);
     if(essayState(state)) {
       btnStateChangeFunc(true);
@@ -16,26 +16,9 @@ window.onload = () => {
       btnStateChangeFunc(false);
     }
   };
-  title.onkeypress = (ev) => {
-    titleChangeHandle(ev);
-    if(essayState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };
-
 
   let text = document.getElementById('essay_text');
-  text.onchange = (ev) => {
-    textChangeHandle(ev);
-    if(essayState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };
-  text.onkeypress = (ev) => {
+  text.onkeyup = (ev) => {
     textChangeHandle(ev);
     if(essayState(state)) {
       btnStateChangeFunc(true);

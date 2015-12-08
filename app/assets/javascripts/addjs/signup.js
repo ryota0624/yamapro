@@ -11,15 +11,8 @@ window.onload = function () {
   btnStateChangeFunc();
 
   var userName = document.getElementById('user_name');
-  userName.onchange = function (ev) {
-    nameHandle(ev);
-    if (signFormState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };
-  userName.onkeypress = function (ev) {
+
+  userName.onkeyup = function (ev) {
     nameHandle(ev);
     if (signFormState(state)) {
       btnStateChangeFunc(true);
@@ -29,15 +22,8 @@ window.onload = function () {
   };
 
   var pass = document.getElementById('user_password');
-  pass.onchange = function (ev) {
-    passHandle(ev);
-    if (signFormState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };
-  pass.onkeypress = function (ev) {
+
+  pass.onkeyup = function (ev) {
     passHandle(ev);
     if (signFormState(state)) {
       btnStateChangeFunc(true);

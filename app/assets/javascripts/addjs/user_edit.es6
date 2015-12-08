@@ -7,15 +7,7 @@ window.onload = () => {
   const btnStateChangeFunc = toggleBtnState(btn);
 
   let pass = document.getElementById('user_password');
-  pass.onchange = (ev) => {
-    passHandle(ev);
-    if(signFormState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };
-  pass.onkeypress = (ev) => {
+  pass.onkeyup = (ev) => {
     passHandle(ev);
     if(signFormState(state)) {
       btnStateChangeFunc(true);
@@ -25,15 +17,8 @@ window.onload = () => {
   };
 
   let passConf = document.getElementById('user_password_confirmation');
-  passConf.onchange = (ev) => {
-    passConfHandle(ev);
-    if(signFormState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };  
-  passConf.onkeypress = (ev) => {
+  passConf.onkeyup = (ev) => {
+    console.log(ev.target.value)
     passConfHandle(ev);
     if(signFormState(state)) {
       btnStateChangeFunc(true);

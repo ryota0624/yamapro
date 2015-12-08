@@ -9,15 +9,7 @@ window.onload = function () {
   btnStateChangeFunc();
 
   var comment = document.getElementById('inkome');
-  comment.onkeypress = function (ev) {
-    commentChangeHandle(ev);
-    if (commentState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };
-  comment.onchange = function (ev) {
+  comment.onkeyup = function (ev) {
     commentChangeHandle(ev);
     if (commentState(state)) {
       btnStateChangeFunc(true);

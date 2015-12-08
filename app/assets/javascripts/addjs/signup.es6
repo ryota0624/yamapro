@@ -9,15 +9,8 @@ window.onload = () => {
    btnStateChangeFunc();
 
   let userName = document.getElementById('user_name');
-  userName.onchange = (ev) => {
-    nameHandle(ev);
-    if(signFormState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };
-  userName.onkeypress = (ev) => {
+
+  userName.onkeyup = (ev) => {
     nameHandle(ev);
     if(signFormState(state)) {
       btnStateChangeFunc(true);
@@ -27,15 +20,8 @@ window.onload = () => {
   };
 
   let pass = document.getElementById('user_password');
-  pass.onchange = (ev) => {
-    passHandle(ev);
-    if(signFormState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };
-  pass.onkeypress = (ev) => {
+
+  pass.onkeyup = (ev) => {
     passHandle(ev);
     if(signFormState(state)) {
       btnStateChangeFunc(true);

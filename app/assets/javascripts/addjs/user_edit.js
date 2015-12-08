@@ -8,15 +8,7 @@ window.onload = function () {
   var btnStateChangeFunc = toggleBtnState(btn);
 
   var pass = document.getElementById('user_password');
-  pass.onchange = function (ev) {
-    passHandle(ev);
-    if (signFormState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };
-  pass.onkeypress = function (ev) {
+  pass.onkeyup = function (ev) {
     passHandle(ev);
     if (signFormState(state)) {
       btnStateChangeFunc(true);
@@ -26,15 +18,8 @@ window.onload = function () {
   };
 
   var passConf = document.getElementById('user_password_confirmation');
-  passConf.onchange = function (ev) {
-    passConfHandle(ev);
-    if (signFormState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };
-  passConf.onkeypress = function (ev) {
+  passConf.onkeyup = function (ev) {
+    console.log(ev.target.value);
     passConfHandle(ev);
     if (signFormState(state)) {
       btnStateChangeFunc(true);

@@ -10,15 +10,7 @@ window.onload = function () {
   btnStateChangeFunc();
 
   var title = document.getElementById('essay_title');
-  title.onchange = function (ev) {
-    titleChangeHandle(ev);
-    if (essayState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };
-  title.onkeypress = function (ev) {
+  title.onkeyup = function (ev) {
     titleChangeHandle(ev);
     if (essayState(state)) {
       btnStateChangeFunc(true);
@@ -28,15 +20,7 @@ window.onload = function () {
   };
 
   var text = document.getElementById('essay_text');
-  text.onchange = function (ev) {
-    textChangeHandle(ev);
-    if (essayState(state)) {
-      btnStateChangeFunc(true);
-    } else {
-      btnStateChangeFunc(false);
-    }
-  };
-  text.onkeypress = function (ev) {
+  text.onkeyup = function (ev) {
     textChangeHandle(ev);
     if (essayState(state)) {
       btnStateChangeFunc(true);
