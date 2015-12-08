@@ -56,7 +56,7 @@ class EssaysController < ApplicationController
     session[:essay_id] = params[:id]
     @images = ImageEssay.where(essay_id: @essay.id)
     middleTags = TagEssay.where(essay_id: @essay.id)
-    @tags = middleTags.map { |tag| Tag.find(tag.tag_id) }
+    @tags = middleTags.map { |tag| Tag.find_by id: tag.tag_id }
     @comments = Comment.where(essay_id: @essay.id)
     @mylist_num = @essay.mylists
     if params[:page] then
