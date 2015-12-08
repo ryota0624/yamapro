@@ -151,15 +151,24 @@ class EssaysController < ApplicationController
 
   end
 
+  def tag
+    @results = Essay.all
+    if params[:tag_id] then
+      tag_id = params[:tag_id]
+      tag = Tag.find_by(id: tag_id)
+      @results = tag.tag_essays.map do |essay|
+        Essay.find(essay.essay_id)
+      end
+    end
+    render :template => 'essays/search'
+  end
+
   def destory
     @essay = Essay.find(params[:id]).destory
   end
 
   def get_image
     @image = ImageEssay.find(params[:id])
-    if !@image then 
-      logger.debug "fuuuuuuuuuuuuk"
-    end
     send_data(@image.image, :disposition => "inline", :type => "image/jpeg")
   end
 

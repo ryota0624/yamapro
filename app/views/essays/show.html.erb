@@ -10,9 +10,9 @@
         <div class="kijibu">
         <textarea readonly="true" class="text_kiji">
           <% if @essay.pickup_f?  then %>
-            <%=@essay.text.chomp.html_safe %>
+            <%= " \n" %><%=@essay.text.chomp.html_safe %>
           <% else %>
-            <%=@essay.text.chomp.html_safe %>
+            <%= " \n" %><%=@essay.text.chomp.html_safe %>
           <% end %>
           </textarea>
         </div>
@@ -45,7 +45,13 @@
       </div>
       <div class="totawa">
         <% @tags.each do |tag| %>
-        <div class="tota"><%= if tag then tag.name end %></div>
+        <div class="tota">
+          <% if tag then %>
+            <a href="/essays/tag?tag_id=<%= tag.id%>">
+              <%= tag.name %>
+            </a>
+          <% end %>
+          </div>
         <% end %>
       </div>
     </div>
