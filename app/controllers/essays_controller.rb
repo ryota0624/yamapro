@@ -8,18 +8,18 @@ class EssaysController < ApplicationController
 
   def fav
     @link_bool = true
-    essayLength = Essay.where(pickup_f: false).map do |item| 
+    essayLength = Essay.where(pickup_f: false).map do |item|
       item.mylists.length
     end
     essays = Essay.where(pickup_f: false)
-    essayArray = essays.map.with_index do |item, i| 
+    essayArray = essays.map.with_index do |item, i|
       [item, essayLength[i]]
     end
 
     essayArray.reverse! do |item|
       item[1]
     end
-    essayArray.map! do |item| 
+    essayArray.map! do |item|
       item[0]
     end
     @new_essays = essayArray.slice(0,3)
@@ -47,7 +47,7 @@ class EssaysController < ApplicationController
   def question
     @link_bool = false
     tag_essays = TagEssay.where(tag_id: 1)
-    @test = tag_essays.map do |item| 
+    @test = tag_essays.map do |item|
       item.essay_id
     end
     @questions = Essay.where(id: @test).paginate(:page => params[:page], :per_page => 8)
@@ -56,7 +56,7 @@ class EssaysController < ApplicationController
   def question_fav
     @link_bool = true
     tag_essays = TagEssay.where(tag_id: 1)
-    @test = tag_essays.map do |item| 
+    @test = tag_essays.map do |item|
       item.essay_id
     end
     @questions = Essay.where(id: @test)
@@ -84,9 +84,23 @@ class EssaysController < ApplicationController
       end
     end
     if logged_in? then
-      @fav = Mylist.where(user_id: current_user.id,essay_id: @essay.id)
+      @fav = Mylist.where(user_id: current_user.id, essay_id: @essay.id)
       @fav = @fav[0]
     end
+
+    post_img = ImageEssay.where(essay_id: @essay.id).first
+      if post_img.nil? then
+        re = 0
+      else
+        re =  post_img.id
+      end
+    re
+    @essay_img = re
+
+    # post_img = ImageEssy.where
+
+
+
   end
 
   def tag_search #現状一つのタグに対してのみ
@@ -174,12 +188,12 @@ class EssaysController < ApplicationController
   def get_image
     @image = ImageEssay.find_by(id: params[:id])
     logger.debug @image
-    if @image then 
+    if @image then
       send_data(@image.image, :disposition => "inline", :type => "image/jpeg")
     else
       send_file("./public/images/no_img.png", :disposition => "inline", :type => "image/png")
     end
-    
+
   end
 
 

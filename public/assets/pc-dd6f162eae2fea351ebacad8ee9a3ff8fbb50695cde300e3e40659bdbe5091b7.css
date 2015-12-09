@@ -23,6 +23,7 @@ a:visited {/*訪問後のリンク*/
 	color:#8e6e6e;
 }
 h2{
+
 	font-size:18px;
 }
 
@@ -1023,7 +1024,7 @@ div#agreement div#btn input{
 #situ_dai{
 	box-sizing:border-box;
 	width:102%;
-	margin-top:0px;
+	margin-top:20px;
 	margin-bottom:5px;
 	padding:0% 1% 0px 1%;
 }
@@ -1509,7 +1510,7 @@ ul.tagu2 li{
 	width:100%;
 	border-bottom: #caceca 1px solid;
 	padding:5px 0px 5px 0px;
-	text-align:left;
+	text-align:right;
 }
 .fav{
 	box-sizing:border-box;

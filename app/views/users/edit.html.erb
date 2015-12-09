@@ -85,6 +85,7 @@
           新しいパスワード確認：
             <%= form.password_field :password_confirmation %>
             <br />
+        <span class="kasi">※パスワードを変更しない場合は未記入</span><br />
             <p hidden id='alert'style="color:#ff0000">パスワードが一致していません</p>
             <%= form.submit "登録" ,:class => "mysou", :id => 'submit-btn',style: "cursor: pointer" %>
       <% end %>
@@ -96,4 +97,3 @@
 
 <div class="clear"></div>
 <%= javascript_include_tag "addjs/user_edit.js" %>
-

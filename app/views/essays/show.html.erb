@@ -2,7 +2,11 @@
   <div class="yohaku2">
     <div class="kisyowa">
       <div class="kipro">
-        <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => @essay.user.id), :class => 'kicon')%><%= @user.name %>
+        <% if @essay.user.image.present? %>
+          <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => @essay.user.id), :class => 'kicon')%>
+        <% else %>
+          <%= image_tag '/images/sample_image.png', :size => '125x125' %>
+        <% end %>
       </div>
       <div class="tihibu">
         <p class="day"><%= @essay.created_at.strftime("%Y年 %m月 %d日")%></p>
@@ -18,8 +22,12 @@
           </textarea>
           <% end %>
         </div>
-      
+
       <div class="favowa">
+        <div id="photo">
+        <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @essay_img), :class => "to_img", :width => "150px") %>
+      </div>
+
         <div class="fav">
         <% if  logged_in?%>
         <% if @fav %>
@@ -55,7 +63,7 @@
         <% end %>
       </div>
     </div>
-    
+
     <div class="tihibu">
       <%if logged_in? %>
       <div class="kowa">
@@ -86,4 +94,3 @@
 </div>
 <div class="clear"></div>
 <%= javascript_include_tag "addjs/comment.js" %>
-
