@@ -1,11 +1,25 @@
-'use strict'
-  let state = {pass: "", passConf: ""}
+  let state = {name: 0, pass: "", passConf: ""}
+  const nameHandle = nameChange(state);
   const passHandle = passChange(state);
   const passConfHandle = passConfChange(state);
+
   let btn = document.getElementById('submit-btn');
   const btnStateChangeFunc = toggleBtnState(btn);
+   btnStateChangeFunc();
+
+  let userName = document.getElementById('user_name');
+
+  userName.onkeyup = (ev) => {
+    nameHandle(ev);
+    if(signFormState(state)) {
+      btnStateChangeFunc(true);
+    } else {
+      btnStateChangeFunc(false);
+    }
+  };
 
   let pass = document.getElementById('user_password');
+
   pass.onkeyup = (ev) => {
     passHandle(ev);
     if(signFormState(state)) {
@@ -16,8 +30,7 @@
   };
 
   let passConf = document.getElementById('user_password_confirmation');
-  passConf.onkeyup = (ev) => {
-    console.log(ev.target.value)
+  passConf.onchange = (ev) => {
     passConfHandle(ev);
     if(signFormState(state)) {
       btnStateChangeFunc(true);
@@ -25,7 +38,14 @@
       btnStateChangeFunc(false);
     }
   };  
-
+  passConf.onkeypress = (ev) => {
+    passConfHandle(ev);
+    if(signFormState(state)) {
+      btnStateChangeFunc(true);
+    } else {
+      btnStateChangeFunc(false);
+    }
+  };  
 
 function toggleBtnState(btn) {
   return (bool) => {
@@ -51,15 +71,15 @@ function passConfChange(state) {
 }
 
 function signFormState(state) {
-  let {pass, passConf} = state;
-  console.log(pass, passConf)
-  if(pass === passConf && pass.length === 0) {
-    return alertForm(true);
-  }
-  if(pass === passConf) {
+  let {name, pass, passConf} = state;
+  if(name > 0 && pass === passConf && pass.length > 0) {
     return alertForm(true)
   } else {
-    return alertForm(false);
+    if(pass === passConf) {
+      return false
+    } else {
+      return alertForm(false)
+    }
   }
 }
 

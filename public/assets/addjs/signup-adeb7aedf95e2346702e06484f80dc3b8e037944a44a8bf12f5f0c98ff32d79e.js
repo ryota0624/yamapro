@@ -32,7 +32,15 @@ pass.onkeyup = function (ev) {
 };
 
 var passConf = document.getElementById('user_password_confirmation');
-passConf.onkeyup = function (ev) {
+passConf.onchange = function (ev) {
+  passConfHandle(ev);
+  if (signFormState(state)) {
+    btnStateChangeFunc(true);
+  } else {
+    btnStateChangeFunc(false);
+  }
+};
+passConf.onkeypress = function (ev) {
   passConfHandle(ev);
   if (signFormState(state)) {
     btnStateChangeFunc(true);

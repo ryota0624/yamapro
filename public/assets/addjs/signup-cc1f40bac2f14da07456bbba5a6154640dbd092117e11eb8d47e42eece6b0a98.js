@@ -32,7 +32,15 @@ pass.onkeyup = function (ev) {
 };
 
 var passConf = document.getElementById('user_password_confirmation');
-passConf.onkeyup = function (ev) {
+passConf.onchange = function (ev) {
+  passConfHandle(ev);
+  if (signFormState(state)) {
+    btnStateChangeFunc(true);
+  } else {
+    btnStateChangeFunc(false);
+  }
+};
+passConf.onkeypress = function (ev) {
   passConfHandle(ev);
   if (signFormState(state)) {
     btnStateChangeFunc(true);
@@ -75,7 +83,7 @@ function signFormState(state) {
   var pass = state.pass;
   var passConf = state.passConf;
 
-  if (name > 0 && pass === passConf && pass.length > 0) {
+  if (name > 0 && pass === passConf) {
     return alertForm(true);
   } else {
     if (pass === passConf) {
