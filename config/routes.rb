@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     post "deleteuser" => "apis#delete_user"
     get "essay" => "apis#essay"
     post "addessay" =>"apis#add_essay"
-    post "deleteessay" => "apis#delete_essay"
+    post "delete_essay" => "apis#delete_essay"
     post "getimage" => "apis#get_images"
     get "tags" => "apis#get_tags"
     post "addTag" => "apis#create_tag"

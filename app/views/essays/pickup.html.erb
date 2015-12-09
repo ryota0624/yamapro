@@ -55,7 +55,7 @@
               <%= essay.title.slice(0,14)%></p>
             </div>
             <div class="topic_p">
-              <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "topic"+(i+1).to_s) %>
+              <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "topic2") %>
             </div>
             <p class="toku_toko">
               <%= essay.text.html_safe.slice(0,50)+" ..." %>

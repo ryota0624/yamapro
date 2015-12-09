@@ -1,6 +1,6 @@
 class Api::ApisController < ApplicationController
-  #protect_from_forgery
-  protect_from_forgery with: :null_session
+  protect_from_forgery
+  #protect_from_forgery with: :null_session
   def user
     @users = User.all
     render json: @users
@@ -30,7 +30,7 @@ class Api::ApisController < ApplicationController
   def delete_user
     #logger.debug params[:id]
     @user = User.find(params[:id].to_i)#.destroy
-    @user.destroy
+    @user.delete
     render json: @user
   end
 
@@ -58,8 +58,9 @@ class Api::ApisController < ApplicationController
   end
 
   def delete_essay
+    logger.debug params[:esssay_id]
    @essay = Essay.find(params[:essay_id])
-   @essay.destroy
+   @essay.delete
    render json: @essay
   end
 
@@ -83,7 +84,7 @@ class Api::ApisController < ApplicationController
 
   def delete_tag
     @tag = Tag.find(params[:id])
-    @tag.destroy
+    @tag.delete
     render json: @tag
   end
 
