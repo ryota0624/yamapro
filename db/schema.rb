@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104021046) do
+ActiveRecord::Schema.define(version: 20151209164127) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "essay_id"
@@ -26,8 +26,9 @@ ActiveRecord::Schema.define(version: 20151104021046) do
     t.integer  "user_id"
     t.string   "title"
     t.boolean  "pickup_f"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "question",   default: false
   end
 
   create_table "favs", force: :cascade do |t|
