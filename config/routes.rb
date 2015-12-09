@@ -23,10 +23,10 @@ Rails.application.routes.draw do
       get "question"
       get 'fav'
       get 'tag'
+      get 'tags'
       post "title_search"
     end
   end
-
   post "comment" => "comments#create"
 
   resources :posts #つぶやき

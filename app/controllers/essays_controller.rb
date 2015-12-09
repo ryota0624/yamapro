@@ -176,6 +176,10 @@ class EssaysController < ApplicationController
 
   end
 
+  def tags 
+    @tags = Tag.all
+  end
+
   def tag
     @message = '検索タグ: '
     @results = Essay.all
@@ -191,7 +195,9 @@ class EssaysController < ApplicationController
   end
 
   def destory
-    @essay = Essay.find(params[:id]).destory
+    logger.debug params
+    @essay = Essay.find(params[:id]).delete
+    render json: @essay
   end
 
   def get_image

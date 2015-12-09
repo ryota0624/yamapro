@@ -1,0 +1,12 @@
+<div class="dodai">
+  <div class="yohaku">
+    <div class="totawa">
+      <% @tags.each do |tag| %>
+      <div class="tota">
+        <a href="/essays/tag?tag_id=<%= tag.id%>"><%= tag.name %></a>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

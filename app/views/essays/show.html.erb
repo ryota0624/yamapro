@@ -1,5 +1,16 @@
 <div class="dodai">
   <div class="yohaku2">
+  <% if admin? then%>
+    <a href="" onclick="del(); return false;">削除</a>
+    <form name="deletelink" method="POST" id="form"action="/api/delete_essay">
+      <input type=hidden name="essay_id" value=<%=@essay.id%>>
+    </form>
+    <script>
+      function del() {
+        document.deletelink.submit();
+      }
+    </script>
+  <% end %>
     <div class="kisyowa">
       <div class="kipro">
         <% if @essay.user.image.present? %>

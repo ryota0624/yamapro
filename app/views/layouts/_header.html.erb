@@ -1,6 +1,5 @@
     <header>
       <%= link_to image_tag('/images/title.png', :class => "logo"), root_path %>
-
     </header>
     <nav>
       <ul>
@@ -19,6 +18,7 @@
         </select>
           <%= text_field_tag 'keyword', "", placeholder: "キーワードを入力"  %>
           <%= submit_tag "検索" %>
+          <a href="/essays/tags">タグ一覧へ</a>
         <% end %>
         </div>
       </div>
