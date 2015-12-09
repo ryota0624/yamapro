@@ -19,10 +19,9 @@ div.yohaku {
 header{
 	width: 100%;
 	background-color:#FEFEFA;
-  text-align:center;
 }
 header img.logo{
-	width:30%;
+	width:40%;
 	height:auto;
 	margin:10px;
 	box-sizing:border-box;
@@ -1398,14 +1397,4 @@ div.set_kipro{
 	padding: 2% 0% 2% 3%;
 	font-size:9pt;
 	line-height:1em;
-}
-
-#photo{
-	box-sizing:border-box;
-	float:left;
-	text-align:left;
-	width:100%;
-}
-.to_img{
-	height:100px;
 }
