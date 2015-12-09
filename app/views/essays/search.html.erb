@@ -1,5 +1,6 @@
 <div class="dodai">
   <div class="yohaku">
+    <h2><%= @message %></h2>
     <% @results.each do |item|%>
     <div class="minato_ki_ko">
       <a href="/essays/<%= item.id %>?page=1">

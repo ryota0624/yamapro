@@ -1,17 +1,16 @@
 <div class="dodai">
   <div class="yohaku">
-    <div id="myto">
+    <div id="my">
+      <div id="prof_waku">
       <h2 class="top_title">プロフィール設定</h2>
-
-      <p><%= link_to "マイページに戻る", mypages_path %></p>
       <%= form_for @user, url: :user, html: { multipart: true } do |form| %>
       <div id="myicon_waku">
         <%= form.fields_for :image do |imgf| %>
             <% if !imgf.object.new_record? && imgf.object.errors.empty? %>
               <div>
                 <%= user_image_tag @user, size: "150" %>
-                <%= imgf.check_box :_destroy , {:checked => true} %>
-                <%= imgf.label "削除" %>
+                <%#= imgf.check_box :_destroy , {:checked => true} %>
+                <%#= imgf.label "削除" %>
                 <%= imgf.hidden_field :id %>
               </div>
             <% else %>
@@ -20,6 +19,10 @@
             <%= imgf.file_field :uploaded_image %>
         <% end %>
       </div>
+      <div id="prof_waku">
+
+      <div id="myto">
+
         <br />
         職種：
           <%= form.radio_button :business, 0 %>
@@ -29,7 +32,7 @@
           <%= form.radio_button :business, 2 %>
           <%= form.label :business_2, "その他" %>
           <br />
-
+          <% if @tag then %>
           <%= fields_for @tag do |tag| %>
           住んでいる場所：
             <%= tag.radio_button :place, "実家" %>
@@ -74,19 +77,24 @@
               <%= tag.label :mage_no, "未設定" %>
               <br />
               <br />
+              <% end %>
         <% end %>
           新しいパスワード：
             <%= form.password_field :password %><span class="kasi">※半角英数</span>
             <br />
-
           新しいパスワード確認：
             <%= form.password_field :password_confirmation %>
             <br />
-            <%= form.submit "登録" ,:class => "mysou" %>
+        <span class="kasi">※パスワードを変更しない場合は未記入</span><br />
+            <p hidden id='alert'style="color:#ff0000">パスワードが一致していません</p>
+            <br />
+            <%= form.submit "登録" ,:class => "mysou", :id => 'submit-btn' %>
       <% end %>
-
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="clear"></div>
+<%= javascript_include_tag "addjs/user_edit.js" %>

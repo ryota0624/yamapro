@@ -1,31 +1,42 @@
 <div class="dodai">
   <div class="yohaku2">
-    <div class="tk_kisyowa">
+    <div class="kisyowa">
       <div class="kipro">
-        <% if @images.length > 0 then %>
-        <%= image_tag(url_for(:action => 'get_image', :id => @images.first.id), :size => '80x80')%>
+        <% if @essay.user.image.present? %>
+          <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => @essay.user.id), :class => 'kicon')%>
+        <% else %>
+          <%= image_tag '/images/sample_image.png', :size => '125x125' %>
         <% end %>
+        <%= @essay.user.name %>
       </div>
-      <div class="tk_tihibu">
+      <div class="tihibu">
         <p class="day"><%= @essay.created_at.strftime("%Y年 %m月 %d日")%></p>
-        <p class="kiti"><%= @essay.title %></p>
-        <div class="kijibu">
+        <p class="kiti" ><%= @essay.title %></p>
+        <div  class="kijibu">
           <% if @essay.pickup_f?  then %>
-          <%=@essay.text.chomp.html_safe %>
+          <div class="text_kiji" style="background-color: #ffffff">
+            <%= " \n" %><%=@essay.text.html_safe %>
+          </div>
           <% else %>
           <textarea readonly="true" class="text_kiji">
             <%= " \n" %><%=@essay.text.chomp.html_safe %>
           </textarea>
           <% end %>
         </div>
-      </div>
+
       <div class="favowa">
+        <div id="photo">
+        <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @essay_img), :class => "to_img", :width => "150px") %>
+      </div>
+
         <div class="fav">
+        <% if  logged_in?%>
         <% if @fav %>
             <%= link_to image_tag("/images/hoshi_y.png", :class => "fav_icon"), :controller => "mypages", :action =>"destroy_my_list", :essay_id => @essay.id %>
           <% else %>
             <%= link_to image_tag("/images/hoshi_h.png", :class => "fav_icon"), :controller => "mypages", :action =>"add_my_list" %>
           <% end %>
+        <% end %>
           ★<%= @mylist_num.length %>
         </div>
         <% if @now_page_num && @now_page_num > 1 %>
@@ -39,41 +50,48 @@
           <a href="https://twitter.com/intent/tweet?text=<%= @tweet_text%>">
             <img src="/images/Twitter.png" class="sns_icon">
           </a>
-          <img src="/images/FB.png" class="sns_icon_fb">
-          <img src="/images/LINE.png" class="sns_icon">
         </div>
       </div>
       <div class="totawa">
         <% @tags.each do |tag| %>
-        <div class="tota"><%= tag.name %></div>
+        <div class="tota">
+          <% if tag then %>
+            <a href="/essays/tag?tag_id=<%= tag.id%>">
+              <%= tag.name %>
+            </a>
+          <% end %>
+          </div>
         <% end %>
       </div>
     </div>
-    <div class="tk_tihibu">
+
+    <div class="tihibu">
       <%if logged_in? %>
       <div class="kowa">
         <p>コメントを入力</p>
         <%= form_tag("/comment" ) do %>
         <%= hidden_field_tag 'essay_id', @essay.id %>
         <%= text_area_tag 'text',"", :id => "inkome" %>
-        <%= submit_tag '作成',:class => "sousin"  %>
+        <%= submit_tag '作成',:class => "sousin",:id => 'submit-btn'  %>
         <% end %>
       </div>
       <% end %>
       <div class="kowa">
-        <p class="k">コメント<%= @comments.length %></p>
+        <p class="k">コメント(<%= @comments.length %>)</p>
         <div id="komewaku">
           <% @comments.each do |comment| %>
           <div class="kome">
-           <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => comment.user.id),:class => "tou_ti")%>
+           <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => comment.user.id),:class => "koi")%>
            <%= comment.user.name %>
            <br>
-           <p class="coco"><%= comment.text %></p>
+           <textarea class='coco'><%= comment.text %></textarea>
          </div>
          <% end %>
        </div>
      </div>
    </div>
+   </div>
  </div>
 </div>
 <div class="clear"></div>
+<%= javascript_include_tag "addjs/comment.js" %>

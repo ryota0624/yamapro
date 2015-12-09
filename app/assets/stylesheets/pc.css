@@ -23,7 +23,6 @@ a:visited {/*訪問後のリンク*/
 	color:#8e6e6e;
 }
 h2{
-
 	font-size:18px;
 }
 
@@ -180,7 +179,12 @@ table.logt tr th {
 	text-align:left;
 }
 
-
+.error{
+	color:red;
+	padding: 2% 0% 2% 3%;
+	font-size:9pt;
+	line-height:1em;
+}
 
 
 
@@ -379,11 +383,11 @@ div#agreement div#btn input{
 	text-decoration:none;
 	padding:4%;
 	display: block;
-
 }
 #agreement div#btn input a:hover,#entry a:hover{
 	color: #aa0000 !important;
 }
+
 #entry{
 	background:#ffe5d0 !important;
 	margin-bottom:20px;
@@ -394,10 +398,18 @@ div#agreement div#btn input{
 	height: 50px;
 	font-size: 11pt;
 	box-sizing: border-box;
+	text-align:center;
+
 }
 #entry a{
 	text-decoration:none;
+	display: block;
 }
+
+#entry:hover{
+	background:#fba68b;
+}
+
 #entry2{
 	background:#ffffe0 !important;
 	margin-bottom:20px;
@@ -411,13 +423,13 @@ div#agreement div#btn input{
 }
 #entry2 a{
 	text-decoration:none;
+	display: block;
 }
 .shinkou{
 	box-sizing: border-box;
 	width:100%;
 	height:40px;
 	text-align:center;
-
 }
 #kakunin{
 	background:#ddd;
@@ -1329,7 +1341,7 @@ table.prof tr td {
 	box-sizing:border-box;
 	border: #caceca 1px solid;
 	width: 100%;
-	height:34em;
+	height:40em;
 	line-height: 1.5em;
 	resize: none;
 	padding:1%;
@@ -1494,8 +1506,10 @@ ul.tagu2 li{
 	color:#555;
 }
 .kicon{
-	width:100%;
+	/*width:100%;*/
 	margin:0 auto;
+	width:125px;
+	height:125px;
 }
 .favowa{
 	box-sizing:border-box;
@@ -1503,7 +1517,7 @@ ul.tagu2 li{
 	width:100%;
 	border-bottom: #caceca 1px solid;
 	padding:5px 0px 5px 0px;
-	text-align:right;
+	text-align:left;
 }
 .fav{
 	box-sizing:border-box;
@@ -1595,7 +1609,8 @@ ul.tagu2 li{
 .koi{
 	vertical-align:middle;
 	padding-right:1%;
-	width:3%;
+	width:30px;
+	height:30px;
 }
 .coco{
 	box-sizing:border-box;
@@ -2252,4 +2267,15 @@ footer p#copy{
 	float:right;
 	margin:-20% 2% 2% 5%;
 }
+}
+
+
+#photo{
+	box-sizing:border-box;
+	float:left;
+	text-align:left;
+	width:100%;
+}
+.to_img{
+	height:150px;
 }

@@ -2,11 +2,11 @@
   <div class="yohaku">
     <div id="my">
       <h2 class="top_title">マイページ</h2>
-      <div id="myicon_waku" class="myicon">
+      <div id="myicon_waku">
         <% if current_user.image.present? %>
-          <%= user_image_tag @user, size: "150" %>
+          <%= user_image_tag @user, :class => "myicon" %>
         <% else %>
-          <%= image_tag '/images/sample_image.png', :size => '150x150' %>
+          <%= image_tag '/images/sample_image.png', :class => "myicon" %>
         <% end %>
       </div>
       <div id="prof_waku">
@@ -32,6 +32,7 @@
               <%end%>
             </td>
           </tr>
+          <% if @tag then %>
           <tr>
             <th>環境</th>
             <td><%= @tag[0].place %></td>
@@ -44,6 +45,7 @@
             <th>[孝行相手]母親</th>
             <td><%= @tag[0].mage %></td>
           </tr>
+          <% end %>
         </table>
       <div id="pass">
         <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>

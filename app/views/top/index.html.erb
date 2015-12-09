@@ -24,8 +24,14 @@
       <div id="toku_<%= i+1 %>">
         <a href="/essays/<%= post.id%>?page=1">
           <p class="inti"><%= post.title.slice(0,9) %></p>
-          <p class="inbu_toku<%= i+1%>">
-          <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "topic"+(i+1).to_s) %>
+          
+          <% if i == 0 then%>
+            <p class="inbu_toku1">
+            <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "topic1") %>
+          <% else %>
+            <p class="inbu_toku2">
+            <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "topic2") %>
+          <% end %>
           <%= post.text.slice(0, 30) %>
           </p>
         </a>

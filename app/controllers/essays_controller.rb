@@ -1,31 +1,76 @@
 class EssaysController < ApplicationController
   def index
+    @link_bool = false
     @new_essays = Essay.where(pickup_f: false).limit(3)
-    #@essays = Essay.where(pickup_f: false).limit(-1).offset(3)
-    @essays = Essay.where(pickup_f: false).limit(-1).offset(3).paginate(:page => params[:page], :per_page => 8)
-    logger.debug(@essays)
+    @essays = Essay.where(pickup_f: false)
+    .paginate(:page => params[:page], :per_page => 4)
+  end
+
+  def fav
+    @link_bool = true
+    essayLength = Essay.where(pickup_f: false).map do |item|
+      item.mylists.length
+    end
+    essays = Essay.where(pickup_f: false)
+    essayArray = essays.map.with_index do |item, i|
+      [item, essayLength[i]]
+    end
+
+    essayArray.reverse! do |item|
+      item[1]
+    end
+    essayArray.map! do |item|
+      item[0]
+    end
+    @new_essays = essayArray.slice(0,3)
+    @essays = essayArray.slice(@new_essays.length, 4)
+    render :template => 'essays/index'
   end
 
   def pickup
     @new_essays = Essay.where(pickup_f: true).limit(3)
     @essays = Essay.where(pickup_f: true).limit(-1).offset(3).paginate(:page => params[:page], :per_page => 8)
     #@essays = Essay.where(pickup_f: true)
+
+
+    post_img = @essays.map {|essay| ImageEssay.where(essay_id: essay.id).first }
+    @posts_img = post_img.map {|essay|
+      if essay.nil? then
+        re = 0
+      else
+        re =  essay.id
+      end
+      re
+    }
   end
 
   def question
-    # tag_essays = TagEssay.where(tag_id: 1)#質問タグの番号を決めて打つ
-    # @questions = tag_essays.map{ |essay| essay.essay }
-    #render :json => { error: "ごめんちゃいまで用意してないんご"}
-    @questions = Essay.all.paginate(:page => params[:page], :per_page => 8)
+    @link_bool = false
+    tag_essays = TagEssay.where(tag_id: 1)
+    @test = tag_essays.map do |item|
+      item.essay_id
+    end
+    @questions = Essay.where(id: @test).paginate(:page => params[:page], :per_page => 8)
+  end
+
+  def question_fav
+    @link_bool = true
+    tag_essays = TagEssay.where(tag_id: 1)
+    @test = tag_essays.map do |item|
+      item.essay_id
+    end
+    @questions = Essay.where(id: @test)
+    render :template => 'essays/question'
   end
 
   def show
     @essay = Essay.find(params[:id])
+    @user = @essay.user
     logger.debug @essay
     session[:essay_id] = params[:id]
     @images = ImageEssay.where(essay_id: @essay.id)
     middleTags = TagEssay.where(essay_id: @essay.id)
-    @tags = middleTags.map { |tag| Tag.find(tag.tag_id) }
+    @tags = middleTags.map { |tag| Tag.find_by id: tag.tag_id }
     @comments = Comment.where(essay_id: @essay.id)
     @mylist_num = @essay.mylists
     if params[:page] then
@@ -38,10 +83,24 @@ class EssaysController < ApplicationController
         @page_num = text.length
       end
     end
-    if logged_in? then 
-      @fav = Mylist.where(user_id: current_user.id,essay_id: @essay.id)
+    if logged_in? then
+      @fav = Mylist.where(user_id: current_user.id, essay_id: @essay.id)
       @fav = @fav[0]
     end
+
+    post_img = ImageEssay.where(essay_id: @essay.id).first
+      if post_img.nil? then
+        re = 0
+      else
+        re =  post_img.id
+      end
+    re
+    @essay_img = re
+
+    # post_img = ImageEssy.where
+
+
+
   end
 
   def tag_search #現状一つのタグに対してのみ
@@ -50,6 +109,7 @@ class EssaysController < ApplicationController
   end
 
   def search
+    @message = '検索キーワード: '+ params[:keyword]
     result = Essay.keyword_search params[:keyword]
     pickups = result[:pickup]
     user_posts = result[:user_posts]
@@ -58,7 +118,7 @@ class EssaysController < ApplicationController
 
   def new
     @image = ImageEssay.new
-    @tags = Tag.all 
+    @tags = Tag.all.offset(1)
     @essay = Essay.new
   end
 
@@ -107,15 +167,33 @@ class EssaysController < ApplicationController
 
   end
 
+  def tag
+    @message = '検索タグ: '
+    @results = Essay.all
+    if params[:tag_id] then
+      tag_id = params[:tag_id]
+      tag = Tag.find_by(id: tag_id)
+      @message += tag.name
+      @results = tag.tag_essays.map do |essay|
+        Essay.find(essay.essay_id)
+      end
+    end
+    render :template => 'essays/search'
+  end
+
   def destory
     @essay = Essay.find(params[:id]).destory
   end
 
   def get_image
-    @image = ImageEssay.find(params[:id])
-    logger.debug "@@@@@@@@@@@@@@@@@"
-    logger.debug @image.created_at
-    send_data(@image.image, :disposition => "inline", :type => "image/jpeg")
+    @image = ImageEssay.find_by(id: params[:id])
+    logger.debug @image
+    if @image then
+      send_data(@image.image, :disposition => "inline", :type => "image/jpeg")
+    else
+      send_file("./public/images/no_img.png", :disposition => "inline", :type => "image/png")
+    end
+
   end
 
 

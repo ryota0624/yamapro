@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   helper_method :current_user, :logged_in?
-  before_action :require_login, except: [:index, :show, :get_image, :pickup, :search, :about,:question,:image] ,if: :use_before_action?
+  before_action :require_login, except: [:index, :show, :get_image, :pickup, :search, :about,:question,:image,:fav] ,if: :use_before_action?
   before_action :allow_cross_domain_access
   include ApplicationHelper
   helper_method :current_account, :logged_in?

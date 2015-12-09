@@ -1,8 +1,10 @@
 <%= form_tag("/essays", :multipart => true ) do %>
+<% if admin? then %>
 <p>特集か否か<%= check_box_tag "essay[pickup_f]", "1" %></p>
+<% end %>
 <div class="dodai">
    <div class="yohaku2">
-      <h1 class="pageti">記事投稿</h1>
+     <h2 class="top_title">記事投稿</h2>
       <div class="kijiwaku">
          <div class="kito">
             <%= text_field_tag 'essay[title]', "", class: "kijiti", placeholder: "title" %>
@@ -16,14 +18,97 @@
             </div>
             <p class="ta">タグを選択</p>
             <div class="tawa">
+              <p class="tata">孝行内容</p>
                <ul class="tagu">
-               <% @tags.each do |i| %>
+               <% @tags[0,13].each do |i| %>
                <li>
                <%= check_box_tag 'tags[]', i.id, checked = false, :id => "tags_#{i.id}",:class => "checkbox" %>
                <%= i.name %>
-               <% end %>
                </li>
+               <% end %>
                </ul>
+          <div class="clear"></div>
+               <p class="tata">イベント</p>
+               <ul class="tagu">
+                 <% @tags[13,11].each do |i| %>
+                 <li>
+                 <%= check_box_tag 'tags[]', i.id, checked = false, :id => "tags_#{i.id}",:class => "checkbox" %>
+                 <%= i.name %>
+                 </li>
+                 <% end %>
+               </ul>
+          <div class="clear"></div>
+          <p class="tata">季節</p>
+          <ul class="tagu">
+            <% @tags[24,4].each do |i| %>
+            <li>
+            <%= check_box_tag 'tags[]', i.id, checked = false, :id => "tags_#{i.id}",:class => "checkbox" %>
+            <%= i.name %>
+            </li>
+            <% end %>
+          </ul>
+     <div class="clear"></div>
+       <p class="tata">孝行場所</p>
+       <ul class="tagu">
+         <% @tags[28,2].each do |i| %>
+         <li>
+         <%= check_box_tag 'tags[]', i.id, checked = false, :id => "tags_#{i.id}",:class => "checkbox" %>
+         <%= i.name %>
+         </li>
+         <% end %>
+       </ul>
+  <div class="clear"></div>
+    <p class="tata">予算</p>
+    <ul class="tagu">
+      <% @tags[30,6].each do |i| %>
+      <li>
+      <%= check_box_tag 'tags[]', i.id, checked = false, :id => "tags_#{i.id}",:class => "checkbox" %>
+      <%= i.name %>
+      </li>
+      <% end %>
+    </ul>
+  <div class="clear"></div>
+  <p class="tata">孝行相手(父)の年代</p>
+  <ul class="tagu">
+    <% @tags[36,5].each do |i| %>
+    <li>
+    <%= check_box_tag 'tags[]', i.id, checked = false, :id => "tags_#{i.id}",:class => "checkbox" %>
+    <%= i.name %>
+    </li>
+    <% end %>
+  </ul>
+<div class="clear"></div>
+<p class="tata">孝行相手(母)の年代</p>
+<ul class="tagu">
+  <% @tags[41,5].each do |i| %>
+  <li>
+  <%= check_box_tag 'tags[]', i.id, checked = false, :id => "tags_#{i.id}",:class => "checkbox" %>
+  <%= i.name %>
+  </li>
+  <% end %>
+</ul>
+<div class="clear"></div>
+<p class="tata">あなたの職種</p>
+<ul class="tagu">
+  <% @tags[46,3].each do |i| %>
+  <li>
+  <%= check_box_tag 'tags[]', i.id, checked = false, :id => "tags_#{i.id}",:class => "checkbox" %>
+  <%= i.name %>
+  </li>
+  <% end %>
+</ul>
+<div class="clear"></div>
+<p class="tata">あなたの住んでる場所</p>
+<ul class="tagu">
+  <% @tags[49,3].each do |i| %>
+  <li>
+  <%= check_box_tag 'tags[]', i.id, checked = false, :id => "tags_#{i.id}",:class => "checkbox" %>
+  <%= i.name %>
+  </li>
+  <% end %>
+</ul>
+<div class="clear"></div>
+
             </div>
          </div>
       </div>
@@ -35,4 +120,4 @@
 <% end %>
 <div class="clear"></div>
 
-<%= javascript_include_tag "essay_new.js" %>
+<%= javascript_include_tag "addjs/essay_new.js" %>
