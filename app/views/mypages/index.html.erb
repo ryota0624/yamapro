@@ -2,11 +2,11 @@
   <div class="yohaku">
     <div id="my">
       <h2 class="top_title">マイページ</h2>
-      <div id="myicon_waku", class="myicon">
+      <div id="myicon_waku">
         <% if current_user.image.present? %>
-          <%= user_image_tag @user, size: "150" %>
+          <%= user_image_tag @user, :class => "myicon" %>
         <% else %>
-          <%= image_tag '/images/sample_image.png', :size => '150x150' %>
+          <%= image_tag '/images/sample_image.png', :class => "myicon" %>
         <% end %>
       </div>
       <div id="prof_waku">
