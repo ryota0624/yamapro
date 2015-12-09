@@ -114,6 +114,7 @@
        <th>パスワード確認<p class="red">*</p></th>
        <td>
          <%= form.password_field :password_confirmation %>
+         <p hidden id='alert'style="color:#ff0000">パスワードが一致していません</p>
        </td>
      </tr>
      </tbody>

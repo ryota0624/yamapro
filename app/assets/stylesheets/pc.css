@@ -23,7 +23,6 @@ a:visited {/*訪問後のリンク*/
 	color:#8e6e6e;
 }
 h2{
-
 	font-size:18px;
 }
 
@@ -1499,8 +1498,10 @@ ul.tagu2 li{
 	color:#555;
 }
 .kicon{
-	width:100%;
+	/*width:100%;*/
 	margin:0 auto;
+	width:125px;
+	height:125px;
 }
 .favowa{
 	box-sizing:border-box;
@@ -1508,7 +1509,7 @@ ul.tagu2 li{
 	width:100%;
 	border-bottom: #caceca 1px solid;
 	padding:5px 0px 5px 0px;
-	text-align:right;
+	text-align:left;
 }
 .fav{
 	box-sizing:border-box;
@@ -2258,4 +2259,15 @@ footer p#copy{
 	float:right;
 	margin:-20% 2% 2% 5%;
 }
+}
+
+
+#photo{
+	box-sizing:border-box;
+	float:left;
+	text-align:left;
+	width:100%;
+}
+.to_img{
+	height:150px;
 }

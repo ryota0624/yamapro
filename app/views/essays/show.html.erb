@@ -2,19 +2,20 @@
   <div class="yohaku2">
     <div class="kisyowa">
       <div class="kipro">
-
         <% if @essay.user.image.present? %>
           <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => @essay.user.id), :class => 'kicon')%>
         <% else %>
-          <%= image_tag '/images/sample_image.png', :size => '150x150' %>
+          <%= image_tag '/images/sample_image.png', :size => '125x125' %>
         <% end %>
       </div>
       <div class="tihibu">
         <p class="day"><%= @essay.created_at.strftime("%Y年 %m月 %d日")%></p>
-        <p class="kiti"><%= @essay.title %></p>
-        <div class="kijibu">
+        <p class="kiti" ><%= @essay.title %></p>
+        <div  class="kijibu">
           <% if @essay.pickup_f?  then %>
-          <%=@essay.text.chomp.html_safe %>
+          <div class="text_kiji" style="background-color: #ffffff">
+            <%= " \n" %><%=@essay.text.html_safe %>
+          </div>
           <% else %>
           <textarea readonly="true" class="text_kiji">
             <%= " \n" %><%=@essay.text.chomp.html_safe %>
@@ -23,6 +24,10 @@
         </div>
 
       <div class="favowa">
+        <div id="photo">
+        <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @essay_img), :class => "to_img", :width => "150px") %>
+      </div>
+
         <div class="fav">
         <% if  logged_in?%>
         <% if @fav %>
@@ -44,13 +49,17 @@
           <a href="https://twitter.com/intent/tweet?text=<%= @tweet_text%>">
             <img src="/images/Twitter.png" class="sns_icon">
           </a>
-          <img src="/images/FB.png" class="sns_icon_fb">
-          <img src="/images/LINE.png" class="sns_icon">
         </div>
       </div>
       <div class="totawa">
         <% @tags.each do |tag| %>
-        <div class="tota"><%= if tag then tag.name end %></div>
+        <div class="tota">
+          <% if tag then %>
+            <a href="/essays/tag?tag_id=<%= tag.id%>">
+              <%= tag.name %>
+            </a>
+          <% end %>
+          </div>
         <% end %>
       </div>
     </div>
@@ -62,7 +71,7 @@
         <%= form_tag("/comment" ) do %>
         <%= hidden_field_tag 'essay_id', @essay.id %>
         <%= text_area_tag 'text',"", :id => "inkome" %>
-        <%= submit_tag '作成',:class => "sousin"  %>
+        <%= submit_tag '作成',:class => "sousin",:id => 'submit-btn'  %>
         <% end %>
       </div>
       <% end %>
@@ -84,3 +93,4 @@
  </div>
 </div>
 <div class="clear"></div>
+<%= javascript_include_tag "addjs/comment.js" %>
