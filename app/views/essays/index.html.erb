@@ -16,7 +16,7 @@
               <p class="mina_ti"><%= essay.title.slice(0,14)%></p>
             </div>
             <p class="mina_toko">
-              <%= essay.text %>
+              <%= essay.text.slice(0,225)+" ..." %>
             </p>
           </a>
         </div>
@@ -38,7 +38,11 @@
           <%= essay.title.slice(0,14) %>
         </div>
         <p class="mina_toko">
+<<<<<<< HEAD
           <%= essay.text %>
+=======
+          <%= essay.text.slice(0,160)+" ..." %>
+>>>>>>> 4aab4270abe5345338028735a34c129788250db5
         </p>
       </a>
     </div>

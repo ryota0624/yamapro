@@ -15,7 +15,7 @@
               <% end %>
             </div>
               <p class="mina_ti"><%= listItem.title %></p>
-              <p class="mytoko"><%= listItem.text + "..."%></p>
+              <p class="mytoko"><%= listItem.text.slice(0, 233) + "..."%></p>
     					<div class="totawa">
                 <% @essay_tags[i].each do |tag| %>
                   <div class="tota"><%= tag.name %></div>
@@ -31,12 +31,17 @@
         <% if listItem.pickup_f == true %>
           <div class="danwake">
             <a href="/essays/<%= listItem.id %>">
-              <img src="./slime.png" class="tou_ti">
+              <% if listItem.user.image.present? %>
+                <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => listItem.user.id), :size => '80x80',:class => 'tou_ti')%>
+              <% else %>
+                <%= image_tag '/images/sample_image.png', :size => '30x30', :class => 'tou_ti' %>
+              <% end %>
               <p class="mina_ti"><%= listItem.title %></p>
               <div class="toko_p">
-                がぞうだよ
+                <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @pickup_img[i])) %>
               </div>
-              <p class="mytoko2"><%= listItem.text + "..."%></p>
+              <p class="mytoko2"><%= listItem.text.slice(0, 233) + "..."%></p>
+
               <div class="totawa">
                 <% @essay_tags[i].each do |tag| %>
                   <div class="tota"><%= tag.name %></div>

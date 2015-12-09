@@ -85,7 +85,6 @@ class EssaysController < ApplicationController
       @fav = Mylist.where(user_id: current_user.id, essay_id: @essay.id)
       @fav = @fav[0]
     end
-
     post_img = ImageEssay.where(essay_id: @essay.id).first
       if post_img.nil? then
         re = 0
@@ -94,10 +93,6 @@ class EssaysController < ApplicationController
       end
     re
     @essay_img = re
-
-    # post_img = ImageEssy.where
-
-
 
   end
 
