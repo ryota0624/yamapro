@@ -127,7 +127,7 @@
 
   <div id="agreement">
     <div id="btn">
-       <%= form.submit "内容を確認", class: "btn btn-primary", id: 'submit-btn' %>
+       <%= form.submit "内容を確認", id: 'submit-btn' %>
     </div>
   </div>
 
@@ -167,7 +167,7 @@
            <%when 2%>
              その他
            <%end%>
-         </td>         
+         </td>
          <%= form.hidden_field :business %>
      </tr>
     <tr>
@@ -208,9 +208,9 @@
     </p>
     <div id="btn">
       <div id="entry">
-        <%= link_to "修正", :back , class: "btn btn-primary"  %>
+        <%= link_to "修正", :back  %>
       </div>
-        <%= form.submit "登録", class: "btn btn-primary", id: "input" %>
+        <%= form.submit "登録", id: "input" %>
     </div>
   </div>
   <% end %>

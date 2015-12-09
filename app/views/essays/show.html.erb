@@ -7,6 +7,7 @@
         <% else %>
           <%= image_tag '/images/sample_image.png', :size => '125x125' %>
         <% end %>
+        <%= @essay.user.name %>
       </div>
       <div class="tihibu">
         <p class="day"><%= @essay.created_at.strftime("%Y年 %m月 %d日")%></p>

@@ -383,11 +383,11 @@ div#agreement div#btn input{
 	text-decoration:none;
 	padding:4%;
 	display: block;
-
 }
 #agreement div#btn input a:hover,#entry a:hover{
 	color: #aa0000 !important;
 }
+
 #entry{
 	background:#ffe5d0 !important;
 	margin-bottom:20px;
@@ -398,10 +398,18 @@ div#agreement div#btn input{
 	height: 50px;
 	font-size: 11pt;
 	box-sizing: border-box;
+	text-align:center;
+
 }
 #entry a{
 	text-decoration:none;
+	display: block;
 }
+
+#entry:hover{
+	background:#fba68b;
+}
+
 #entry2{
 	background:#ffffe0 !important;
 	margin-bottom:20px;
@@ -415,13 +423,13 @@ div#agreement div#btn input{
 }
 #entry2 a{
 	text-decoration:none;
+	display: block;
 }
 .shinkou{
 	box-sizing: border-box;
 	width:100%;
 	height:40px;
 	text-align:center;
-
 }
 #kakunin{
 	background:#ddd;
