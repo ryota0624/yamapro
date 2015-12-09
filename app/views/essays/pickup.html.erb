@@ -40,34 +40,26 @@
   		<div style="padding:9%;"></div>
   	</div>
 
-
-
-
   <div class="yohaku">
     <div class="minato_dai">
       <% @new_essays.each_with_index do |essay, i| %>
-
       <div class="minato_new">new!<br>
         <div class="tokusyu_new_ko">
             <a href="/essays/<%= essay.id %>?page=1">
             <div class="mi_ti"><p class="mina_ti">
-              <!-- <img src="./.jpg"> -->
               <%= essay.title.slice(0,14)%></p>
             </div>
             <div class="topic_p">
               <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "topic2") %>
             </div>
             <p class="toku_toko">
-              <%= essay.text.html_safe.slice(0,50)+" ..." %>
+              <%= essay.text.html_safe.slice(0,75)+" ..." %>
             </p>
           </a>
         </div>
       </div>
       <% end %>
     </div>
-
-
-
 
   <div class="minato_dai">
     <% @essays.each do |essay| %>
@@ -78,7 +70,7 @@
           <%= essay.title.slice(0,14) %>
         </div>
         <p class="mina_toko">
-          <%= essay.text.html_safe.slice(0,50)+" ..." %>
+          <%= essay.text.html_safe.slice(0,160)+" ..." %>
         </p>
       </a>
     </div>

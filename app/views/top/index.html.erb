@@ -8,10 +8,14 @@
         <% if essay.user.image.present? %>
           <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => essay.user.id), :size => '80x80',:class => 'tou_ti')%>
         <% else %>
-          <%= image_tag '/images/sample_image.png', :size => '30x30' %>
+          <%= image_tag '/images/sample_image.png', :size => '30x30', :class => 'tou_ti' %>
         <% end %>
         <p class="inti"><%= essay.title.slice(0,9) %></p>
-        <p class="inbu_tou1"><%= essay.text.slice(0,30) %></p>
+        <% if i == 0 then %>
+          <p class="inbu_tou1"><%= essay.text.slice(0,100) %></p>
+        <% else %>
+          <p class="inbu_tou1"><%= essay.text.slice(0,66) %></p>
+        <% end %>
       </div>
     </a>
     </div>
@@ -24,7 +28,7 @@
       <div id="toku_<%= i+1 %>">
         <a href="/essays/<%= post.id%>?page=1">
           <p class="inti"><%= post.title.slice(0,9) %></p>
-          
+
           <% if i == 0 then%>
             <p class="inbu_toku1">
             <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "topic1") %>
@@ -32,7 +36,7 @@
             <p class="inbu_toku2">
             <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "topic2") %>
           <% end %>
-          <%= post.text.slice(0, 30) %>
+          <%= post.text.slice(0, 100) %>
           </p>
         </a>
       </div>
