@@ -116,6 +116,15 @@ class EssaysController < ApplicationController
     @results = pickups.concat user_posts
   end
 
+  def title_search
+    @message = '検索キーワード: '+ params[:keyword]
+    result = Essay.title_search params[:keyword]
+    pickups = result[:pickup]
+    user_posts = result[:user_posts]
+    @results = pickups.concat user_posts
+    render :template => 'essays/search'
+  end
+
   def new
     @image = ImageEssay.new
     @tags = Tag.all.offset(1)
@@ -193,10 +202,7 @@ class EssaysController < ApplicationController
     else
       send_file("./public/images/no_img.png", :disposition => "inline", :type => "image/png")
     end
-
   end
-
-
   private
   def essay_params
     params.require(:essay).permit(:text,:title,:pickup_f)

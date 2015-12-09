@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get "question"
       get 'fav'
       get 'tag'
+      post "title_search"
     end
   end
 

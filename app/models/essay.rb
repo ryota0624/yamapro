@@ -40,6 +40,18 @@ class Essay < ActiveRecord::Base
     end
   end
 
+  def Essay.title_search(keyword)
+    keyword = "%"+ keyword +"%"
+    result = {
+      pickup: nil,
+      user_posts: nil
+    }
+    essays = Essay.where(["title LIKE ?",keyword])
+    result[:pickup] = essays.where(pickup_f: true)
+    result[:user_posts] = essays.where(pickup_f: false)
+    result
+  end
+
   def Essay.keyword_search(keyword)
     keyword = "%"+ keyword +"%"
     result = {
