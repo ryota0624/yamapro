@@ -63,7 +63,7 @@
         <%= form_tag("/comment" ) do %>
         <%= hidden_field_tag 'essay_id', @essay.id %>
         <%= text_area_tag 'text',"", :id => "inkome" %>
-        <%= submit_tag '作成',:class => "sousin",:id => 'submit-btn'  %>
+        <%= submit_tag '作成',:class => "sousin",:id => 'submit-btn',style: "cursor: pointer"  %>
         <% end %>
       </div>
       <% end %>
