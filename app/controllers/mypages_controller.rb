@@ -49,6 +49,15 @@ class MypagesController < ApplicationController
       middle = TagEssay.where(essay_id: essay.id)
       @essay_tags[i] = middle.map { |tag| Tag.find(tag.tag_id) }
     end
+    pickup_img = @list.map {|essay| ImageEssay.where(essay_id: essay.id).first }
+    @pickup_img = pickup_img.map {|essay|
+      if essay.nil? then
+        re = 0
+      else
+        re =  essay.id
+      end
+      re
+    }
   end
 
   def get_user_image
