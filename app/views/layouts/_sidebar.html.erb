@@ -1,4 +1,4 @@
-<div class="sub">
+<div class="sub nav">
 <% if logged_in? %>
 <div class="name">投稿管理</div>
   <ul class="sub_1">
@@ -15,25 +15,20 @@
 
 <% else %>
 
-<div class="name">ログイン</div>
-<div id="top_log">
+<div class="name login">ログイン</div>
+<div id="top_log" class="nav">
   <table class="logt">
-
       <%= form_for UserSession.new, url: user_session_path do |f| %>
-
     <tr>
     <div class="error">
       <%= flash[:alert] %>
     </div>
     </tr>
-
     <tr>
-      <th><%= f.label "Nickname：" %></th>
-      <td><%= f.text_field :name ,:class => 'log'%></td>
+      <td><%= f.text_field :name ,:class => 'log' ,:placeholder=> "name"%></td>
     </tr>
     <tr>
-      <th><%= f.label "Password：" %></th>
-      <td><%= f.password_field :password ,:class => 'log'%></td>
+      <td><%= f.password_field :password ,:class => 'log', :placeholder => "pass"%></td>
     </tr>
   </table>
   <div id="logbt">
@@ -41,7 +36,7 @@
   </div>
   <% end %>
 </div>
-<div class="name">初めての方</div>
+<div class="name login">初めての方</div>
 <div id="new">
   <%= link_to "新規登録", signup_path %>
 </div>
