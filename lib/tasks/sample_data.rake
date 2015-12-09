@@ -34,8 +34,8 @@ namespace :db do
     UserImage.create!(
       user: User.create!(
         name: "yamapro",
-        password: "yamasita",
-        password_confirmation: "yamasita",
+        password: "ympappadmin",
+        password_confirmation: "ympappadmin",
         admin: "true",
         gender: "0",
         business: "0"
