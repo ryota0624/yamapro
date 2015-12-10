@@ -22,4 +22,10 @@ class TopController < ApplicationController
     }
     @questions = Essay.where(question: true).where(pickup_f: true)
   end
+  def test 
+    @questions = Essay.where(question: true)
+    @articles = Essay.where(pickup_f: true).where.not(question: true).limit 10
+    @posts = Essay.where(pickup_f: false).where.not(question: true).limit 10
+    render :layout => false
+  end
 end

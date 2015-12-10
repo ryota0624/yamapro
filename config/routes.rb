@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root to:'top#index'
+  get "dodai_inbu_osu_saiko_css" => "top#test"
 
   resources :users do
     collection { get "image", "complete"}
