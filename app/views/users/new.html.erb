@@ -9,13 +9,18 @@
     <div class="clear"></div>
   </div>
   <div id="hisu">
+    <% flash.each do |key, value| %>
+      <%= value %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
+    <%= flash.now[:alert] %>
     <table class="Input_form">
      <tbody>
      <tr>
        <th>ニックネーム<p class="red">*</p></th>
        <td>
          <%= form.text_field :name %>
-         <p class="kasi">※半角英数8文字まで</p>
+         <p class="kasi">※半角英数3文字から8文字まで</p>
        </td>
      </tr>
      <tr>
@@ -106,7 +111,7 @@
        <th>パスワード<p class="red">*</p></th>
        <td>
          <%= form.password_field :password %>
-         <p class="kasi">※半角英数</p>
+         <p class="kasi">※半角英数 4文字以上</p>
        </td>
      </tr>
      <tr>

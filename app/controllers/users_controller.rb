@@ -46,15 +46,12 @@ class UsersController < ApplicationController
         @tag.save
         @middle.save
         render action: :complete
+      else
+        @user.valid?
+        flash.now[:alert] = @user.errors.full_messages
+        render action: :new
       end
     end
-    # if @user.save! 
-    #   render action: :complete
-    # else
-    #   logger.debug "hoge"
-      
-    #   #render json: @user.confirming
-    # end
   end
 
   def update
