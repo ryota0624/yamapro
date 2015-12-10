@@ -1,5 +1,4 @@
   <%= form_for @user, url: users_path, html: { multipart: true } do |form| %>
-
   <% if @user.confirming.blank? %>
   <div class="shinkou">
     <div class="pankusu_list" id="now">登録事項</div>
@@ -160,9 +159,9 @@
        <th>職種<p class="red">*</p></th>
          <td>
            <% case @user.business
-             when 0 %>
+             when 0%>
                学生/専門学生
-           <% when 1 %>
+           <% when 1%>
              社会人
            <%when 2%>
              その他
@@ -204,11 +203,11 @@
   <div id="agreement">
     <p id="caution">
       上記の内容でよければ「登録」ボタンを押して登録を完了させてください。<br>
-      修正したい場合は「修正」ボタンを押してください。<br/>
+      修正したい場合は「もどる」ボタンを押してください。<br/>
     </p>
     <div id="btn">
       <div id="entry" style: "cursor: pointer">
-        <%= link_to "修正", :back , class: "btn btn-primary"%>
+        <a href="/signup" class="btn btn-primary"/>もどる</a>
       </div>
         <%= form.submit "登録", class: "btn btn-primary", id: "input",style: "cursor: pointer" %>
     </div>
