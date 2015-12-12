@@ -2,6 +2,7 @@
   <div class="yohaku">
     <h2><%= @message %></h2>
     <% @results.each do |item|%>
+    <% if item %>
     <div class="minato_ki_ko">
       <a href="/essays/<%= item.id %>?page=1">
         <div class="mi_ti">
@@ -11,6 +12,7 @@
         <p class="mina_toku"><%= item.text.slice(0,60) %></p>
       </a>
     </div>
+    <% end %>
     <% end %>
   </div>
 </div>
