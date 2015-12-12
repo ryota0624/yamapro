@@ -13,7 +13,10 @@ class TopController < ApplicationController
       end
       re
     }
-    @questions = Essay.where(question: true).where(pickup_f: true)
+    @questions = Essay.where(question: true)
+    if params[:type] == "b"
+      render :template => 'top/index_boot'
+    end
   end
   def test 
     @questions = Essay.where(question: true).limit 5
