@@ -191,7 +191,7 @@ class EssaysController < ApplicationController
         Essay.find(essay.essay_id)
       end
     end
-    render :template => 'essays/search'
+    render :template => search_essays_path
   end
 
   def destory
