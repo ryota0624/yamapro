@@ -100,7 +100,7 @@
 <div class="clear"></div>
 <p class="tata">あなたの住んでる場所</p>
 <ul class="tagu">
-  <% @tags[49,3].each do |i| %>
+  <% @tags[49,2].each do |i| %>
   <li>
   <%= check_box_tag 'tags[]', i.id, checked = false, :id => "tags_#{i.id}",:class => "checkbox" %>
   <%= i.name %>
