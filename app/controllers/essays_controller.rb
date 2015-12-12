@@ -191,6 +191,7 @@ class EssaysController < ApplicationController
         Essay.find(essay.essay_id)
       end
     end
+    logger.debug "jojoj"
     render :template => search_essays_path
   end
 
