@@ -47,7 +47,7 @@
     <h2 class="top_title">質問</h2>
     <% @recommends.each do |recommend| %>
       <div class="osusume">
-        <a href="/essays/<%= recommend.id%>?page=1">
+        <% if recommend %><a href="/essays/<%= recommend.id%>?page=1"><% end %>
           <div class="mi_ti">
             <% if recommend.user.image.present? %>
               <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => recommend.user.id), :height => '150',:class => "osuicon")%>
