@@ -1,0 +1,553 @@
+#include "basicDefines.hpp"
+#include "CrewAnimations.hpp"
+#include "CfgRecoils.hpp"
+#include "CfgAmmo.hpp"
+#include "CfgVehicles.hpp"
+#include "CfgMagazines.hpp"
+
+class CfgPatches
+{
+	class CAWeapons
+	{
+		units[] = {};
+		weapons[] =
+		{
+			"M9","M9SD","Makarov","MakarovSD",
+			"AK74","AKS74U",
+			"G36A","G36C","G36K",
+			"M16A2","M24","M249","M4","M4AIM","M4SD","M4SPR","M4A1","M4GL",
+			"MP5SD","MP5A5","PK","SVD",
+
+
+			"Shell73","Heat73","Shell73","Gun73","Shell105","Heat105","Gun105","Shell120",
+			"Heat120","Gun120","Shell125","Heat12","Gun125",
+
+			"Mortar","Flare","FlareGreen","FlareRed","FlareYellow","HandGrenade","HandGrenadeTimed",
+			"SmokeShell","SmokeShellRed","SmokeShellGreen","HandGunBase",
+
+			"TimeBomb","Mine","MineE","PipeBomb",
+			"CarHorn","BikeHorn","Binocular","NVGoggles","Phone","Throw","Put",
+			"ReammoBoxWest","ReammoBoxEast","ReammoBoxGuer","AmmoBoxAddW","AmmoBoxAddE","AmmoBoxWizardW",
+			"WeaponBoxWizardW","AmmoBoxWizardE","WeaponBoxWizardE","AmmoBoxWizardR","WeaponBoxWizardR",
+			"HeavyReammoBox","HeavyReammoBoxWest","HeavyReammoBoxEast","HeavyReammoBoxRes","AmmoBoxOUTW",
+			"AmmoBoxOUTWW","AmmoBoxOUTE","AmmoBoxOUTEW","ReammoBoxOUTGuer","AmmoBoxOUTGW","Minigun"
+		};
+		requiredVersion = 0.10;
+		requiredAddons[] = {"CAData","CA_Anims_Char"};
+	};
+};
+
+//normaly defined in UI.pbo
+class RscObject;
+class RscTitles
+{
+	class binocular
+	{
+		idd=-1;
+		movingEnable = false;
+		duration=1000;
+		name = "binocular";
+		class objects
+		{
+			class binocular: RscObject
+			{
+				model= "\ca\Weapons\optika_dalekohled.p3d";
+				idc=-1;
+				position[] = {0,0,0.053};
+				direction[] = {sin 0, sin 180 * cos 0, cos 180 * cos 0};
+				up[] = {0, cos 180, -sin 180};
+			};
+		};
+	};
+};
+
+//Weapon firing modes
+class Mode_SemiAuto
+{
+	displayName = $STR_DN_MODE_SEMIAUTO;
+};
+class Mode_Burst: Mode_SemiAuto
+{
+	displayName = $STR_DN_MODE_BURST;
+};
+class Mode_FullAuto: Mode_SemiAuto
+{
+	displayName = $STR_DN_MODE_FULLAUTO;
+};
+
+class CfgWeaponCursors
+{
+	class RifleCursorCore;
+	class MGCursorCore;
+	class LawCursorCore;
+	class RifleCursor : RifleCursorCore
+	{
+		texture = \ca\Weapons\Data\w_weapon_T;
+	};
+	class MGCursor : MGCursorCore
+	{
+		texture = \ca\Weapons\Data\w_weapon_mg;
+	};
+	class LawCursor : LawCursorCore
+	{
+		texture = \ca\Weapons\Data\w_weapon;
+	};
+	class GLCursor: RifleCursorCore
+	{
+		texture = \ca\Weapons\Data\w_weapon_G;
+	};
+};
+
+
+class PreloadTextures
+{
+	class CfgWeaponCursors
+	{
+		class RifleCursor
+		{
+			texture = "*";
+		};
+		class MGCursor
+		{
+			texture = "*";
+		};
+		class LawCursor
+		{
+			texture = "*";
+		};
+	};
+};
+class cfgWeapons
+{
+	class Default;
+	class PistolCore;
+	class RifleCore;
+	class MGunCore;
+	class LauncherCore;
+	class GrenadeCore;
+	class CannonCore;
+	class MGun: MGunCore // default
+	{
+		type=WeaponHardMounted;
+
+		cursor= \ca\Weapons\Data\w_weapon_mg;
+		cursoraim= \ca\Weapons\Data\w_weapon_mg;
+
+		displayName = $STR_DN_MGUN;
+		nameSound="mgun";
+		reloadTime=0.25;
+		autoFire = 1;
+		reloadAction = ManActReloadMagazine;
+		sound[]={\ca\Weapons\Data\Sound\M60_SS,db0,1};
+		soundContinuous=false;
+		reloadSound[]={,1,1};
+		initSpeed=900;
+		flash=gunfire;
+		flashSize=0.5;
+		optics = false;
+
+	};
+	#include "Pistols.hpp"
+	class GrenadeLauncher: Default
+	{
+		cursor = GLCursor;
+		cursorAim = \ca\Weapons\Data\clear_empty;
+		cursorSize = 4;
+		value = 3;
+
+		type = WeaponNoSlot;
+		displayName = $STR_DN_GRENADE;
+		reloadTime=3.0;
+		sound[]={\ca\Weapons\Data\Sound\grenade_launch1,db-60,1};
+		reloadMagazineSound[]={\ca\Weapons\Data\Sound\z_sinus,db-90,1};
+
+		reloadAction = ManActReloadMagazine;
+		magazineReloadTime=1;
+		magazines[] = {};
+
+		initSpeed=75;	//60
+		canLock=LockNo;
+
+		autoReload = false;
+		autoAimEnabled=false;
+
+		ffMagnitude=0.1;
+		ffFrequency=1;
+		ffCount=1;
+		recoil = M240Recoil;
+
+		dispersion=0.015;
+		aiDispersionCoefY=2.0; // dispersion used to simulate distance est. error
+
+		maxLeadSpeed = 15;
+		optics = false;
+
+		muzzlePos="usti granatometu";
+		muzzleEnd="konec granatometu";
+		cartridgePos="";
+		cartridgeVel="";
+
+		UiPicture="\CA\weapons\data\Ico\i_regular_CA.paa";
+	};
+	#include "Rifles.hpp"
+	class Launcher: LauncherCore
+	{
+		cursorAim = \ca\Weapons\Data\clear_empty;
+		cursor = LawCursor;
+
+		autoAimEnabled=false;
+		opticsDisablePeripherialVision = true;
+
+		magazines[]={};
+
+		value = 10;
+		nameSound="atlauncher";
+		magazineReloadTime=12;
+		reloadTime=0;
+		sound[]={\ca\Weapons\Data\Sound\at7_RocketLauncher_Shot1,db-40,1};
+		initSpeed=30;
+		canLock=LockNo;
+
+		reloadAction = ManActReloadAT;
+		autoReload = false;
+
+		ffMagnitude=0.1;
+		ffFrequency=1;
+		ffCount=1;
+		recoil=LAWSingle;
+		aiRateOfFire=10.0; // delay between shots at given distance
+		aiRateOfFireDistance=500; // at shorter distance delay goes lineary to zero
+		optics = true;
+		primary=false;
+
+		opticsZoomMin=0.22;
+		opticsZoomMax=0.95;   //same as default initFOV for 1st person view
+		opticsZoomInit=0.42;
+
+		distanceZoomMin=100;
+		distanceZoomMax=100;
+
+		UiPicture="\CA\weapons\data\Ico\i_at_CA.paa";
+	};
+	#include "Launchers.hpp"
+	//Hand weapons
+	//************************************************************************//
+	class Binocular : Default
+	{
+		opticsDisablePeripherialVision = true;
+		scope = public;
+
+		model="\ca\weapons\dalekohled_proxy";
+		modelOptics="\ca\weapons\optika_dalekohled";
+		picture="\CA\weapons\data\equip\w_binocular_ca.paa";
+
+		value = 5;
+
+		type = WeaponSlotBinocular;
+		displayName = $STR_DN_BINOCULAR;
+		nameSound="binoculars";
+		reloadTime=0.0;
+		sound[]={,0,1};
+		canLock=LockNo;
+
+		optics = true;
+		forceOptics = true;
+		useAsBinocular = true;
+
+		primary = false;
+		opticsZoomMin=0.085;
+		opticsZoomMax=0.085;
+
+		magazines[] = {};
+		class Library {libTextDesc = $STR_LIB_BINOCULAR;};
+	};
+	class Laserdesignator: Binocular
+	{
+		model="\ca\weapons\soflam";
+		modelOptics="\ca\weapons\optika_SOFLAM";
+		displayName = $STR_DN_LASER_DESIGNATOR;
+		picture="\Ca\weapons\Data\Equip\W_SOFLAM_CA.paa";
+		magazines[] = {Laserbatteries};
+		cursorAim = \ca\Weapons\Data\cursor_target_locked_ca.paa;
+		showSwitchAction = true;
+    // force optics only in internal view, external need not use them
+		forceOptics = 2;
+	};
+	class NVGoggles : Binocular
+	{
+		//--
+		displayName=$STR_DN_NV_GOGGLES;
+		nameSound="nvgoggles";
+
+		showEmpty = false;
+
+		value = 5;
+
+		opticsZoomMin=1.0;
+		opticsZoomMax=1.0;
+
+		modelOptics="\ca\weapons\optika_night";
+		model="\ca\weapons\nvg_proxy";
+		picture="\CA\weapons\data\equip\w_nvg_ca.paa";
+
+		class Library {libTextDesc = $STR_LIB_NV_GOGGLES;};
+	};
+	class Phone : Binocular
+	{
+		scope = protected;
+		displayName=$STR_DN_PHONE;
+
+		showEmpty = false;
+
+		opticsZoomMin=1.0;
+		opticsZoomMax=1.0;
+
+		model = "\ca\misc\sluchatko_proxy";
+		modelOptics="";
+	};
+	class Throw: GrenadeLauncher
+	{
+		scope = protected;
+
+		autoAimEnabled=false;
+		cursor = \ca\Weapons\Data\clear_empty;
+		cursoraim = \ca\Weapons\Data\t_select;
+		cursorSize = 1;
+		value = 0;
+
+		type = WeaponNoSlot;
+		displayName=$STR_DN_THROW;
+
+		canDrop = false;
+
+		muzzles[] = {HandGrenadeMuzzle, HandGrenadeTimedMuzzle, SmokeShellMuzzle, SmokeShellRedMuzzle, SmokeShellGreenMuzzle};
+
+		class ThrowMuzzle : GrenadeLauncher
+		{
+      // cursor empty - this one points straight forward
+		  //cursor = \ca\Weapons\Data\clear_empty;
+			cursor = \ca\Weapons\Data\w_weapon_S;
+      // circle cursor - points somewhat up in the game for grenades
+			cursoraim = \ca\Weapons\Data\t_select;
+			cursorSize = 1;
+			sound[]={,db-70,1};
+			reloadSound[]={,db-70,1};
+
+			aiDispersionCoefX=2.0;
+			aiDispersionCoefY=2.0;
+
+			reloadTime=0;
+			magazineReloadTime=0;
+
+			enableAttack=false;
+
+			showEmpty = false;
+			autoReload = true;
+
+			modelOptics="";
+
+	  		minRange=30;minRangeProbab=0.5;
+	  		midRange=45;midRangeProbab=0.20;
+	  		maxRange=60;maxRangeProbab=0.03;
+		};
+		class HandGrenadeMuzzle : ThrowMuzzle
+		{
+			magazines[] = {HandGrenade};
+		};
+		class HandGrenadeTimedMuzzle : ThrowMuzzle
+		{
+			magazines[] = {HandGrenadeTimed};
+		};
+		class SmokeShellMuzzle : ThrowMuzzle
+		{
+			displayName = $STR_MN_SMOKE;
+			magazines[] = {SmokeShell};
+		};
+		class SmokeShellRedMuzzle : ThrowMuzzle
+		{
+			displayName = $STR_MN_SMOKE_RED;
+			magazines[] = {SmokeShellRed};
+		};
+		class SmokeShellGreenMuzzle : ThrowMuzzle
+		{
+			displayName = $STR_MN_SMOKE_GREEN;
+			magazines[] = {SmokeShellGreen};
+		};
+	};
+	class HandGrenade: GrenadeLauncher
+	{
+		scope = private;
+		cursor = \ca\Weapons\Data\t_select;
+		cursoraim = \ca\Weapons\Data\clear_empty;
+		cursorSize = 1;
+		autoAimEnabled=false;
+
+		ammo=GrenadeHand;
+		displayName=$STR_DN_HAND_GRENADE;
+		nameSound="handgrenade";
+		initSpeed=22;
+		reloadMagazineSound[]={\ca\Weapons\Data\Sound\z_sinus,db-70,1};	// reload HandGrenade
+		maxLeadSpeed = 7;
+		reloadTime=0;
+		magazineReloadTime=0;
+		count=1;
+		sound[]={,db-70,1};
+	};
+	class HandGrenadeTimed: HandGrenade
+	{
+		ammo=GrenadeHandTimed;
+		picture = "handgrenadeTimed";
+
+		displayName=$STR_DN_HAND_GRENADE_TIMED;
+	};
+	class SmokeShell: HandGrenade
+	{
+		autoAimEnabled=false;
+
+		ammo=SmokeShell;
+		displayName=$STR_DN_SMOKE;
+		nameSound="smokeshell";
+	};
+ 	class SmokeShellRed: SmokeShell
+	{
+
+		ammo = SmokeShellRed;
+		displayName=$STR_DN_SMOKE_RED;
+	};
+	class SmokeShellGreen: SmokeShell
+	{
+		picture = "smokeshell";
+		ammo = SmokeShellGreen;
+		displayName=$STR_DN_SMOKE_GREEN;
+	};
+	class HandGunBase: Rifle
+	{
+		initSpeed=315;
+		dexterity = 2;
+		reloadMagazineSound[]={\ca\Weapons\Data\Sound\reload_gun,db-30,1};
+		nameSound="sidearm";
+
+		value = 4;
+
+		minRange=0;minRangeProbab=0.10;
+		midRange=10;midRangeProbab=0.58;
+		maxRange=60;maxRangeProbab=0.04;
+
+	};
+	class Put : Default
+	{
+		scope = protected;
+
+		value = 0;
+
+		type = WeaponNoSlot;
+		displayName=$STR_DN_PUT;
+
+		canDrop = false;
+
+		muzzles[] = {TimeBombMuzzle, PipeBombMuzzle, MineMuzzle, MineEMuzzle};
+
+		class PutMuzzle : Default
+		{
+			sound[] = {,db-70,1};
+			reloadSound[] = {,db-70,1};
+
+			enableAttack = false;
+			optics = false;
+			showEmpty = false;
+			canLock = LockNo;
+			primary = 10;
+			minRange=0;minRangeProbab=0.10;
+			midRange=3;midRangeProbab=0.9;
+			maxRange=15;maxRangeProbab=0.04;
+		};
+		class TimeBombMuzzle : PutMuzzle
+		{
+			displayName=$STR_DN_TIME_BOMB;
+			magazines[] = {TimeBomb};
+			enableAttack = true;
+		};
+		class PipeBombMuzzle : PutMuzzle
+		{
+			displayName=$STR_DN_PIPE_BOMB;
+			magazines[] = {PipeBomb};
+			enableAttack = true;
+		};
+		class MineMuzzle : PutMuzzle
+		{
+			displayName=$STR_DN_MINE;
+			magazines[] = {Mine};
+		};
+		class MineEMuzzle : PutMuzzle
+		{
+			displayName=$STR_DN_MINE;
+			magazines[] = {MineE};
+		};
+	};
+	class TimeBomb : Default
+	{
+		scope = private;
+
+		ammo=TimeBomb;
+
+		displayName=$STR_DN_TIME_BOMB;
+		nameSound="satchelcharge";
+
+		enableAttack = true;
+
+		count=1;
+		initSpeed=0;
+		maxLeadSpeed=0;
+
+		useAction = true;
+		useActionTitle = $STR_ACTION_PUTBOMB;
+
+		sound[]={\ca\Weapons\Data\Sound\gravel_L,db-70,1};  //TODO: Another sound and add it to weapons
+	};
+	class Mine : TimeBomb
+	{
+		enableAttack = false;
+
+		ammo=Mine;
+		displayName=$STR_DN_MINE;
+		nameSound="mine";
+		sound[]={\ca\Weapons\Data\Sound\explosion_big_01_A,db30,1};
+	class Library {libTextDesc = $STR_LIB_MINE;};
+	}
+	class MineE : TimeBomb
+	{
+		enableAttack = false;
+
+		picture = "mine";
+
+		ammo=MineE;
+		displayName=$STR_DN_MINE;
+		nameSound="mine";
+		class Library {libTextDesc = $STR_LIB_MINE;};
+	};
+	class PipeBomb : Put
+	{
+		scope = private;
+
+		enableAttack = true;
+		ammo=PipeBomb;
+		displayName=$STR_DN_PIPE_BOMB;
+
+		nameSound="satchelcharge";
+
+		count=1;
+		initSpeed=0;
+		maxLeadSpeed=0;
+
+		showEmpty = false;
+
+		useAction = true;
+		useActionTitle = $STR_ACTION_PUTBOMB;
+
+		sound[]={\ca\Weapons\Data\Sound\gravel_L,db-70,1};
+		magazines[] = {this};
+		class Library {libTextDesc = $STR_LIB_PIPE_BOMB;};
+	};
+	#include "vehicleWeapons.hpp"
+};
+//CfgNonAIVehicles moved to cfgVehicles.hpp

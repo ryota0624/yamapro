@@ -1,0 +1,15 @@
+<goml>
+	<head>
+		<rdr frame="body" camera="camera:first" param="antialias: true; clearColor: #fff;" />
+	</head>
+	<body>
+		<scene>
+			<mmd model="ryota/model/lovelive2/Kousaka_Honoka.pmx" motion="ryota/motion/withoutme/withoutme.vmd" onLoad="parent.jThree.MMD.play( true );" />
+            <obj model="ryota/stage/FMP_DANCE/FMP_TAIIKUKAN/FMP_TAIIKUKAN.x" style="scale: 10; positionY: -46.5; rotateY: 1.57;"></obj>
+			<camera style="cameraFar: 100000; position: 2 18 30; lookAtY: 10;">
+			    <light type="Dir" style="position: 1 3 5;" />
+			</camera>
+			<light type="Amb" style="lightColor: #555;" />
+		</scene>
+	</body>
+</goml>

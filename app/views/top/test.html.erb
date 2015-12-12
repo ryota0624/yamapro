@@ -1,27 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-  <title>親こうfour</title>
-</head>
-<body>
-<%= javascript_tag do %>
-  window.articles_data = <%= raw @articles.to_json %>;
-  window.posts_data = <%= raw @posts.to_json %>;
-  window.questions_data  = <%= raw @questions.to_json %>
-<% end %>
-<myheader></myheader>
-<essays></essays>
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="ryota/index.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.3.11/riot+compiler.min.js"></script>
 <%= javascript_include_tag "addjs/riottags/riotTags.js" %>
+<script src="ryota/libs/jthree/2.1/jThree.js"></script>
+<script src="ryota/libs/stats/1.2/jThree.Stats.js"></script>
+<script src="ryota/libs/trackball/1.4/jThree.Trackball.js"></script>
+<script src="ryota/libs/ammo/1.0/ammo.js"></script>
+<script src="ryota/libs/mmd/1.5/jThree.MMD.js"></script>
+<script src="ryota/libs/xfile/1.1/jThree.XFile.js"></script>
+<script type="text/goml" src="ryota/index.goml"></script>
+<script src="/ryota/index.js"></script>
+</head>
+<body>
+  <%= javascript_tag do %>
+  window.articles_data = <%= raw @articles.to_json %>;
+  window.posts_data = <%= raw @posts.to_json %>;
+  window.questions_data  = <%= raw @questions.to_json %>
+<% end %>
+  <myheader></myheader>
+  <essays></essays>
+	<div id="loading"></div>
+</body>
 <script>
   riot.mount("essays", 
     {articles: articles_data, posts: posts_data, questions: questions_data});
   riot.mount("myheader");
 </script>
-</body>
+<audio controls autoplay>
+                <source src="ryota/data/music.mp3" />
+       </audio>
 </html>
-
-
