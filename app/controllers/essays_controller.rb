@@ -188,7 +188,7 @@ class EssaysController < ApplicationController
       tag = Tag.find_by(id: tag_id)
       @message += tag.name
       @results = tag.tag_essays.map do |essay|
-        Essay.find(essay.essay_id)
+        Essay.find_by(id: essay.essay_id)
       end
     end
     logger.debug "jojoj"
