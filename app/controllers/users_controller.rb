@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     work = TagUser.where(user_id: current_user.id)
-    if work.length > 0 then 
+    if work.length > 0 then
       @tag = Usertag.where(id: work[0].tag_id)
       @tag = @tag[0]
     end
@@ -62,9 +62,9 @@ class UsersController < ApplicationController
       @tag[0].update(user_tag_params)
     end
     if @user.update(user_params)
-      redirect_to mypages_path , notice: "会員情報を更新しました。"
+      redirect_to mypages_path
     else
-      render 'index/mypages'
+      render template: "mypages/index"
     end
   end
 
@@ -77,17 +77,16 @@ class UsersController < ApplicationController
 
   def image
     @image = UserImage.where(user_id: params[:id])
-    if @image.first then 
+    if @image.first then
       send_data(@image.first.data, :disposition => "inline", :type => "image/jpeg")
     else
       send_file("./public/images/sample_image.png", :disposition => "inline", :type => "image/png")
     end
-    
   end
 
   private
     def user_params
-      params.require(:user).permit(:confirming, :name, :password, :password_confirmation, :gender, :business, :data, :content_type, :usertag, image_attributes: [:image, :id, :uploaded_image])
+      params.require(:user).permit(:confirming, :name, :password, :password_confirmation, :gender, :business, :data, :content_type, :usertag, image_attributes: [:image, :id, :uploaded_image, :_destroy])
     end
 
     def user_tag_params
