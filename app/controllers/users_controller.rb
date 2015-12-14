@@ -89,6 +89,10 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:confirming, :name, :password, :password_confirmation, :gender, :business, :data, :content_type, :usertag, image_attributes: [:image, :id, :uploaded_image])
     end
+    
+    def nopass_user_params
+      params.require(:user).permit(:confirming, :name, :gender, :business, :data, :content_type, :usertag, image_attributes: [:image, :id, :uploaded_image])
+    end
 
     def user_tag_params
       params.require(:usertag).permit(:fage, :mage, :place)
