@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root to:'top#index'
+  get "dodai_inbu_osu_saiko_css" => "top#test"
 
   resources :users do
     collection { get "image", "complete"}
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   get "login" =>"user_sessions#new"
   delete "logout" => "user_sessions#destroy"
   get "logout" => "user_sessions#destroy"
+  get "help" => "top#help"
 
 
   get "about" => "top#about"
@@ -23,9 +25,10 @@ Rails.application.routes.draw do
       get "question"
       get 'fav'
       get 'tag'
+      get 'tags'
+      post "title_search"
     end
   end
-
   post "comment" => "comments#create"
 
   resources :posts #つぶやき
@@ -41,7 +44,7 @@ Rails.application.routes.draw do
     post "deleteuser" => "apis#delete_user"
     get "essay" => "apis#essay"
     post "addessay" =>"apis#add_essay"
-    post "deleteessay" => "apis#delete_essay"
+    post "delete_essay" => "apis#delete_essay"
     post "getimage" => "apis#get_images"
     get "tags" => "apis#get_tags"
     post "addTag" => "apis#create_tag"

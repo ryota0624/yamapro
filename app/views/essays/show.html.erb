@@ -1,13 +1,23 @@
 <div class="dodai">
   <div class="yohaku2">
+  <% if admin? then%>
+    <a href="" onclick="del(); return false;">削除</a>
+    <form name="deletelink" method="POST" id="form"action="/api/delete_essay">
+      <input type=hidden name="essay_id" value=<%=@essay.id%>>
+    </form>
+    <script>
+      function del() {
+        document.deletelink.submit();
+      }
+    </script>
+  <% end %>
     <div class="kisyowa">
       <div class="kipro">
         <% if @essay.user.image.present? %>
           <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => @essay.user.id), :class => 'kicon')%>
         <% else %>
           <%= image_tag '/images/sample_image.png', :size => '125x125' %>
-        <% end %>
-        <%= @essay.user.name %>
+        <% end %><%= @user.name %>
       </div>
       <div class="tihibu">
         <p class="day"><%= @essay.created_at.strftime("%Y年 %m月 %d日")%></p>
@@ -72,7 +82,7 @@
         <%= form_tag("/comment" ) do %>
         <%= hidden_field_tag 'essay_id', @essay.id %>
         <%= text_area_tag 'text',"", :id => "inkome" %>
-        <%= submit_tag '作成',:class => "sousin",:id => 'submit-btn'  %>
+        <%= submit_tag '作成',:class => "sousin",:id => 'submit-btn',style: "cursor: pointer"  %>
         <% end %>
       </div>
       <% end %>

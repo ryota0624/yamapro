@@ -1,5 +1,4 @@
   <%= form_for @user, url: users_path, html: { multipart: true } do |form| %>
-
   <% if @user.confirming.blank? %>
   <div class="shinkou">
     <div class="pankusu_list" id="now">登録事項</div>
@@ -10,13 +9,18 @@
     <div class="clear"></div>
   </div>
   <div id="hisu">
+    <% flash.each do |key, value| %>
+      <%= value %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
+    <%= flash.now[:alert] %>
     <table class="Input_form">
      <tbody>
      <tr>
        <th>ニックネーム<p class="red">*</p></th>
        <td>
          <%= form.text_field :name %>
-         <p class="kasi">※半角英数8文字まで</p>
+         <p class="kasi">※半角英数3文字から8文字まで</p>
        </td>
      </tr>
      <tr>
@@ -52,8 +56,6 @@
        <%= tag.label :place_0, "実家" %>
        <%= tag.radio_button :place, "一人暮らし" %>
        <%= tag.label :place_1, "一人暮らし" %>
-       <%= tag.radio_button :place, "下宿" %>
-       <%= tag.label :place_2, "下宿" %>
        <%= tag.radio_button :place, "その他" %>
        <%= tag.label :place_3, "その他" %>
        <%= tag.radio_button :place, "未設定", {:checked => true} %>
@@ -107,7 +109,7 @@
        <th>パスワード<p class="red">*</p></th>
        <td>
          <%= form.password_field :password %>
-         <p class="kasi">※半角英数</p>
+         <p class="kasi">※半角英数 4文字以上</p>
        </td>
      </tr>
      <tr>
@@ -127,7 +129,7 @@
 
   <div id="agreement">
     <div id="btn">
-       <%= form.submit "内容を確認", id: 'submit-btn' %>
+       <%= form.submit "内容を確認", class: "btn btn-primary", id: 'submit-btn',style: "cursor: pointer" %>
     </div>
   </div>
 
@@ -160,9 +162,9 @@
        <th>職種<p class="red">*</p></th>
          <td>
            <% case @user.business
-             when 0 %>
+             when 0%>
                学生/専門学生
-           <% when 1 %>
+           <% when 1%>
              社会人
            <%when 2%>
              その他
@@ -204,13 +206,13 @@
   <div id="agreement">
     <p id="caution">
       上記の内容でよければ「登録」ボタンを押して登録を完了させてください。<br>
-      修正したい場合は「修正」ボタンを押してください。<br/>
+      修正したい場合は「もどる」ボタンを押してください。<br/>
     </p>
     <div id="btn">
-      <div id="entry">
-        <%= link_to "修正", :back  %>
+      <div id="entry" style: "cursor: pointer">
+        <a href="/signup" class="btn btn-primary"/>もどる</a>
       </div>
-        <%= form.submit "登録", id: "input" %>
+        <%= form.submit "登録", class: "btn btn-primary", id: "input",style: "cursor: pointer" %>
     </div>
   </div>
   <% end %>

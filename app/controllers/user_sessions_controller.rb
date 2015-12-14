@@ -14,7 +14,7 @@ class UserSessionsController < ApplicationController
     if @user_session.save
       redirect_to root_url
     else
-      flash.alert = "メールアドレスもしくはパスワードに誤りがあります。\nもう一度入力してください。"
+      flash.alert = "名前もしくはパスワードに誤りがあります。\nもう一度入力してください。"
       redirect_to root_url
 
       #render action: :new   サイドバーからのログイン不成功の時のリダイレクト

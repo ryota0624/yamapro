@@ -1,6 +1,5 @@
-    <header>
-      <%= link_to image_tag('/images/title.png', :class => "logo"), root_path %>
-
+    <header id="header">
+      <%= link_to image_tag('/images/title.png', :class => "logo", :id => 'title'), root_path %>
     </header>
     <nav>
       <ul>
@@ -12,12 +11,19 @@
       </ul>
       <div class="search">
         <div id="search_in">
-        <%= form_tag('/essays/search') do %>
+        <%= form_tag('/essays/title_search',id: "search-bar") do %>
+        <select id="select-search" name="example">
+        <option value="/essays/title_search">タイトル</option>
+        <option value="/essays/search">本文</option>
+        </select>
           <%= text_field_tag 'keyword', "", placeholder: "キーワードを入力"  %>
           <%= submit_tag "検索" %>
+          <a href="/essays/tags">タグ一覧へ</a>
         <% end %>
         </div>
       </div>
       <div class="clear">
       </div>
     </nav>
+<%= javascript_include_tag "addjs/search_bar.js" %>
+

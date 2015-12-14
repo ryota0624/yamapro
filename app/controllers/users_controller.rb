@@ -38,10 +38,19 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @tag = Usertag.new(user_tag_params)
     @middle = TagUser.new(user_id: User.count + 1, tag_id: Usertag.count + 1)
-    if @user.save && @tag.save && @middle.save
-      render action: :complete
-    else
+    if @user.confirming
+      @user.confirming = true
       render action: :new
+    else
+      if @user.save
+        @tag.save
+        @middle.save
+        render action: :complete
+      else
+        @user.valid?
+        flash.now[:alert] = @user.errors.full_messages
+        render action: :new
+      end
     end
   end
 
