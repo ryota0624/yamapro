@@ -64,7 +64,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to mypages_path , notice: "会員情報を更新しました。"
     else
-      render json: @user
+      redirect_to mypages_path, notice: "失敗"
     end
   end
 
