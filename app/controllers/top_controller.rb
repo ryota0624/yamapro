@@ -13,7 +13,7 @@ class TopController < ApplicationController
       end
       re
     }
-     @questions = sugest_essays current_user
+     @questions = Essay.sugest_essays current_user
     if params[:type] == "b"
       render :template => 'top/index_boot'
     end
@@ -25,37 +25,38 @@ class TopController < ApplicationController
     render :layout => false
   end
   
-  def sugest_essays(current_user)
-    rankerEssay = Proc.new {
-      if logged_in? 
-        mylist = Mylist.group(:essay_id).count().to_a.sort {|a, b| -(a[1].to_i <=> b[1].to_i)}
-        mylist.map { |essay_id|
-          Essay.find_by id: essay_id[0]
-        }.compact
-      else
-        Essay.where(question: true).limit 4
-      end
-    }
-    if current_user.nil? then
-      return rankerEssay.call
-    end
+  # def sugest_essays(current_user)
+  #   rankerEssay = Proc.new {
+  #     if logged_in? 
+  #       mylist = Mylist.group(:essay_id).count().to_a.sort {|a, b| -(a[1].to_i <=> b[1].to_i)}
+  #       mylist.map { |essay_id|
+  #         Essay.find_by id: essay_id[0]
+  #       }.compact
+  #     else
+  #       Essay.where(question: true).limit 4
+  #     end
+  #   }
+  #   if current_user.nil? then
+  #     return rankerEssay.call
+  #   end
     
-    tag = current_user.tag_users.first
-    if tag then
-	   	userInfo = Usertag.find(tag.id)
-	    parentsTags = Tag.where(name: userInfo.fage)
-	    sugest_parent(parentsTags.first).concat sugest_parent parentsTags.last
-    else
-      rankerEssay.call
-    end
-  end
-end
+  #   tag = current_user.tag_users.first
+  #   if tag then
+	#    	userInfo = Usertag.find(tag.id)
+	#     parentsTags = Tag.where(name: userInfo.fage)
+	#     sugest_parent(parentsTags.first).concat sugest_parent parentsTags.last
+  #   else
+  #     rankerEssay.call
+  #   end
+  # end
+  # end
 
-def sugest_parent(parent) 
-  if parent.nil? then
-    return []
-  end
-  parent.tag_essays.map {|tag|
-    Essay.find_by(id: tag.essay_id)
-	}.compact
+# def sugest_parent(parent) 
+#   if parent.nil? then
+#     return []
+#   end
+#   parent.tag_essays.map {|tag|
+#     Essay.find_by(id: tag.essay_id)
+# 	}.compact
+# end
 end
