@@ -10,13 +10,11 @@ class UserSessionsController < ApplicationController
   # POST /user_session
   def create
     @user_session = UserSession.new(params[:user_session])
-
     if @user_session.save
       redirect_to root_url
     else
       flash.alert = "名前もしくはパスワードに誤りがあります。\nもう一度入力してください。"
       redirect_to root_url
-
       #render action: :new   サイドバーからのログイン不成功の時のリダイレクト
     end
   end

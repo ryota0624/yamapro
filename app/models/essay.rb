@@ -89,11 +89,11 @@ class Essay < ActiveRecord::Base
     end
   end
 
-  def Essay.sugest_parent(parent) 
-    if parent.nil? then
+  def Essay.sugest_parent(parent_tag) 
+    if parent_tag.nil? then
       return []
     end
-    parent.tag_essays.map {|tag|
+    parent_tag.tag_essays.map {|tag|
       Essay.find_by(id: tag.essay_id)
 	 }.compact
   end
