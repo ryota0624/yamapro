@@ -15,12 +15,16 @@ class TopController < ApplicationController
     }
     proc = Proc.new {
       if logged_in? 
-         Essay.find(Essay.pluck(:id).shuffle[0..3])
+        mylist = Mylist.group(:essay_id).count().to_a.slice(0, 4)
+        mylist.map { |essay_id|
+          Essay.find essay_id[0]
+        }
       else
         Essay.where(question: true).limit 4
       end
      }
      @questions = proc.call
+     logger.debug @questions
     if params[:type] == "b"
       render :template => 'top/index_boot'
     end
