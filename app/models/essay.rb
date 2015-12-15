@@ -3,7 +3,6 @@ class Essay < ActiveRecord::Base
   has_many :image_eassys, :dependent => :destroy
   has_many :mylists , :dependent => :destroy
   has_many :tag_essays , :dependent => :destroy
-  #default_scope {order("updated_at desc")}
 
   def Essay.essay_create(user,params)
     essay = Essay.new()
