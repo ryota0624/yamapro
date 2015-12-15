@@ -17,8 +17,8 @@ class TopController < ApplicationController
       if logged_in? 
         mylist = Mylist.group(:essay_id).count().to_a.slice(0, 4)
         mylist.map { |essay_id|
-          Essay.find essay_id[0]
-        }
+          Essay.find_by id: essay_id[0]
+        }.compact
       else
         Essay.where(question: true).limit 4
       end
