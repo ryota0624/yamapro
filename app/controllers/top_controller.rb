@@ -15,7 +15,7 @@ class TopController < ApplicationController
     }
     proc = Proc.new {
       if logged_in? 
-        mylist = Mylist.group(:essay_id).count().to_a.slice(0, 4)
+        mylist = Mylist.group(:essay_id).count().to_a.sort {|a, b| -(a[1].to_i <=> b[1].to_i)}
         mylist.map { |essay_id|
           Essay.find_by id: essay_id[0]
         }.compact
