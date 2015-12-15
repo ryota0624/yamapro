@@ -44,8 +44,14 @@
     </div>
   </div>
   <div id="osukiji">
-    <h2 class="top_title">質問</h2>
-    <% @questions.each do |recommend| %>
+    <h2 class="top_title">
+      <% if logged_in?%>
+        おすすめ
+      <% else %>
+        質問
+      <% end %>
+    </h2>
+      <% @questions.each do |recommend| %>
       <div class="osusume">
         <a href="/essays/<%= recommend.id%>?page=1">
           <div class="mi_ti">

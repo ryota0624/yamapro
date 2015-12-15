@@ -13,7 +13,14 @@ class TopController < ApplicationController
       end
       re
     }
-    @questions = Essay.where(question: true)
+    proc = Proc.new {
+      if logged_in? 
+         Essay.find(Essay.pluck(:id).shuffle[0..3])
+      else
+        Essay.where(question: true).limit 4
+      end
+     }
+     @questions = proc.call
     if params[:type] == "b"
       render :template => 'top/index_boot'
     end
