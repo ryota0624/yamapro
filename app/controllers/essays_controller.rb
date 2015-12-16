@@ -2,7 +2,7 @@ class EssaysController < ApplicationController
   def index
     @link_bool = false
     @new_essays = Essay.where.not(question: true).where(pickup_f: false).limit(3)
-    @essays = Essay.where.not(question: true).where(pickup_f: false)
+    @essays = Essay.where.not(question: true).where(pickup_f: false).offset(3)
     .paginate(:page => params[:page], :per_page => 4)
   end
 
