@@ -6,7 +6,7 @@
     <li class="list-group-item">
     <a href="/essays/<%= essay.id %>?page=1">
         <% if essay.user.image.present? %>
-          <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => essay.user.id), :size => '80x80')%>
+          <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => essay.user.id), :size => '80x80',:class => 'tou_ti')%>
         <% else %>
           <%= image_tag '/images/sample_image.png', :size => '30x30'%>
         <% end %>
