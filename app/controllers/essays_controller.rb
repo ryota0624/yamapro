@@ -72,7 +72,7 @@ class EssaysController < ApplicationController
     @comments = Comment.where(essay_id: @essay.id)
     @mylist_num = @essay.mylists
     if params[:page] then
-      text = @essay.text.split "-"
+      text = @essay.text.split "|"
       text.unshift("")
       page = params[:page].to_i
       if text[page] then
