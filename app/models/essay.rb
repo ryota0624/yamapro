@@ -70,7 +70,7 @@ class Essay < ActiveRecord::Base
         mylist = Mylist.group(:essay_id).count().to_a.sort {|a, b| -(a[1].to_i <=> b[1].to_i)}
         mylist.map { |essay_id|
           Essay.find_by id: essay_id[0]
-        }.compact.limit 3
+        }.compact.slice(0, 3)
       else
         Essay.where(question: true).limit 3
       end
