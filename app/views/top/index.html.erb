@@ -58,7 +58,7 @@
             <% if recommend.user.image.present? %>
               <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => recommend.user.id), :height => '150',:class => "osuicon")%>
             <% else %>
-              <%= image_tag '/images/sample_image.png', :size => '30x30' %>
+              <%= image_tag '/images/sample_image.png', :class => 'osuicon' %>
             <% end %>
             <p class="mina_ti"><%= recommend.title %></p>
           </div>
