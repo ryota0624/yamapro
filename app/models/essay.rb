@@ -95,6 +95,6 @@ class Essay < ActiveRecord::Base
     end
     parent_tag.tag_essays.map {|tag|
       Essay.find_by(id: tag.essay_id)
-	 }.compact.limit
+	 }.compact
   end
 end
