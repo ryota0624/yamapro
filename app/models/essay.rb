@@ -70,9 +70,9 @@ class Essay < ActiveRecord::Base
         mylist = Mylist.group(:essay_id).count().to_a.sort {|a, b| -(a[1].to_i <=> b[1].to_i)}
         mylist.map { |essay_id|
           Essay.find_by id: essay_id[0]
-        }.compact
+        }.compact.limit 3
       else
-        Essay.where(question: true).limit 4
+        Essay.where(question: true).limit 3
       end
     }
     if current_user.nil? then
@@ -83,7 +83,7 @@ class Essay < ActiveRecord::Base
     if tag then
 	   	userInfo = Usertag.find(tag.id)
 	    parentsTags = Tag.where(name: userInfo.fage)
-	    Essay.sugest_parent(parentsTags.first).concat Essay.sugest_parent parentsTags.last
+	    Essay.sugest_parent(parentsTags.first).concat(Essay.sugest_parent parentsTags.last).limit 3
     else
       rankerEssay.call
     end
@@ -95,6 +95,6 @@ class Essay < ActiveRecord::Base
     end
     parent_tag.tag_essays.map {|tag|
       Essay.find_by(id: tag.essay_id)
-	 }.compact
+	 }.compact.limit
   end
 end
