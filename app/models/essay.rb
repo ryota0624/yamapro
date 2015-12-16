@@ -83,7 +83,7 @@ class Essay < ActiveRecord::Base
     if tag then
 	   	userInfo = Usertag.find(tag.id)
 	    parentsTags = Tag.where(name: userInfo.fage)
-	    Essay.sugest_parent(parentsTags.first).concat(Essay.sugest_parent parentsTags.last).limit 3
+	    Essay.sugest_parent(parentsTags.first).concat(Essay.sugest_parent parentsTags.last).slice(0,3)
     else
       rankerEssay.call
     end
