@@ -42,7 +42,7 @@ class MypagesController < ApplicationController
 
   def my_list #記事のお気に入り
     @list = Mylist.where(user_id: current_user.id)
-    @essaylist = @list.map {|listItem| listItem.essay }
+    @essaylist = @list.map {|listItem| listItem.essay }.compact
 
     @essay_tags = Array.new
     @essaylist.each_with_index do |essay, i|
