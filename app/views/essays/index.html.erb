@@ -2,9 +2,11 @@
   <li class="collection-header"><h4>ユーザ投稿</h4></li>
   <% @essays.each do |essay| %>
   <li class="collection-item avatar">
+    <a href="/essays/<%= essay.id %>?page=1">
     <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => essay.user.id),:class => "circle")%>
     <span class="title"><%= essay.title.slice(0,30)%></span>
     <p><%= essay.text.slice(0,50) %></p>
+    </a>
   </li>
   <% end %>
 </ul>

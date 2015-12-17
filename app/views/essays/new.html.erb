@@ -4,8 +4,11 @@
   <%= text_field_tag 'essay[title]', "", class: "kijiti", placeholder: "title" %>
   <%= text_area_tag 'essay[text]', "", class: "toran", placeholder: "text" %>
   <%= file_field_tag 'image[0]' %>
-  <input type="radio" name="tou" value="essay" checked>投稿
-<input type="radio" name="tou" value="question" >質問
+  
+  <input type="radio" name="tou" value="essay" id="radio1" checked>
+ <label for="radio1">投稿</label>
+  <input type="radio" name="tou" value="question" id="radio2" >
+   <label for="radio2">質問</label>
   <%= check_box_tag "essay[pickup_f]", "1" %>
 <%= submit_tag "投稿" ,:id => 'post-btn',style: "cursor: pointer", class: "btn btn-primary" %>
 <% end %>

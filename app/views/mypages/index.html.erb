@@ -1,8 +1,10 @@
-      <div id="myicon_waku">
+               <div class="row valign-wrapper">
+
+      <div class="col s5">
         <% if current_user.image.present? %>
-          <%= user_image_tag @user, :class => "myicon" %>
+          <%= user_image_tag @user %>
         <% else %>
-          <%= image_tag '/images/sample_image.png', :class => "myicon" %>
+          <%= image_tag '/images/sample_image.png',class: "circle responsive-img"%>
         <% end %>
       </div>
       <div id="prof_waku">
@@ -43,5 +45,7 @@
           </tr>
           <% end %>
         </table>
+        <br/>
         <%= link_to "プロフィール編集", edit_user_path(@user) ,class: "btn btn-primary"%>
     </div>
+</div>

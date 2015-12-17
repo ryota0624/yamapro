@@ -1,107 +1,65 @@
-<div class="dodai">
-  <div class="yohaku2">
   <% if admin? then%>
-    <a href="" onclick="del(); return false;">削除</a>
-    <form name="deletelink" method="POST" id="form"action="/api/delete_essay">
-      <input type=hidden name="essay_id" value=<%=@essay.id%>>
-    </form>
-    <script>
-      function del() {
-        document.deletelink.submit();
-      }
-    </script>
+  <a href="" onclick="del(); return false;">削除</a>
+  <form name="deletelink" method="POST" id="form"action="/api/delete_essay">
+    <input type=hidden name="essay_id" value=<%=@essay.id%>>
+  </form>
+  <script>
+    function del() {
+      document.deletelink.submit();
+    }
+  </script>
   <% end %>
-    <div class="kisyowa">
-      <div class="kipro">
-        <% if @essay.user.image.present? %>
-          <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => @essay.user.id), :class => 'kicon')%>
-        <% else %>
-          <%= image_tag '/images/sample_image.png', :size => '125x125' %>
-        <% end %><%= @user.name %>
+  <div class="container">
+    <br/>
+    <div class="row">
+      <div class="chip row col s12">
+        <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => @essay.user.id))%>
+        <%= @user.name %>
       </div>
-      <div class="tihibu">
-        <p class="day"><%= @essay.created_at.strftime("%Y年 %m月 %d日")%></p>
-        <p class="kiti" ><%= @essay.title %></p>
-        <div  class="kijibu">
-          <% if @essay.pickup_f?  then %>
-          <div class="text_kiji" style="background-color: #ffffff">
-            <%= " \n" %><%=@essay.text.html_safe %>
-          </div>
-          <% else %>
-          <textarea readonly="true" class="text_kiji">
-            <%= " \n" %><%=@essay.text.chomp.html_safe %>
-          </textarea>
-          <% end %>
-        </div>
+      <div class="row col s6"><%= @essay.title %></div>
+      <div class="row col s6"><%= @essay.created_at.strftime("%Y年 %m月 %d日")%></div>
+   </div>
 
-      <div class="favowa">
-        <div id="photo">
-        <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @essay_img), :class => "to_img", :width => "150px") %>
-      </div>
-
-        <div class="fav">
-        <% if  logged_in?%>
-        <% if @fav %>
-            <%= link_to image_tag("/images/hoshi_y.png", :class => "fav_icon"), :controller => "mypages", :action =>"destroy_my_list", :essay_id => @essay.id %>
-          <% else %>
-            <%= link_to image_tag("/images/hoshi_h.png", :class => "fav_icon"), :controller => "mypages", :action =>"add_my_list" %>
-          <% end %>
-        <% end %>
-          ★<%= @mylist_num.length %>
-        </div>
-        <% if @now_page_num && @now_page_num > 1 %>
-        <a href="/essays/<%= @essay.id%>?page=<%= @now_page_num-1%>">←</a>
-        <% end %>
-        <% if @now_page_num && @now_page_num < @page_num-1 %>
-        <a href="/essays/<%= @essay.id%>?page=<%= @now_page_num+1%>">→</a>
-        <% end %>
-        <div class="sns">
-          <% @tweet_text = @essay.title+" \n"+"YamasitaProject "+request.url %>
-          <a href="https://twitter.com/intent/tweet?text=<%= @tweet_text%>">
-            <img src="/images/Twitter.png" class="sns_icon">
-          </a>
-        </div>
-      </div>
-      <div class="totawa">
-        <% @tags.each do |tag| %>
-        <div class="tota">
-          <% if tag then %>
-            <a href="/essays/tag?tag_id=<%= tag.id%>">
-              <%= tag.name %>
-            </a>
-          <% end %>
-          </div>
-        <% end %>
+   <div class="card Large">
+    <div class="card-image">
+      <% if @essay_img != 0 %>
+      <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @essay_img)) %>
+      <span class="card-title"><%= @essay.title %></span>
+      <% end %>
+      <div class="card-content">
+        <p><%=@essay.text %></p>
       </div>
     </div>
-
-    <div class="tihibu">
-      <%if logged_in? %>
-      <div class="kowa">
-        <p>コメントを入力</p>
-        <%= form_tag("/comment" ) do %>
-        <%= hidden_field_tag 'essay_id', @essay.id %>
-        <%= text_area_tag 'text',"", :id => "inkome" %>
-        <%= submit_tag '作成',:class => "sousin",:id => 'submit-btn',style: "cursor: pointer"  %>
-        <% end %>
-      </div>
-      <% end %>
-      <div class="kowa">
-        <p class="k">コメント(<%= @comments.length %>)</p>
-        <div id="komewaku">
-          <% @comments.each do |comment| %>
-          <div class="kome">
-           <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => comment.user.id),:class => "koi")%>
-           <%= comment.user.name %>
-           <br>
-           <textarea class='coco'><%= comment.text %></textarea>
-         </div>
-         <% end %>
-       </div>
-     </div>
-   </div>
-   </div>
- </div>
+  </div>
+  <% if @now_page_num && @now_page_num > 1 %>
+  <a href="/essays/<%= @essay.id%>?page=<%= @now_page_num-1%>">←</a>
+  <% end %>
+  <% if @now_page_num && @now_page_num < @page_num-1 %>
+  <a href="/essays/<%= @essay.id%>?page=<%= @now_page_num+1%>">→</a>
+  <% end %>
+  <%if logged_in? %>
+  <% if @fav %>
+  <%= link_to image_tag("/images/hoshi_y.png", :class => "fav_icon"), :controller => "mypages", :action =>"destroy_my_list", :essay_id => @essay.id %>
+  <% else %>
+  <%= link_to image_tag("/images/hoshi_h.png", :class => "fav_icon"), :controller => "mypages", :action =>"add_my_list" %>
+  <% end %>
+  <%= form_tag("/comment" ) do %>
+  <%= hidden_field_tag 'essay_id', @essay.id %>
+  <%= text_area_tag 'text',"", :id => "inkome",class: "materialize-textarea",placeholder: "コメント" %>
+  <%= submit_tag '作成',:class => "btn btn-primary",:id => 'submit-btn',style: "cursor: pointer"  %>
+  <% end %>
+  <% end %>
+  <br/>
+  <p>コメント(<%= @comments.length %>)</p>
+  <ul class="collection">
+    <% @comments.each do |comment| %>
+    <li class="collection-item avatar">
+     <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => comment.user.id),:class => "circle")%>
+     <span><%= comment.user.name %></span>
+     <textarea readonly class='coco'><%= comment.text %></textarea>
+   </li>
+   <% end %>
+ </ul>  
 </div>
-<div class="clear"></div>
 <%= javascript_include_tag "addjs/comment.js" %>
+<div class="row col s12 m6 l3">

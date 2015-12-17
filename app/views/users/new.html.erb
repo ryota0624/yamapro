@@ -11,7 +11,7 @@
      <tr>
        <th>ニックネーム*</th>
        <td>
-         <%= form.text_field :name %>
+         <%= form.text_field :name, id: "user_name" %>
          <p class="kasi">※半角英数3文字から8文字まで</p>
        </td>
      </tr>
@@ -100,7 +100,7 @@
      <tr>
        <th>パスワード<p>*</p></th>
        <td>
-         <%= form.password_field :password %>
+         <%= form.password_field :password,id: "user_password" %>
          <p class="kasi">※半角英数 4文字以上</p>
        </td>
      </tr>
@@ -121,7 +121,7 @@
 
   <div id="agreement">
     <div id="btn">
-       <%= form.submit "内容を確認", class: "btn btn-primary",style: "cursor: pointer" %>
+       <%= form.submit "内容を確認", id: "submit-btn",class: "btn btn-primary",style: "cursor: pointer" %>
     </div>
   </div>
 

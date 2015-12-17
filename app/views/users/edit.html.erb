@@ -1,11 +1,9 @@
- <div class="container">
       <%= form_for @user, url: :user, html: { multipart: true } do |form| %>
+      <div>
         <%= form.fields_for :image do |imgf| %>
             <% if !imgf.object.new_record? && imgf.object.errors.empty? %>
               <div>
                 <%= user_image_tag @user, size: "150" %>
-                <%#= imgf.check_box :_destroy , {:checked => true} %>
-                <%#= imgf.label "削除" %>
                 <%= imgf.hidden_field :id %>
               </div>
             <% else %>
@@ -13,6 +11,7 @@
             <% end %>
             <%= imgf.file_field :uploaded_image %>
         <% end %>
+        </div>
         <br />
         職種：
           <%= form.radio_button :business, 0 %>
@@ -79,5 +78,4 @@
             <p hidden id='alert'style="color:#ff0000">パスワードが一致していません</p>
             <%= form.submit "登録" ,:class => "btn btn-primary", :id => 'submit-btn',style: "cursor: pointer" %>
       <% end %>
-</div>
 <%= javascript_include_tag "addjs/user_edit.js" %>

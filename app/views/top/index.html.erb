@@ -1,70 +1,65 @@
 <div class="col s12">
-    <ul class="collection with-header">
-      <li class="collection-header"><h4>特集</h4></li>
-      <% @posts.each_with_index do |post, i| %>
-      <li class="collection-item avatar">
-        <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "circle") %>
-        <a href="/essays/<%= post.id%>?page=1">
+  <ul class="collection with-header">
+    <li class="collection-header"><h4>特集</h4></li>
+    <% @posts.each_with_index do |post, i| %>
+    <li class="collection-item avatar">
+      <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "circle") %>
+      <a href="/essays/<%= post.id%>?page=1">
         <span class=title><%= post.title.slice(0,9) %></span>
         <p><%= post.text.slice(0, 100) %></p>
-        </a>
-      </li>
-      <% end %>
-      </ul>
-    </div>
- <div class="col s6">
+      </a>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<div class="col s6">
   <ul class="collection with-header">
     <li class="collection-header"><h4>ユーザ投稿</h4></li>
     <% @essays.each_with_index do |essay, i| %>
     <li class="collection-item avatar">
-    <a href="/essays/<%= essay.id %>?page=1">
-      <div>
-        <% if essay.user.image.present? %>
+      <a href="/essays/<%= essay.id %>?page=1">
+        <div>
+          <% if essay.user.image.present? %>
           <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => essay.user.id),:class => "circle")%>
-        <% else %>
+          <% else %>
           <%= image_tag '/images/sample_image.png',:class => "circle"%>
-        <% end %>
-        <p class="inti"><%= essay.title.slice(0,9) %></p>
-        <% if i == 0 then %>
-          <p class="inbu_tou1"><%= essay.text.slice(0,100) %></p>
-        <% else %>
-          <p class="inbu_tou1"><%= essay.text.slice(0,66) %></p>
-        <% end %>
-      </div>
-    </a>
+          <% end %>
+          <p><%= essay.title.slice(0,9) %><p>
+          <p><%= essay.text.slice(0,100) %></p>
+        </div>
+      </a>
     </li>
     <% end %>
-    </ul>
-  </div>
-  <div class="col s6">
-    <ul class="collection with-header">
+  </ul>
+</div>
+<div class="col s6">
+  <ul class="collection with-header">
     <li class="collection-header">
       <h4>
-      <% if logged_in?%>
+        <% if logged_in?%>
         おすすめ
-      <% else %>
+        <% else %>
         質問
-      <% end %>
+        <% end %>
       </h4>
     </li>
-      <% @questions.each do |recommend| %>
-      <div class="osusume">
-        <a href="/essays/<%= recommend.id%>?page=1">
-          <div class="mi_ti">
-            <% if recommend.user.image.present? %>
-              <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => recommend.user.id), :height => '150',:class => "osuicon")%>
-            <% else %>
-              <%= image_tag '/images/sample_image.png', :class => 'osuicon' %>
-            <% end %>
-            <p class="mina_ti"><%= recommend.title %></p>
-          </div>
-          <p class="inbu_osu">
-            <%= recommend.text %>
-          </p>
-        </a>
-      </div>
+    <% @questions.each do |essay| %>
+    <li class="collection-item avatar">
+      <a href="/essays/<%= essay.id %>?page=1">
+        <div>
+          <% if essay.user.image.present? %>
+          <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => essay.user.id),:class => "circle")%>
+          <% else %>
+          <%= image_tag '/images/sample_image.png',:class => "circle"%>
+          <% end %>
+          <p><%= essay.title.slice(0,9) %></p>
+          <p><%= essay.text.slice(0,100) %></p>
+        </div>
+      </a>
+    </li>
+
     <% end %>
-    </ul>
-  </div>
+  </ul>
+</div>
 
 
