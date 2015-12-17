@@ -1,0 +1,9 @@
+<h2>つぶやき</h2>
+<% @posts.each do |post| %>
+  <p><%= post.content %></p>
+  <%= form_tag('/favs') do %>
+  <%= submit_tag("お気に入り") %>
+  <% end %>
+<% end %>
+<h2>つぶやく</h2>
+<%= link_to "つぶやく", new_post_path %>

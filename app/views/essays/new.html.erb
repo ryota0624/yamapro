@@ -1,0 +1,10 @@
+<div class="container">
+  <%= form_tag("/essays", :multipart => true ) do %>
+  <%= text_field_tag 'essay[title]', "", class: "kijiti", placeholder: "title" %>
+  <%= text_area_tag 'essay[text]', "", class: "toran", placeholder: "text" %>
+  <%= file_field_tag 'image[0]' %>
+  <%= check_box_tag "essay[pickup_f]", "1" %>
+<%= submit_tag "投稿" ,:id => 'post-btn',style: "cursor: pointer", class: "btn btn-primary" %>
+<% end %>
+<%= javascript_include_tag "addjs/essay_new.js" %>
+</div>

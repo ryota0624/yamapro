@@ -1,0 +1,17 @@
+<ul class="collection with-header">
+  <li class="collection-header"><h4>質問</h4></li>
+  <% @questions.each do |essay| %>
+  <li class="collection-item avatar">
+    <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => essay.user.id),:class => "circle")%>
+    <span class="title">Title</span>
+    <p>First Line <br>
+       Second Line
+    </p>
+  </li>
+  <% end %>
+</ul>
+<div class="page">
+  <% if !@questions.kind_of?(Array) %>
+  <%= will_paginate @questions %>
+  <% end %>
+</div>

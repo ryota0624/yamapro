@@ -1,0 +1,19 @@
+<h1>ユーザ一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>氏名</th>
+      <th>画像</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.name, user_path(user) %></td>
+        <td><%= user_image_tag user, width: 96 %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

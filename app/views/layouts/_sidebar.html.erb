@@ -1,0 +1,28 @@
+<div>
+<% if logged_in? %>
+  <ul class="collection">
+    <li><%= link_to "記事投稿", new_essay_path, class: "collection-item" %></li>
+    <li><%= link_to "自分の投稿", my_essay_mypages_path, class: "collection-item" %></li>
+    <li><%= link_to "お気に入り", my_list_mypages_path, class: "collection-item" %></li>
+    <li><%= link_to "マイページ", {:controller => "mypages", :action => "index"}, class: "collection-item" %></li>
+    <li><%= link_to "ログアウト", logout_path, method: :delete, class: "collection-item" %></li>
+  </ul>
+<% else %>
+    <%= form_for UserSession.new, url: user_session_path do |f| %>
+    <div class="error">
+      <%= flash[:alert] %>
+    </div>
+      <%= f.text_field :name ,:class => 'log' ,:placeholder=> "name"%>
+      <%= f.password_field :password ,:class => 'log', :placeholder => "pass"%>
+    <div>
+    <%= f.submit "Login",class: "waves-effect waves-light btn log"%>
+  </div>
+    <div>
+    <br/>
+  <%= link_to "新規登録", signup_path %>
+  </div>
+  <% end %>
+
+<% end %>
+</div>
+

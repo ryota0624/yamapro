@@ -1,0 +1,198 @@
+  <%= form_for @user, url: users_path, html: { multipart: true } do |form| %>
+  <% if @user.confirming.blank? %>
+  <div>
+    <% flash.each do |key, value| %>
+      <%= value %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
+    <%= flash.now[:alert] %>
+    <table>
+     <tbody>
+     <tr>
+       <th>ニックネーム*</th>
+       <td>
+         <%= form.text_field :name %>
+         <p class="kasi">※半角英数3文字から8文字まで</p>
+       </td>
+     </tr>
+     <tr>
+       <th>性別*</th>
+       <td>
+         <p>
+           <%= form.radio_button :gender, 0, {:checked => true}  %>
+           <%= form.label :gender_0, "男" %>
+           <%= form.radio_button :gender, 1 %>
+           <%= form.label :gender_1, "女" %>
+         </p>
+       </td>
+     </tr>
+     <tr>
+       <th>職種*</th>
+       <td>
+       <p>
+         <%= form.radio_button :business, 0, {:checked => true}  %>
+         <%= form.label :business_0, "大学生/専門学生" %>
+         <%= form.radio_button :business, 1 %>
+         <%= form.label :business_1, "社会人" %>
+         <%= form.radio_button :business, 2 %>
+         <%= form.label :business_2, "その他" %>
+       </p>
+      </td>
+     </tr>
+    <tr>
+     <%= fields_for @tag do |tag| %>
+     <th>住んでいる場所</th>
+     <td>
+       <p>
+       <%= tag.radio_button :place, "実家" %>
+       <%= tag.label :place_0, "実家" %>
+       <%= tag.radio_button :place, "一人暮らし" %>
+       <%= tag.label :place_1, "一人暮らし" %>
+       <%= tag.radio_button :place, "その他" %>
+       <%= tag.label :place_3, "その他" %>
+       <%= tag.radio_button :place, "未設定", {:checked => true} %>
+       <%= tag.label :place_no, "未設定" %>
+     </p>
+     </td>
+     </tr>
+     <tr>
+       <th>[孝行相手] 父親</th>
+       <td>
+         <p>
+           <%= tag.radio_button :fage, "30代" %>
+           <%= tag.label :fage_30, "30代" %>
+           <%= tag.radio_button :fage, "40代" %>
+           <%= tag.label :fage_40, "40代" %>
+           <%= tag.radio_button :fage, "50代" %>
+           <%= tag.label :fage_50, "50代" %>
+           <%= tag.radio_button :fage, "60代" %>
+           <%= tag.label :fage_60, "60代" %>
+           <%= tag.radio_button :fage, "70代" %>
+           <%= tag.label :fage_70, "70代以上" %>
+           <%= tag.radio_button :fage, "未設定", {:checked => true} %>
+           <%= tag.label :fage_no, "未設定" %>
+         </p>
+       </td>
+     </tr>
+     <br />
+     <tr>
+       <th>[孝行相手] 母親</th>
+       <td>
+         <p>
+           <%= tag.radio_button :mage, "30代"  %>
+           <%= tag.label :mage_30, "30代" %>
+           <%= tag.radio_button :mage, "40代"  %>
+           <%= tag.label :mage_40, "40代" %>
+           <%= tag.radio_button :mage, "50代"  %>
+           <%= tag.label :mage_50, "50代" %>
+           <%= tag.radio_button :mage, "60代"  %>
+           <%= tag.label :mage_60, "60代" %>
+           <%= tag.radio_button :mage, "70代"  %>
+           <%= tag.label :mage_70, "70代以上" %>
+           <%= tag.radio_button :mage, "未設定", {:checked => true}%>
+           <%= tag.label :mage_no, "未設定" %>
+         </p>
+       </td>
+     </tr>
+     <br />
+     <br />
+   <% end %>
+     <tr>
+       <th>パスワード<p>*</p></th>
+       <td>
+         <%= form.password_field :password %>
+         <p class="kasi">※半角英数 4文字以上</p>
+       </td>
+     </tr>
+     <tr>
+       <th>パスワード確認*</th>
+       <td>
+         <%= form.password_field :password_confirmation %>
+         <p hidden id='alert'style="color:#ff0000">パスワードが一致していません</p>
+       </td>
+     </tr>
+     </tbody>
+   </table>
+     <div id="tyu">※「*」は必須項目です。<br />
+                  ニックネーム、性別以外後から変更することが可能です。
+     </div>
+  </div>
+  <%= form.hidden_field :confirming %>
+
+  <div id="agreement">
+    <div id="btn">
+       <%= form.submit "内容を確認", class: "btn btn-primary",style: "cursor: pointer" %>
+    </div>
+  </div>
+
+<% else %>
+  <div>
+    <table>
+     <tbody>
+     <tr>
+       <th>ニックネーム*</th>
+         <td><%= @user.name %></td>
+         <%= form.hidden_field :name %>
+         <p class="kasi">※半角英数8文字まで</p>
+     </tr>
+     <tr>
+       <th>性別*</th>
+       <td><%= @user.gender == 0 ? "男性" : "女性" %></td>
+       <%= form.hidden_field :gender %>
+     </tr>
+     <tr>
+       <th>職種*</th>
+         <td>
+           <% case @user.business
+             when 0%>
+               学生/専門学生
+           <% when 1%>
+             社会人
+           <%when 2%>
+             その他
+           <%end%>
+         </td>
+         <%= form.hidden_field :business %>
+     </tr>
+    <tr>
+     <%= fields_for @tag do |tag| %>
+     <th>住んでいる場所</th>
+     <td><%= @tag.place %></td>
+     <%= tag.hidden_field :place %>
+     </tr>
+
+     <tr>
+       <th>[孝行相手] 父親</th>
+       <td><%= @tag.fage %></td>
+       <%= tag.hidden_field :fage %>
+     </tr>
+     <br />
+     <tr>
+       <th>[孝行相手] 母親</th>
+       <td><%= @tag.mage %></td>
+       <%= tag.hidden_field :mage %>
+     </tr>
+     <br />
+     <br />
+   <% end %>
+     <tr>
+       <th>パスワード*</th>
+       <td><%= "安全のため表示していません。" %></td>
+       <%= form.hidden_field :password %>
+     </tr>
+       <%= form.hidden_field :password_confirmation %>
+     </tbody>
+   </table>
+  </div>
+    <p id="caution">
+      上記の内容でよければ「登録」ボタンを押して登録を完了させてください。<br>
+      修正したい場合は「もどる」ボタンを押してください。<br/>
+    </p>
+    <div id="agreement">
+        <a href="/signup" class="btn btn-primary" style: "cursor: pointer"/>もどる</a>
+        <%= form.submit "登録", class: "btn btn-primary", id: "input",style: "cursor: pointer" %>
+    </div>
+  </div>
+  <% end %>
+<% end %>
+<%= javascript_include_tag "addjs/signup.js" %>

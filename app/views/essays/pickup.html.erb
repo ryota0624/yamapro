@@ -1,0 +1,60 @@
+  <div id="stage">
+  	<input type="radio" id="back1" name="gal">
+  	<input type="radio" id="back2" name="gal">
+  	<input type="radio" id="back3" name="gal">
+  	<input type="radio" id="back4" name="gal">
+  	<input type="radio" id="back5" name="gal">
+  	<input type="radio" id="next1" name="gal">
+  	<input type="radio" id="next2" name="gal">
+  	<input type="radio" id="next3" name="gal">
+  	<input type="radio" id="next4" name="gal">
+  	<input type="radio" id="next5" name="gal">
+  		<div id="photos">
+  			<div id="photo0" class="pic"><img src="/images/bana2.jpeg"></div>
+  			<div id="photo1" class="pic"><img src="/images/bana1.jpeg"></a>
+  					<label for="back1"><div id="left1" class="b_left"><span>＜</span></div></label>
+  					<label for="next1"><div id="right1" class="b_right"><span>＞</span></div></label>
+  				</div>
+  				<div id="photo2" class="pic"><img src="/images/bana2.jpeg">
+  					<label for="back2"><div id="left2" class="b_left"><span>＜</span></div></label>
+  					<label for="next2"><div id="right2" class="b_right"><span>＞</span></div></label>
+  				</div>
+  				<div id="photo3" class="pic"><img src="/images/bana3.jpeg">
+  					<label for="back3"><div id="left3" class="b_left"><span>＜</span></div></label>
+  					<label for="next3"><div id="right3" class="b_right"><span>＞</span></div></label>
+  				</div>
+  				<div id="photo4" class="pic"><img src="/images/bana1.jpeg">
+  					<label for="back4"><div id="left4" class="b_left"><span>＜</span></div></label>
+  					<label for="next4"><div id="right4" class="b_right"><span>＞</span></div></label>
+  				</div>
+  				<div id="photo5" class="pic"><img src="/images/bana2.jpeg">
+  					<label for="back5"><div id="left5" class="b_left"><span>＜</span></div></label>
+  					<label for="next5"><div id="right5" class="b_right"><span>＞</span></div></label>
+  				</div>
+  				<div id="photo6" class="pic"><img src="/images/bana1.jpeg">
+  				</div>
+  			</div>
+  		<div style="padding:9%;"></div>
+  	</div>
+
+  <div class="row">
+    <% @essays.each_with_index do |essay,i| %>
+    <div class="col s4">
+      <div class="card small">
+        <a href="/essays/<%= essay.id %>?page=1">
+        <div class="card-image waves-effect waves-block waves-light">
+        <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "activator") %>
+        </div>
+        <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4"><%= essay.title%></span>
+        </div>  
+        </a>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div class="page">
+    <%= will_paginate @essays %>
+  </div>
+</div>
+<div class="clear"></div>

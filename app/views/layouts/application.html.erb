@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>親こうfour</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'pc', media: 'screen and (min-width: 771px)', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'suma1', media: 'screen and (max-width: 770px) and (min-width: 0px)', 'data-turbolinks-track' => true %>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+  <%= stylesheet_link_tag 'reset', 'data-turbolinks-track' => true %>
+   <%= stylesheet_link_tag 'ryo', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= render "layouts/header" %>
+  <main>
+  <div class="row">
+    <div class="col s2 m4 l2">
+      <%= render "layouts/sidebar" %>
+    </div>
+    <div class="col s10 m8 l10">
+      <%= yield %>
+    </div>
+  </div>
+  </main>
+  <%= render "layouts/footer" %>
+</body>
+</html>
+<script>
+$(".button-collapse").sideNav();
+</script>

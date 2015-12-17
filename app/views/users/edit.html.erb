@@ -1,0 +1,99 @@
+<div class="dodai">
+  <div class="yohaku">
+    <div id="my">
+      <div id="prof_waku">
+      <h2 class="top_title">プロフィール設定</h2>
+      <%= form_for @user, url: :user, html: { multipart: true } do |form| %>
+      <div id="myicon_waku">
+        <%= form.fields_for :image do |imgf| %>
+            <% if !imgf.object.new_record? && imgf.object.errors.empty? %>
+              <div>
+                <%= user_image_tag @user, size: "150" %>
+                <%#= imgf.check_box :_destroy , {:checked => true} %>
+                <%#= imgf.label "削除" %>
+                <%= imgf.hidden_field :id %>
+              </div>
+            <% else %>
+              <%= image_tag '/images/sample_image.png', :size => '150x150' %>
+            <% end %>
+            <%= imgf.file_field :uploaded_image %>
+        <% end %>
+      </div>
+      <div id="prof_waku">
+
+      <div id="myto">
+
+        <br />
+        職種：
+          <%= form.radio_button :business, 0 %>
+          <%= form.label :business_0, "大学生/専門学生" %>
+          <%= form.radio_button :business, 1 %>
+          <%= form.label :business_1, "社会人" %>
+          <%= form.radio_button :business, 2 %>
+          <%= form.label :business_2, "その他" %>
+          <br />
+          <% if @tag then %>
+          <%= fields_for @tag do |tag| %>
+          住んでいる場所：
+            <%= tag.radio_button :place, "実家" %>
+            <%= tag.label :place_0, "実家" %>
+            <%= tag.radio_button :place, "一人暮らし" %>
+            <%= tag.label :place_1, "一人暮らし" %>
+            <%= tag.radio_button :place, "下宿" %>
+            <%= tag.label :place_2, "下宿" %>
+            <%= tag.radio_button :place, "その他" %>
+            <%= tag.label :place_3, "その他" %>
+            <%= tag.radio_button :place, "未設定" %>
+            <%= tag.label :place_no, "未設定" %>
+            <br />
+            <br />
+          [孝行相手]<br />
+            父親：
+              <%= tag.radio_button :fage, "30代" %>
+              <%= tag.label :fage_30, "30代" %>
+              <%= tag.radio_button :fage, "40代" %>
+              <%= tag.label :fage_40, "40代" %>
+              <%= tag.radio_button :fage, "50代" %>
+              <%= tag.label :fage_50, "50代" %>
+              <%= tag.radio_button :fage, "60代" %>
+              <%= tag.label :fage_60, "60代" %>
+              <%= tag.radio_button :fage, "70代" %>
+              <%= tag.label :fage_70, "70代以上" %>
+              <%= tag.radio_button :fage, "未設定" %>
+              <%= tag.label :fage_no, "未設定" %>
+              <br />
+            母親：
+              <%= tag.radio_button :mage, "30代"  %>
+              <%= tag.label :mage_30, "30代" %>
+              <%= tag.radio_button :mage, "40代"  %>
+              <%= tag.label :mage_40, "40代" %>
+              <%= tag.radio_button :mage, "50代"  %>
+              <%= tag.label :mage_50, "50代" %>
+              <%= tag.radio_button :mage, "60代"  %>
+              <%= tag.label :mage_60, "60代" %>
+              <%= tag.radio_button :mage, "70代"  %>
+              <%= tag.label :mage_70, "70代以上" %>
+              <%= tag.radio_button :mage, "未設定" %>
+              <%= tag.label :mage_no, "未設定" %>
+              <br />
+              <br />
+              <% end %>
+        <% end %>
+          新しいパスワード：
+            <%= form.password_field :password %><span class="kasi">※半角英数</span>
+            <br />
+          新しいパスワード確認：
+            <%= form.password_field :password_confirmation %>
+            <br />
+        <span class="kasi">※パスワードを変更しない場合は未記入</span><br />
+            <p hidden id='alert'style="color:#ff0000">パスワードが一致していません</p>
+            <%= form.submit "登録" ,:class => "mysou", :id => 'submit-btn',style: "cursor: pointer" %>
+      <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clear"></div>
+<%= javascript_include_tag "addjs/user_edit.js" %>

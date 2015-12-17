@@ -1,0 +1,30 @@
+    <nav>
+      <div class="nav-wrapper">
+      <a class="brand-logo">親こうfour</a>
+ <!--      <%= link_to image_tag('/images/title.png', :class => "logo", :id => 'title'), root_path %> -->
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><%= link_to "TOP", root_path %></li>
+        <li><%= link_to "サイトについて", about_path %></li>
+        <li><%= link_to "みんなの投稿", essays_path %></li>
+        <li><%= link_to "みんなの質問", question_essays_path %></li>
+        <li><%= link_to "特集", pickup_essays_path %></li>
+      </ul>
+      </div>
+      <div class="search" hidden>
+        <div id="search_in">
+        <%= form_tag('/essays/title_search',id: "search-bar") do %>
+        <select id="select-search" name="example">
+        <option value="/essays/title_search">タイトル</option>
+        <option value="/essays/search">本文</option>
+        </select>
+          <%= text_field_tag 'keyword', "", placeholder: "キーワードを入力"  %>
+          <%= submit_tag "検索" %>
+          <a href="/essays/tags">タグ一覧へ</a>
+        <% end %>
+        </div>
+      </div>
+      <div class="clear">
+      </div>
+    </nav>
+<%= javascript_include_tag "addjs/search_bar.js" %>
+
