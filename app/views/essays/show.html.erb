@@ -38,9 +38,9 @@
   <% end %>
   <%if logged_in? %>
   <% if @fav %>
-  <%= link_to image_tag("/images/hoshi_y.png", :class => "fav_icon"), :controller => "mypages", :action =>"destroy_my_list", :essay_id => @essay.id %>
+  <%= link_to "<i class='material-icons'>grade</i>".html_safe, :controller => "mypages", :action =>"destroy_my_list", :essay_id => @essay.id %>
   <% else %>
-  <%= link_to image_tag("/images/hoshi_h.png", :class => "fav_icon"), :controller => "mypages", :action =>"add_my_list" %>
+  <%= link_to "<i class='material-icons'>grade</i>".html_safe, :controller => "mypages", :action =>"add_my_list" %>
   <% end %>
   <%= form_tag("/comment" ) do %>
   <%= hidden_field_tag 'essay_id', @essay.id %>
