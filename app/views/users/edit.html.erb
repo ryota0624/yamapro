@@ -1,10 +1,5 @@
-<div class="dodai">
-  <div class="yohaku">
-    <div id="my">
-      <div id="prof_waku">
-      <h2 class="top_title">プロフィール設定</h2>
+ <div class="container">
       <%= form_for @user, url: :user, html: { multipart: true } do |form| %>
-      <div id="myicon_waku">
         <%= form.fields_for :image do |imgf| %>
             <% if !imgf.object.new_record? && imgf.object.errors.empty? %>
               <div>
@@ -18,11 +13,6 @@
             <% end %>
             <%= imgf.file_field :uploaded_image %>
         <% end %>
-      </div>
-      <div id="prof_waku">
-
-      <div id="myto">
-
         <br />
         職種：
           <%= form.radio_button :business, 0 %>
@@ -87,13 +77,7 @@
             <br />
         <span class="kasi">※パスワードを変更しない場合は未記入</span><br />
             <p hidden id='alert'style="color:#ff0000">パスワードが一致していません</p>
-            <%= form.submit "登録" ,:class => "mysou", :id => 'submit-btn',style: "cursor: pointer" %>
+            <%= form.submit "登録" ,:class => "btn btn-primary", :id => 'submit-btn',style: "cursor: pointer" %>
       <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
-
-<div class="clear"></div>
 <%= javascript_include_tag "addjs/user_edit.js" %>

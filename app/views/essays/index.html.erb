@@ -3,10 +3,8 @@
   <% @essays.each do |essay| %>
   <li class="collection-item avatar">
     <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => essay.user.id),:class => "circle")%>
-    <span class="title">Title</span>
-    <p>First Line <br>
-       Second Line
-    </p>
+    <span class="title"><%= essay.title.slice(0,30)%></span>
+    <p><%= essay.text.slice(0,50) %></p>
   </li>
   <% end %>
 </ul>

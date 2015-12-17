@@ -1,7 +1,3 @@
-<div class="dodai">
-  <div class="yohaku">
-    <div id="my">
-      <h2 class="top_title">マイページ</h2>
       <div id="myicon_waku">
         <% if current_user.image.present? %>
           <%= user_image_tag @user, :class => "myicon" %>
@@ -10,7 +6,7 @@
         <% end %>
       </div>
       <div id="prof_waku">
-        <table class="prof">
+        <table>
           <tr>
             <th>名前</th>
             <td><%= @user.name %></td>
@@ -47,11 +43,5 @@
           </tr>
           <% end %>
         </table>
-      <div id="pass">
-        <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-      </div>
+        <%= link_to "プロフィール編集", edit_user_path(@user) ,class: "btn btn-primary"%>
     </div>
-  </div>
-</div>
-</div>
-<div class="clear"></div>
