@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>親こうfour</title>
+</head>
+<body>
+<%= javascript_tag do %>
+  window.articles_data = <%= raw @articles.to_json %>;
+  window.posts_data = <%= raw @posts.to_json %>;
+  window.questions_data  = <%= raw @questions.to_json %>
+<% end %>
+<myheader></myheader>
+<essays></essays>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.3.11/riot+compiler.min.js"></script>
+<script src="/ryota/test.js"></script>
+<%= javascript_include_tag "addjs/riottags/riotTags.js" %>
+<script>
+  riot.mount("essays", 
+    {articles: articles_data, posts: posts_data, questions: questions_data});
+  riot.mount("myheader");
+</script>
+</body>
+</html>
+
+

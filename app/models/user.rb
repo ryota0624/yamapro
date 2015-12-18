@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  validates :name,     length: { minimum: 3 } 
-  validates :password, length: { minimum: 4 }
 
   # for authlogic
   acts_as_authentic do |c|

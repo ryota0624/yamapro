@@ -90,7 +90,25 @@ nav ul li a:visited{
 	background: linear-gradient(to bottom, #e9684f, #a42608 80%);
 }
 
+.Q{
+	border-bottom:dashed 1pt #000;
+	margin:0px 0px 5px 10px;
+	font-size:12pt;
+	color:#688;
+}
+.A{
+	margin:0px 0px 30px 15px;
+	line-height:1.5em;
 
+}
+
+.help_title{
+	border-bottom:solid 1pt #654;
+	border-left:solid 3pt #654;
+	padding:2px;
+	font-size:14pt;
+	color:#654;
+}
 
 
 /*検索バー*/
@@ -550,6 +568,14 @@ div#agreement div#btn input{
 	color:#869a44;
 	font-size:18px;
 	margin:0px 0px 5px 0px;
+}
+.top-post {
+	box-sizing:border-box;
+	width:39%;
+	margin:1%;
+	float:left;
+	padding:10px;
+	-webkit-border-radius: 5px;
 }
 .touko{
 	box-sizing:border-box;

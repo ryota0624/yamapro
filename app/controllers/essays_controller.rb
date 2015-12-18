@@ -2,7 +2,7 @@ class EssaysController < ApplicationController
   def index
     @link_bool = false
     @new_essays = Essay.where.not(question: true).where(pickup_f: false).limit(3)
-    @essays = Essay.where.not(question: true).where(pickup_f: false)
+    @essays = Essay.where.not(question: true).where(pickup_f: false).offset(3)
     .paginate(:page => params[:page], :per_page => 4)
   end
 
@@ -72,7 +72,7 @@ class EssaysController < ApplicationController
     @comments = Comment.where(essay_id: @essay.id)
     @mylist_num = @essay.mylists
     if params[:page] then
-      text = @essay.text.split "-"
+      text = @essay.text.split "|"
       text.unshift("")
       page = params[:page].to_i
       if text[page] then
@@ -188,10 +188,11 @@ class EssaysController < ApplicationController
       tag = Tag.find_by(id: tag_id)
       @message += tag.name
       @results = tag.tag_essays.map do |essay|
-        Essay.find(essay.essay_id)
+        Essay.find_by(id: essay.essay_id)
       end
     end
-    render :template => 'essays/search'
+    logger.debug "jojoj"
+    render :template => search_essays_path
   end
 
   def destory

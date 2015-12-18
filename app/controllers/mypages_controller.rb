@@ -42,7 +42,7 @@ class MypagesController < ApplicationController
 
   def my_list #記事のお気に入り
     @list = Mylist.where(user_id: current_user.id)
-    @essaylist = @list.map {|listItem| listItem.essay }
+    @essaylist = @list.map {|listItem| listItem.essay }.compact
 
     @essay_tags = Array.new
     @essaylist.each_with_index do |essay, i|
@@ -65,14 +65,4 @@ class MypagesController < ApplicationController
     # logger.debug @image
     send_data(@image.image, :disposition => "inline", :type => "image/jpeg")
   end
-
-  # def my_fav #つぶやきのお気に入り
-  #   fav = Fav.where(user_id: 3)
-  #   @essaylist = @list.map {|listItem| listItem.essay }
-  # end
-
-  # def my_post
-  # 	@my_posts = post.where(user: my_account)
-  # end
-
 end
