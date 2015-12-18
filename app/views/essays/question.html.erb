@@ -13,7 +13,7 @@
         </div>
           <%= item.title.slice(0,127) %></a></div>
           <% end %>
-          <%= will_paginate @questions %>
+          <%= will_paginate(@questions, :previous_label => "前", :next_label => "次") %>
         </div>
       </div>
     </div>

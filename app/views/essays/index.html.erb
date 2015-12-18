@@ -43,7 +43,7 @@
     <% end %>
     <div class="page">
       <% if !@essays.kind_of?(Array) %>
-        <%= will_paginate @essays %>
+        <%= will_paginate(@essays,:previous_label => "前", :next_label => "次") %>
       <% end %>
     </div>
   </div>

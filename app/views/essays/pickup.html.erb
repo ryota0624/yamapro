@@ -76,7 +76,7 @@
     </div>
     <% end %>
     <div class="page">
-      <%= will_paginate @essays %>
+      <%= will_paginate(@essays,:class => "pagenation",:previous_label => "前", :next_label => "次") %>
     </div>
   </div>
 </div>
