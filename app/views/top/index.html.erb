@@ -36,7 +36,7 @@
             <p class="inbu_toku2">
             <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "topic2") %>
           <% end %>
-          <%= post.text.slice(0, 100) %>
+          <%= strip_tags(post.text.slice(0, 100)) %>
           </p>
         </a>
       </div>
@@ -63,7 +63,7 @@
             <p class="mina_ti"><%= recommend.title %></p>
           </div>
           <p class="inbu_osu">
-            <%= recommend.text %>
+            <%= strip_tags(recommend.text.slice(0, 100)) %>
           </p>
         </a>
       </div>
