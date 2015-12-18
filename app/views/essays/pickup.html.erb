@@ -67,7 +67,7 @@
       <a href="/essays/<%= essay.id %>?page=1">
         <div class="mi_ti">
           <!-- <img src="./.jpg" class="tou_ti"> -->
-          <%= essay.title.slice(0,14) %>
+          <%= essay.title.slice(0,10) %>
         </div>
         <p class="mina_toko">
           <%= strip_tags(essay.text.slice(0,160))+" ..." %>
