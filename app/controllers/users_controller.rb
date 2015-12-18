@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+
     @user = User.find(params[:id])
     work = TagUser.where(user_id: current_user.id)
     if work.length > 0 then
