@@ -3,12 +3,16 @@
 var state = { title: 0, text: 0 };
 var titleChangeHandle = titleChange(state);
 var textChangeHandle = textChange(state);
-
+var mdText = document.getElementById("mdText");
 var btn = document.getElementById('post-btn');
 var btnStateChangeFunc = toggleBtnState(btn);
 btnStateChangeFunc();
 
-var title = document.getElementById('essay_title');
+$( document ).ready(function(){
+  $(".button-collapse").sideNav();
+})
+
+var title = document.getElementById('essay-title');
 title.onkeyup = function (ev) {
   titleChangeHandle(ev);
   if (essayState(state)) {
@@ -18,8 +22,10 @@ title.onkeyup = function (ev) {
   }
 };
 
-var text = document.getElementById('essay_text');
+
+var text = document.getElementById('essay-text');
 text.onkeyup = function (ev) {
+	mdText.innerHTML = marked(ev.target.value, {sanitize: true})
   textChangeHandle(ev);
   if (essayState(state)) {
     btnStateChangeFunc(true);
@@ -42,6 +48,7 @@ function toggleBtnState(btn) {
 
 function titleChange(state) {
   return function (ev) {
+		console.log(ev.target.value)
     return state.title = ev.target.value.length;
   };
 }
@@ -62,4 +69,3 @@ function essayState(state) {
     return false;
   }
 }
-

@@ -1,16 +1,45 @@
-<div class="container">
-  <%= form_tag("/essays", :multipart => true ) do %>
+ <head>
+  <title>親こうfour</title>
 
-  <%= text_field_tag 'essay[title]', "", class: "kijiti", placeholder: "title" %>
-  <%= text_area_tag 'essay[text]', "", class: "toran", placeholder: "text" %>
-  <%= file_field_tag 'image[0]' %>
-  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+	<%= csrf_meta_tags %>
+	   <%= stylesheet_link_tag 'ryo', 'data-turbolinks-track' => true %>
+</head>
+	
+	
+
+
+<body>
+  <%= render "layouts/header" %>
+  <main>
+	
+	<%= form_tag("/essays", :multipart => true ) do %>
+  <%= text_field_tag 'essay[title]', "", class: "kijiti", placeholder: "title" ,id: "essay-title"%>
+	<%= text_field_tag 'essay[title]', "", class: "kijiti", placeholder: "title" ,id: "essay-title"%>
+	<div class="row">
+    <div class="col s12 m6 l6">
+  		<%= text_area_tag 'essay[text]', "",id: "essay-text", class: "toran", placeholder: "text", size: "40x40" %>  
+		</div>
+		<div class="col s12 m6 l6">
+			<div class="md-frame">
+  		<span id="mdText" class="md-context"></span>
+			</div>
+		</div>
+	</div>
+	<%= file_field_tag 'image[0]' %>
   <input type="radio" name="tou" value="essay" id="radio1" checked>
- <label for="radio1">投稿</label>
+　<label for="radio1">投稿</label>
   <input type="radio" name="tou" value="question" id="radio2" >
-   <label for="radio2">質問</label>
+  <label for="radio2">質問</label>
   <%= check_box_tag "essay[pickup_f]", "1" %>
-<%= submit_tag "投稿" ,:id => 'post-btn',style: "cursor: pointer", class: "btn btn-primary" %>
+	<%= submit_tag "投稿" ,:id => 'post-btn',style: "cursor: pointer", class: "btn btn-primary" %>
 <% end %>
 <%= javascript_include_tag "addjs/essay_new.js" %>
-</div>
+  </main>
+  <%= render "layouts/footer" %>
+</body>
+</html>

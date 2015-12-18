@@ -127,6 +127,7 @@ class EssaysController < ApplicationController
     @image = ImageEssay.new
     @tags = Tag.all.offset(1)
     @essay = Essay.new
+		render :layout => false
   end
 
   def create
