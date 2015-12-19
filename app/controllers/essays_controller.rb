@@ -132,6 +132,9 @@ class EssaysController < ApplicationController
     @image = ImageEssay.new
     @tags = Tag.all.offset(1)
     @essay = Essay.new
+		if params[:type] == "b" then
+			render(:layout => false,:template => "/essays/newmd")
+		end
   end
 
   def create
