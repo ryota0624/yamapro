@@ -1,3 +1,5 @@
+require 'RMagick'
+
 class ImgsController < ApplicationController
 	def upload
 		params.each do |param|

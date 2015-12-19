@@ -1,5 +1,3 @@
-require 'RMagick'
-
 class EssaysController < ApplicationController
   def index
     @link_bool = false
