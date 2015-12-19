@@ -1,4 +1,5 @@
-/******/ (function(modules) { // webpackBootstrap
+/******/
+ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -67,6 +68,8 @@
 	// import Youtube from './youtube/component/youtubePage';
 	// import MarkDown from './markDown/component/mdComponent';
 	
+	connect();
+	
 	var App = (function (_React$Component) {
 		_inherits(App, _React$Component);
 	
@@ -85,7 +88,7 @@
 					React.createElement(
 						'div',
 						{ className: 'pane' },
-						React.createElement(_imgUpdate2.default, { userId: this.props.userId, redirect: this.props.redirect, target: this.props.target, post: this.props.post })
+						React.createElement(_imgUpdate2.default, { userId: 1, target: "http://localhost:3000/img", post: "http://localhost:3000/api/addessay" })
 					)
 				);
 			}
@@ -94,15 +97,7 @@
 		return App;
 	})(React.Component);
 	
-	var editorOn = function editorOn(_ref) {
-		var userId = _ref.userId;
-		var redirect = _ref.redirect;
-		var target = _ref.target;
-		var post = _ref.post;
-	
-		render(React.createElement(App, { userId: userId, redirect: redirect, target: target, post: post }), document.getElementById('app'));
-	};
-	editorOn(window.editor);
+	render(React.createElement(App, null), document.getElementById('app'));
 	
 	// {/*<div className="pane"><MarkDown /></div>*/}
 	// {/*<div className="pane"><Twitter /></div>*/}
@@ -19704,7 +19699,7 @@
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
 	
 	var _react = __webpack_require__(1);
@@ -19723,135 +19718,131 @@
 	var marked = __webpack_require__(163);
 	
 	var ImgUpdate = (function (_Component) {
-	  _inherits(ImgUpdate, _Component);
+		_inherits(ImgUpdate, _Component);
 	
-	  function ImgUpdate(props) {
-	    _classCallCheck(this, ImgUpdate);
+		function ImgUpdate(props) {
+			_classCallCheck(this, ImgUpdate);
 	
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ImgUpdate).call(this, props));
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ImgUpdate).call(this, props));
 	
-	    _this.state = {
-	      title: "",
-	      images: [],
-	      img: 0,
-	      md: ""
-	    };
-	    return _this;
-	  }
+			_this.state = {
+				title: "",
+				images: [],
+				img: 0,
+				md: ""
+			};
+			return _this;
+		}
 	
-	  _createClass(ImgUpdate, [{
-	    key: 'render',
-	    value: function render() {
-	      var buttonBool = this.state.md.length > 0 && this.state.title.length > 0;
-	      console.log(buttonBool);
-	      var imgForm = (function (num) {
-	        var forms = [];
-	        for (var i = 0; i < num; i++) {
-	          forms.push(_react2.default.createElement('input', { type: 'file', name: makeRand(),
-	            encType: 'multipart/form-data',
-	            key: i
-	          }));
-	        }
-	        return forms;
-	      })(this.state.img);
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement('input', { type: 'text', value: this.state.title, onChange: this.titlehandle.bind(this) }),
-	        _react2.default.createElement(
-	          'form',
-	          { onChange: this.onChange.bind(this),
-	            action: this.props.target,
-	            method: 'post', encType: 'multipart/form-data',
-	            target: 'send' },
-	          _react2.default.createElement('input', { type: 'file', name: makeRand(),
-	            encType: 'multipart/form-data'
-	          })
-	        ),
-	        _react2.default.createElement('iframe', { name: 'send', hidden: true }),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'row' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'col s12 m6 l6' },
-	            _react2.default.createElement('textarea', { id: 'essay-text', rows: '40', onChange: this.changeText.bind(this), value: this.state.md })
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'col s12 m6 l6' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'md-frame' },
-	              _react2.default.createElement('span', { dangerouslySetInnerHTML: this.rawMarkup.bind(this)() })
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          { className: 'btn btn-primary', id: 'post-btn', onClick: this.onSubmit.bind(this), disabled: !buttonBool ? "disabled" : false },
-	          '投稿'
-	        )
-	      );
-	    }
-	  }, {
-	    key: 'onSubmit',
-	    value: function onSubmit() {
-	      var _this2 = this;
+		_createClass(ImgUpdate, [{
+			key: 'render',
+			value: function render() {
+				var imgForm = (function (num) {
+					var forms = [];
+					for (var i = 0; i < num; i++) {
+						forms.push(_react2.default.createElement('input', { type: 'file', name: makeRand(),
+							encType: 'multipart/form-data',
+							key: i
+						}));
+					}
+					return forms;
+				})(this.state.img);
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement('input', { type: 'text', value: this.state.title, onChange: this.titlehandle.bind(this) }),
+					_react2.default.createElement(
+						'form',
+						{ onChange: this.onChange.bind(this),
+							action: this.props.target,
+							method: 'post', encType: 'multipart/form-data',
+							target: 'send' },
+						_react2.default.createElement('input', { type: 'file', name: makeRand(),
+							encType: 'multipart/form-data'
+						})
+					),
+					_react2.default.createElement('iframe', { name: 'send', hidden: true }),
+					_react2.default.createElement(
+						'div',
+						{ className: 'row' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'col s12 m6 l6' },
+							_react2.default.createElement('textarea', { onChange: this.changeText.bind(this), value: this.state.md })
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'col s12 m6 l6' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'md-frame' },
+								_react2.default.createElement('span', { dangerouslySetInnerHTML: this.rawMarkup.bind(this)() })
+							)
+						)
+					),
+					_react2.default.createElement(
+						'button',
+						{ className: 'btn btn-primary', id: 'post-btn', onClick: this.onSubmit.bind(this) },
+						'投稿'
+					)
+				);
+			}
+		}, {
+			key: 'onSubmit',
+			value: function onSubmit() {
+				request.post(this.props.post).send({ user_id: this.props.userId, title: this.state.title, text: this.state.md }).end(function (err, res) {
+					return console.log(res);
+				});
+			}
+		}, {
+			key: 'onChange',
+			value: function onChange(ev) {
+				var data = new FormData(ev.target.parentNode);
+				request.post(this.props.target).send(data).end(function (err, res) {
+					return console.log(res);
+				});
 	
-	      request.post(this.props.post).send({ user_id: this.props.userId, title: this.state.title, text: this.state.md }).end(function (err, res) {
-	        window.location.href = _this2.props.redirect;
-	      });
-	    }
-	  }, {
-	    key: 'onChange',
-	    value: function onChange(ev) {
-	      var data = new FormData(ev.target.parentNode);
-	      request.post(this.props.target).send(data).end(function (err, res) {
-	        return console.log(res);
-	      });
+				var files = this.props.target + "/" + ev.target.name;
+				var tag = '  \n![' + files + '](' + files + ')  ';
+				this.setState({ md: this.state.md + tag });
+			}
+		}, {
+			key: 'changeText',
+			value: function changeText(ev) {
+				this.setState({ md: ev.target.value });
+			}
+		}, {
+			key: 'inc',
+			value: function inc() {
+				this.setState({ img: this.state.img + 1 });
+			}
+		}, {
+			key: 'rawMarkup',
+			value: function rawMarkup() {
+				var markup = marked(this.state.md.toString(), { sanitize: true });
+				return { __html: markup };
+			}
+		}, {
+			key: 'titlehandle',
+			value: function titlehandle(ev) {
+				this.setState({ title: ev.target.value });
+			}
+		}]);
 	
-	      var files = this.props.target + "/" + ev.target.name;
-	      var tag = '  \n![' + files + '](' + files + ')  ';
-	      this.setState({ md: this.state.md + tag });
-	    }
-	  }, {
-	    key: 'changeText',
-	    value: function changeText(ev) {
-	      this.setState({ md: ev.target.value });
-	    }
-	  }, {
-	    key: 'inc',
-	    value: function inc() {
-	      this.setState({ img: this.state.img + 1 });
-	    }
-	  }, {
-	    key: 'rawMarkup',
-	    value: function rawMarkup() {
-	      var markup = marked(this.state.md.toString(), { sanitize: true });
-	      return { __html: markup };
-	    }
-	  }, {
-	    key: 'titlehandle',
-	    value: function titlehandle(ev) {
-	      this.setState({ title: ev.target.value });
-	    }
-	  }]);
-	
-	  return ImgUpdate;
+		return ImgUpdate;
 	})(_react.Component);
 	
 	exports.default = ImgUpdate;
 	
 	function makeRand() {
-	  var l = 8;
-	  var c = "abcdefghijklmnopqrstuvwxyz0123456789";
-	  var cl = c.length;
-	  var r = "";
-	  for (var i = 0; i < l; i++) {
-	    r += c[Math.floor(Math.random() * cl)];
-	  }
-	  return r;
+		var l = 8;
+		var c = "abcdefghijklmnopqrstuvwxyz0123456789";
+		var cl = c.length;
+		var r = "";
+		for (var i = 0; i < l; i++) {
+			r += c[Math.floor(Math.random() * cl)];
+		}
+		return r;
 	}
 	
 	//class: "kijiti", placeholder: "title" ,id: "essay-title"

@@ -10,36 +10,22 @@
 	   <%= stylesheet_link_tag 'ryo', 'data-turbolinks-track' => true %>
 </head>
 	
-	
-
-
 <body>
   <%= render "layouts/header" %>
+    <%= javascript_tag do %>
+    window.editor = {};
+    window.editor.userId = <%= current_user.id %>;
+    window.editor.redirect = "<%= raw root_path %>";
+    window.editor.target  = "<%= img_path %>";
+    window.editor.post = "<%= api_addessay_path %>";
+    console.log(window.editor)
+  	<% end %>
   <main>
-	
-	<%= form_tag("/essays", :multipart => true ) do %>
-  <%= text_field_tag 'essay[title]', "", class: "kijiti", placeholder: "title" ,id: "essay-title"%>
-	<%= text_field_tag 'essay[title]', "", class: "kijiti", placeholder: "title" ,id: "essay-title"%>
-	<div class="row">
-    <div class="col s12 m6 l6">
-  		<%= text_area_tag 'essay[text]', "",id: "essay-text", class: "toran", placeholder: "text", size: "40x40" %>  
-		</div>
-		<div class="col s12 m6 l6">
-			<div class="md-frame">
-  		<span id="mdText" class="md-context"></span>
-			</div>
-		</div>
-	</div>
-	<%= file_field_tag 'image[0]' %>
-  <input type="radio" name="tou" value="essay" id="radio1" checked>
-　<label for="radio1">投稿</label>
-  <input type="radio" name="tou" value="question" id="radio2" >
-  <label for="radio2">質問</label>
-  <%= check_box_tag "essay[pickup_f]", "1" %>
-	<%= submit_tag "投稿" ,:id => 'post-btn',style: "cursor: pointer", class: "btn btn-primary" %>
-<% end %>
-<%= javascript_include_tag "addjs/essay_new.js" %>
+    <div id="app"></div>
   </main>
   <%= render "layouts/footer" %>
+  <%= javascript_include_tag "addjs/mdEditer.js" %>
 </body>
 </html>
+
+userId={this.props.userId} redirect={this.props.redirect} target={this.props.target} post={this.props.post}
