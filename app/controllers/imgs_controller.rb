@@ -1,5 +1,6 @@
 class ImgsController < ApplicationController
 	def upload
+	require 'RMagick'
 		params.each do |param|
 			if param[1].class == ActionDispatch::Http::UploadedFile then
 				img = EssayImg.new;
