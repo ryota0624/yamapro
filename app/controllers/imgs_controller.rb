@@ -8,7 +8,6 @@ class ImgsController < ApplicationController
 				img.data = image_magick.resize_to_fit(300, 300).to_blob
 				img.save
 			end
-		
 		end
 		render json: {ho: "hoge"}
 	end
