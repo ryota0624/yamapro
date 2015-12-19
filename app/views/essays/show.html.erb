@@ -23,6 +23,9 @@
         <p class="day"><%= @essay.created_at.strftime("%Y年 %m月 %d日")%></p>
         <p class="kiti" ><%= @essay.title %></p>
         <div  class="kijibu">
+          <% if @essay.md? then %>
+            <div id="md" class="text_kizi" style="background-color: #ffffff"></div>
+          <% else %>
           <% if @essay.pickup_f?  then %>
           <div class="text_kiji" style="background-color: #ffffff">
             <%= " \n" %><%=@essay.text.html_safe %>
@@ -31,6 +34,7 @@
           <textarea readonly="true" class="text_kiji">
             <%= " \n" %><%=@essay.text.chomp %>
           </textarea>
+          <% end %>
           <% end %>
         </div>
 
@@ -104,4 +108,10 @@
  </div>
 </div>
 <div class="clear"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
 <%= javascript_include_tag "addjs/comment.js" %>
+<%= javascript_tag do %>
+  window.md_text = <%= raw @essay.text.to_json %>;
+  var md = document.getElementById("md")
+  md.innerHTML = marked(md_text, {sanitize: true})
+<% end %>

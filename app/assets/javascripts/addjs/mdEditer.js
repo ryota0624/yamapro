@@ -170,14 +170,18 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement('input', { type: 'text', value: this.state.title, onChange: this.titlehandle.bind(this) }),
+	        _react2.default.createElement('input', { type: 'text', value: this.state.title, placeholder: 'input title', onChange: this.titlehandle.bind(this) }),
 	        _react2.default.createElement(
 	          'form',
 	          { onChange: this.onChange.bind(this),
 	            action: this.props.target,
 	            method: 'post', encType: 'multipart/form-data',
 	            target: 'send' },
-	          '画像の挿入',
+	          _react2.default.createElement(
+	            'strong',
+	            null,
+	            '画像の挿入'
+	          ),
 	          _react2.default.createElement('input', { type: 'file', name: makeRand(),
 	            encType: 'multipart/form-data'
 	          }),
@@ -190,7 +194,8 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'col s12 m6 l6' },
-	            _react2.default.createElement('textarea', { id: 'essay-text', rows: '40', onChange: this.changeText.bind(this), value: this.state.md })
+	            _react2.default.createElement('textarea', { id: 'essay-text', placeholder: 'input text', rows: '40', onChange: this.changeText.bind(this),
+	              value: this.state.md, onKeyUp: this.keyUpHandle.bind(this) })
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -234,6 +239,14 @@
 	    key: 'changeText',
 	    value: function changeText(ev) {
 	      this.setState({ md: ev.target.value });
+	    }
+	  }, {
+	    key: 'keyUpHandle',
+	    value: function keyUpHandle(ev) {
+	      console.log(ev.keyCode);
+	      if (ev.keyCode == 13) {
+	        this.setState({ md: this.state.md + "  \n" });
+	      }
 	    }
 	  }, {
 	    key: 'inc',

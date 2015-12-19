@@ -1,6 +1,6 @@
-class CreateImgs < ActiveRecord::Migration
+class CreateEssayImgs < ActiveRecord::Migration
   def change
-    create_table :imgs do |t|
+    create_table :essay_imgs do |t|
       t.binary :data
       t.text :name
 
