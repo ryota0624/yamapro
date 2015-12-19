@@ -1,5 +1,4 @@
 class ImgsController < ApplicationController
-	require 'RMagick'
 	def upload
 		params.each do |param|
 			if param[1].class == ActionDispatch::Http::UploadedFile then
