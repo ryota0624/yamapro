@@ -1,4 +1,5 @@
 class EssaysController < ApplicationController
+require 'RMagick'
   def index
     @link_bool = false
     @essays = Essay.where(pickup_f: false)
