@@ -36,7 +36,4 @@
 	border-style: ridge;
 	overflow: scroll;
 	background-image:url("/images/md.png");
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: 50%;
 }
