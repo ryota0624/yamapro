@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   def new
-    @post = Post.new()
+    @post = Post.new
   end
   def index
-    @posts = Post.all()
+    @posts = Post.all
   end
   def create
     logger.debug(params)

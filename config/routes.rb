@@ -37,6 +37,9 @@ Rails.application.routes.draw do
   resources :mypages, only: [:index] do
     collection { get "my_essay", "my_list","add_my_list", "my_post", "destroy_my_list","get_user_image" }
   end
+	
+	post 'img' => "imgs#upload"
+	get 'img/:name' => "imgs#show"
 
   namespace :api, {format: "json"} do
     get "user" => "apis#user"

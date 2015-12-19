@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @image = UserImage.where(user_id: 8)
   end
 
   def show
@@ -74,10 +73,8 @@ class UsersController < ApplicationController
   def complete
   end
 
-
   def image
-    @image = UserImage.where(user_id: params[:id])
-    if @image.first then 
+    if UserImage.find_by(user_id: params[:id]) then 
       send_data(@image.first.data, :disposition => "inline", :type => "image/jpeg")
     else
       send_file("./public/images/sample_image.png", :disposition => "inline", :type => "image/png")

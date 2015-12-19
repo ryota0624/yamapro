@@ -1,22 +1,18 @@
     <nav>
-      <div class="nav-wrapper">
+      <div class="nav-wrapper container">
       <a class="brand-logo" >親こうfour</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <%= link_to "親こうfour", root_path, :class => "brand-logo" %>
  <!--      <%= link_to image_tag('/images/title.png', :class => "brand-logo", :id => 'title'), root_path %> -->
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><%= link_to "TOP", root_path %></li>
-        <li><%= link_to "サイトについて", about_path %></li>
+				<li><%= link_to "特集", pickup_essays_path %></li>
         <li><%= link_to "みんなの投稿", essays_path %></li>
-        <li><%= link_to "みんなの質問", question_essays_path %></li>
-        <li><%= link_to "特集", pickup_essays_path %></li>
-      </ul>
+      	        <li><%= link_to "サイトについて", about_path %></li>
+			</ul>
         <ul class="side-nav" id="mobile-demo">
-        <li><%= link_to "TOP", root_path %></li>
-        <li><%= link_to "サイトについて", about_path %></li>
+				<li><%= link_to "特集", pickup_essays_path %></li>
         <li><%= link_to "みんなの投稿", essays_path %></li>
-        <li><%= link_to "みんなの質問", question_essays_path %></li>
-        <li><%= link_to "特集", pickup_essays_path %></li>
+				        <li><%= link_to "サイトについて", about_path %></li>
       </ul>
       </div>
       <div class="search" hidden>

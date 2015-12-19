@@ -97,4 +97,17 @@ class Essay < ActiveRecord::Base
       Essay.find_by(id: tag.essay_id)
 	 }.compact
   end
+	
+	def get_tags()
+	   TagEssay.where(essay_id: self.id).map { |tag| Tag.find_by id: tag.tag_id }		
+	end
+	
+	def img_id()
+		post_img = ImageEssay.where(essay_id: self.id).first
+   	if post_img.nil? then
+    	0
+    else
+    	post_img.id
+    end
+	end
 end

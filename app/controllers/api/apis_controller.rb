@@ -53,12 +53,11 @@ class Api::ApisController < ApplicationController
     if @essay.save
       render json: @essay
     else
-      #render json: {"error": "error"}
+      render json: {error: "error"}
     end
   end
 
   def delete_essay
-    logger.debug params[:esssay_id]
    @essay = Essay.find(params[:essay_id])
    @essay.delete
    render json: @essay
