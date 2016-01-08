@@ -29,7 +29,7 @@
           </div>
           <% else %>
           <textarea readonly="true" class="text_kiji">
-            <%= " \n" %><%=@essay.text.chomp.html_safe %>
+            <%= " \n" %><%=@essay.text.chomp %>
           </textarea>
           <% end %>
         </div>

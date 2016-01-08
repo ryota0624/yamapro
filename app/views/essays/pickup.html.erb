@@ -53,7 +53,7 @@
               <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "topic2") %>
             </div>
             <p class="toku_toko">
-              <%= essay.text.html_safe.slice(0,75)+" ..." %>
+              <%= strip_tags(essay.text.html_safe.slice(0,75))+" ..." %>
             </p>
           </a>
         </div>
@@ -67,16 +67,16 @@
       <a href="/essays/<%= essay.id %>?page=1">
         <div class="mi_ti">
           <!-- <img src="./.jpg" class="tou_ti"> -->
-          <%= essay.title.slice(0,14) %>
+          <%= essay.title.slice(0,10) %>
         </div>
         <p class="mina_toko">
-          <%= essay.text.html_safe.slice(0,160)+" ..." %>
+          <%= strip_tags(essay.text.slice(0,160))+" ..." %>
         </p>
       </a>
     </div>
     <% end %>
     <div class="page">
-      <%= will_paginate @essays %>
+      <%= will_paginate(@essays,:class => "pagenation",:previous_label => "前", :next_label => "次") %>
     </div>
   </div>
 </div>

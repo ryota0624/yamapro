@@ -71,16 +71,21 @@ class EssaysController < ApplicationController
     @tags = middleTags.map { |tag| Tag.find_by id: tag.tag_id }
     @comments = Comment.where(essay_id: @essay.id)
     @mylist_num = @essay.mylists
+		text = @essay.text.split "|"
+    text.unshift("")
     if params[:page] then
-      text = @essay.text.split "|"
-      text.unshift("")
       page = params[:page].to_i
       if text[page] then
         @essay.text = text[page]
         @now_page_num = page
         @page_num = text.length
       end
+			else 
+			@essay.text = text[1]
+      @now_page_num = 1
+      @page_num = text.length
     end
+		
     if logged_in? then
       @fav = Mylist.where(user_id: current_user.id, essay_id: @essay.id)
       @fav = @fav[0]
@@ -177,7 +182,11 @@ class EssaysController < ApplicationController
   end
 
   def tags 
-    @tags = Tag.all
+		@tags = []
+    tags = Tag.all
+		length = tags.length
+		@tags.push tags.slice(0, length/2)
+		@tags.push tags.slice(length/2 + 1, length)
   end
 
   def tag
