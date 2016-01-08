@@ -2312,13 +2312,12 @@ footer p#copy{
 
 
 
-/*
+
 
 body{
 	background-image:url("/images/restack_back.png");
 
 }
-*/
 #back_re{
 	box-sizing:border-box;
 	width:90%;
@@ -2332,7 +2331,7 @@ body{
 	line-height:0em;
 	margin-top:30px;
 }
-h1{
+h2{
 	margin-top:35px;
 	color:#520;
 	border-bottom:dashed 5px #ea9aa5;
@@ -2406,7 +2405,7 @@ h1{
 
 
 
-/*
+
 footer{
 	box-sizing:border-box;
 	background:#aaa;
@@ -2420,4 +2419,3 @@ footer{
 	padding:1%;
 
 }
-*/

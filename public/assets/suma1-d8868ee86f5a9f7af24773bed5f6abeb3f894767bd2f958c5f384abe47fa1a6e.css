@@ -1475,112 +1475,21 @@ div.set_kipro{
 
 
 
-#back_re{
-	box-sizing:border-box;
-	width:90%;
-	margin:2% auto;
-	font-size:12pt;
-	line-height:1.6em;
-	color:#3a6a1f
-}
-#sub_title_re{
-	color:#aaa;
-	line-height:0em;
-	margin-top:30px;
-}
-h1{
-	margin-top:35px;
-	color:#520;
-	border-bottom:dashed 5px #ea9aa5;
-	padding:5px 0px 5px 0px;
-	font-size:14pt;
-}
-#type_A_re{
-	box-sizing:border-box;
-	width:49%;
-	float:left;
-	border:solid 3px #cb9;
-	-webkit-border-radius:20px;
-	margin:0% 1% 2% 0%;
-	color:#400;
-	font-size:12pt;
-	background:#feffee;
-	padding-bottom:6%;
-	line-height:1.5em;
-}
-#type_B_re{
-	box-sizing:border-box;
-	width:49%;
-	float:left;
-	border:solid 3px #9b9;
-	-webkit-border-radius:20px;
-	margin:0% 0% 2% 1%;
-	color:#040;
-	font-size:12pt;
-	background:#eeffee;
-	line-height:1.5em;
-}
-.sub_title1_re{
-	background:#cb9;
-	width:96%;
-	padding:2%;
-	-webkit-border-top-left-radius: 10px;
-	-webkit-border-top-right-radius: 10px;
-	margin-bottom:1%;
-	color:#fff;
-  margin:0px !important;
-}
-.sub_title2_re{
-	background:#9b9;
-	width:96%;
-	padding:2%;
-	-webkit-border-top-left-radius: 10px;
-	-webkit-border-top-right-radius: 10px;
-	margin-bottom:1%;
-	color:#fff;
-  margin: 0px !important;
-}
-.left_re{
-	box-sizing:border-box;
-	width:60%;
-	float:left;
-	padding:1%;
-
-}
-
-
-.r_re{
-	box-sizing:border-box;
-	width:40%;
-	float:left;
-	text-align:center;
-	padding:1%;
-}
-.type_photo_re{
-	width:70%;
-	margin-bottom:5%;
-
-}
-
-
-
-
-
 
 @media (max-width: 771px){
-#back_re{
+#back{
 	width:100%;
 	padding:2.5%;
 	font-size:10pt;
 }
-#title_img_re{
+#title_img{
 	width:230px;
 	margin-bottom:10px;
 }
-h1{
+h2{
 	font-size:11pt;
 }
-#type_A_re{
+#type_A{
 	width:100%;
 	padding-bottom:0%;
 	-webkit-border-radius:10px;
@@ -1588,14 +1497,14 @@ h1{
 	margin:0% 0% 2% 0%;
 	line-height:1.3em;
 }
-#type_B_re{
+#type_B{
 	width:100%;
 	-webkit-border-radius:10px;
 	font-size:10pt;
 	margin:0% 0% 2% 0%;
 	line-height:1.3em;
 }
-.sub_title1_re{
+.sub_title1{
 	background:#cb9;
 	width:96%;
 	padding:2%;
@@ -1604,7 +1513,7 @@ h1{
 	margin-bottom:1%;
 	color:#fff;
 }
-.sub_title2_re{
+.sub_title2{
 	background:#9b9;
 	width:96%;
 	padding:2%;

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   delete "logout" => "user_sessions#destroy"
   get "logout" => "user_sessions#destroy"
   get "help" => "top#help"
-
+  get "restack" => "top#restack"
 
   get "about" => "top#about"
   get "get_image" => "essays#get_image"

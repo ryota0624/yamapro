@@ -14,7 +14,7 @@
   	<input type="radio" id="next5" name="gal">
   		<div id="photos">
   			<div id="photo0" class="pic"><img src="/images/bana2.jpeg"></div>
-  			<div id="photo1" class="pic"><img src="/images/bana1.jpeg"></a>
+  			<div id="photo1" class="pic"><%= link_to image_tag("/images/bana1.jpeg"), restack_path %></a>
   					<label for="back1"><div id="left1" class="b_left"><span>＜</span></div></label>
   					<label for="next1"><div id="right1" class="b_right"><span>＞</span></div></label>
   				</div>
@@ -26,7 +26,8 @@
   					<label for="back3"><div id="left3" class="b_left"><span>＜</span></div></label>
   					<label for="next3"><div id="right3" class="b_right"><span>＞</span></div></label>
   				</div>
-  				<div id="photo4" class="pic"><img src="/images/bana1.jpeg">
+  				<div id="photo4" class="pic"><%= link_to image_tag("/images/bana1.jpeg"), restack_path %></a>
+
   					<label for="back4"><div id="left4" class="b_left"><span>＜</span></div></label>
   					<label for="next4"><div id="right4" class="b_right"><span>＞</span></div></label>
   				</div>
