@@ -1,24 +1,19 @@
 <div class="dodai">
   <div class="yohaku">
 		<div class="row">
-		<div class="col-md-6">
+    <% @tags.each do |tags| %>
+
+		<div class="col-md-3">
     <ul class="list-group">
-      <% @tags[0].each do |tag| %>
+      <% tags.each do |tag| %>
       <li class="list-group-item">
         <a href="/essays/tag?tag_id=<%= tag.id%>"><%= tag.name %></a>
       </li>
       <% end %>
     </ul>
 		</div>
-		<div class="col-md-6">
-    <ul class="list-group">
-      <% @tags[1].each do |tag| %>
-      <li class="list-group-item">
-        <a href="/essays/tag?tag_id=<%= tag.id%>"><%= tag.name %></a>
-      </li>
-      <% end %>
-    </ul>
-		</div>
+
+    <% end %>
 		</div>
   </div>
 </div>

@@ -185,11 +185,16 @@ class EssaysController < ApplicationController
   end
 
   def tags 
-		@tags = []
+    split_tags = Proc.new {|tags, num|
+      length = tags.length / num
+      return_tags = []
+      (0..(num-1)).to_a.each {|n|
+        return_tags.push(tags.slice(n*length, length))
+      }
+      return_tags
+    }
     tags = Tag.all
-		length = tags.length
-		@tags.push tags.slice(0, length/2)
-		@tags.push tags.slice(length/2 + 1, length)
+    @tags = split_tags.call(tags, 4)
   end
 
   def tag
@@ -203,7 +208,6 @@ class EssaysController < ApplicationController
         Essay.find_by(id: essay.essay_id)
       end
     end
-    logger.debug "jojoj"
     render :template => search_essays_path
   end
 
