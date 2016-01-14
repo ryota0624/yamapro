@@ -98,7 +98,7 @@
            <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => comment.user.id),:class => "koi")%>
            <%= comment.user.name %>
            <br>
-           <textarea class='coco'><%= comment.text %></textarea>
+           <textarea class='coco' readonly=""><%= comment.text %></textarea>
          </div>
          <% end %>
        </div>
