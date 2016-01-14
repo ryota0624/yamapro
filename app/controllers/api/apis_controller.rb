@@ -47,7 +47,7 @@ class Api::ApisController < ApplicationController
     @essay.md = true
     @essay.question = false
     @essay.user_id = params[:user_id].to_i
-    if params[:pickup_f] == "true" then
+    if params[:pickup_f] == true then
       @essay.pickup_f = true
     else
       @essay.pickup_f = false

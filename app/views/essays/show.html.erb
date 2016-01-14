@@ -54,10 +54,10 @@
           ★<%= @mylist_num.length %>
         </div>
         <% if @now_page_num && @now_page_num > 1 %>
-        <a href="/essays/<%= @essay.id%>?page=<%= @now_page_num-1%>">←</a>
+        <a href="/essays/<%= @essay.id%>?page=<%= @now_page_num-1%>">前へ</a>
         <% end %>
         <% if @now_page_num && @now_page_num < @page_num-1 %>
-        <a href="/essays/<%= @essay.id%>?page=<%= @now_page_num+1%>">→</a>
+        <a href="/essays/<%= @essay.id%>?page=<%= @now_page_num+1%>">次へ</a>
         <% end %>
         <div class="sns">
           <% @tweet_text = @essay.title+" \n"+"YamasitaProject "+request.url %>

@@ -85,7 +85,7 @@
 					React.createElement(
 						'div',
 						{ className: 'pane' },
-						React.createElement(_imgUpdate2.default, { userId: this.props.userId, redirect: this.props.redirect, target: this.props.target, post: this.props.post })
+						React.createElement(_imgUpdate2.default, { userId: this.props.userId, redirect: this.props.redirect, target: this.props.target, post: this.props.post, admin: this.props.admin })
 					)
 				);
 			}
@@ -99,14 +99,11 @@
 		var redirect = _ref.redirect;
 		var target = _ref.target;
 		var post = _ref.post;
+		var admin = _ref.admin;
 	
-		render(React.createElement(App, { userId: userId, redirect: redirect, target: target, post: post }), document.getElementById('app'));
+		render(React.createElement(App, { userId: userId, redirect: redirect, target: target, post: post, admin: admin }), document.getElementById('app'));
 	};
 	editorOn(window.editor);
-	
-	// {/*<div className="pane"><MarkDown /></div>*/}
-	// {/*<div className="pane"><Twitter /></div>*/}
-	// {/*<div className="pane"><Youtube /></div>*/}
 
 /***/ },
 /* 1 */
@@ -147,7 +144,8 @@
 	      title: "",
 	      images: [],
 	      img: 0,
-	      md: ""
+	      md: "",
+	      pickup_f: false
 	    };
 	    return _this;
 	  }
@@ -155,8 +153,25 @@
 	  _createClass(ImgUpdate, [{
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+	
 	      var buttonBool = this.state.md.length > 0 && this.state.title.length > 0;
 	      console.log(buttonBool);
+	      var pickupBtn = (function (bool) {
+	        if (bool) {
+	          return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement('input', { type: 'button',
+	              className: 'btn btn-primary',
+	              value: 'pickup', onClick: _this2.onPickup.bind(_this2) }),
+	            _this2.state.pickup_f ? "pickup" : "normal"
+	          );
+	        } else {
+	          return null;
+	        }
+	      })(this.props.admin);
+	      console.log(this.props.admin);
 	      var imgForm = (function (num) {
 	        var forms = [];
 	        for (var i = 0; i < num; i++) {
@@ -170,6 +185,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        pickupBtn,
 	        _react2.default.createElement('input', { type: 'text', value: this.state.title, placeholder: 'input title', onChange: this.titlehandle.bind(this) }),
 	        _react2.default.createElement(
 	          'form',
@@ -217,11 +233,16 @@
 	  }, {
 	    key: 'onSubmit',
 	    value: function onSubmit() {
-	      var _this2 = this;
+	      var _this3 = this;
 	
-	      request.post(this.props.post).send({ user_id: this.props.userId, title: this.state.title, text: this.state.md }).end(function (err, res) {
-	        window.location.href = _this2.props.redirect;
+	      request.post(this.props.post).send({ user_id: this.props.userId, title: this.state.title, text: this.state.md, pickup_f: this.state.pickup_f }).end(function (err, res) {
+	        window.location.href = _this3.props.redirect;
 	      });
+	    }
+	  }, {
+	    key: 'onPickup',
+	    value: function onPickup() {
+	      this.setState({ pickup_f: !this.state.pickup_f });
 	    }
 	  }, {
 	    key: 'onChange',

@@ -7,7 +7,7 @@
     <ul class="list-group">
       <% tags.each do |tag| %>
       <li class="list-group-item">
-        <a href="/essays/tag?tag_id=<%= tag.id%>"><%= tag.name %></a>
+        <a href="/essays/tag?tag_id=<%= tag.id%>"><div><%= tag.name %></div></a>
       </li>
       <% end %>
     </ul>
