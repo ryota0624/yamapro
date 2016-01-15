@@ -2,7 +2,7 @@ class EssaysController < ApplicationController
   def index
     @link_bool = false
     @new_essays = Essay.where.not(question: true).where(pickup_f: false).limit(3)
-    @essays = Essay.where.not(question: true).where(pickup_f: false)
+    @essays = Essay.where.not(question: true).where(pickup_f: false).offset(3)
     .paginate(:page => params[:page], :per_page => 4)
   end
 
@@ -71,16 +71,21 @@ class EssaysController < ApplicationController
     @tags = middleTags.map { |tag| Tag.find_by id: tag.tag_id }
     @comments = Comment.where(essay_id: @essay.id)
     @mylist_num = @essay.mylists
+		text = @essay.text.split "|"
+    text.unshift("")
     if params[:page] then
-      text = @essay.text.split "-"
-      text.unshift("")
       page = params[:page].to_i
       if text[page] then
         @essay.text = text[page]
         @now_page_num = page
         @page_num = text.length
       end
+			else 
+			@essay.text = text[1]
+      @now_page_num = 1
+      @page_num = text.length
     end
+		
     if logged_in? then
       @fav = Mylist.where(user_id: current_user.id, essay_id: @essay.id)
       @fav = @fav[0]
@@ -127,6 +132,9 @@ class EssaysController < ApplicationController
     @image = ImageEssay.new
     @tags = Tag.all.offset(1)
     @essay = Essay.new
+		if params[:type] == "b" then
+			render(:layout => false,:template => "/essays/newmd")
+		end
   end
 
   def create
@@ -177,7 +185,16 @@ class EssaysController < ApplicationController
   end
 
   def tags 
-    @tags = Tag.all
+    split_tags = Proc.new {|tags, num|
+      length = tags.length / num
+      return_tags = []
+      (0..(num-1)).to_a.each {|n|
+        return_tags.push(tags.slice(n*length, length))
+      }
+      return_tags
+    }
+    tags = Tag.all
+    @tags = split_tags.call(tags, 4)
   end
 
   def tag
@@ -188,10 +205,10 @@ class EssaysController < ApplicationController
       tag = Tag.find_by(id: tag_id)
       @message += tag.name
       @results = tag.tag_essays.map do |essay|
-        Essay.find(essay.essay_id)
+        Essay.find_by(id: essay.essay_id)
       end
     end
-    render :template => 'essays/search'
+    render :template => search_essays_path
   end
 
   def destory

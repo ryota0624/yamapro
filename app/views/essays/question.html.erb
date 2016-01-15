@@ -8,12 +8,12 @@
           <% if item.user.image.present? %>
             <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => item.user.id), :size => '80x80',:class => 'tou_ti')%>
           <% else %>
-            <%= image_tag '/images/sample_image.png', :size => '30x30' %>
+            <%= image_tag '/images/sample_image.png',:size => '80x80',:class => 'tou_ti'%>
           <% end %>
         </div>
           <%= item.title.slice(0,127) %></a></div>
           <% end %>
-          <%= will_paginate @questions %>
+          <%= will_paginate(@questions, :previous_label => "前", :next_label => "次") %>
         </div>
       </div>
     </div>

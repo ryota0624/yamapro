@@ -14,7 +14,7 @@
   	<input type="radio" id="next5" name="gal">
   		<div id="photos">
   			<div id="photo0" class="pic"><img src="/images/bana2.jpeg"></div>
-  			<div id="photo1" class="pic"><img src="/images/bana1.jpeg"></a>
+  			<div id="photo1" class="pic"><a href="https://ecpskey.herokuapp.com/"><img src="/images/bana1.jpeg"></a>
   					<label for="back1"><div id="left1" class="b_left"><span>＜</span></div></label>
   					<label for="next1"><div id="right1" class="b_right"><span>＞</span></div></label>
   				</div>
@@ -26,7 +26,7 @@
   					<label for="back3"><div id="left3" class="b_left"><span>＜</span></div></label>
   					<label for="next3"><div id="right3" class="b_right"><span>＞</span></div></label>
   				</div>
-  				<div id="photo4" class="pic"><img src="/images/bana1.jpeg">
+  				<div id="photo4" class="pic"><a href="https://ecpskey.herokuapp.com/"><img src="/images/bana1.jpeg"></a>
   					<label for="back4"><div id="left4" class="b_left"><span>＜</span></div></label>
   					<label for="next4"><div id="right4" class="b_right"><span>＞</span></div></label>
   				</div>
@@ -34,7 +34,7 @@
   					<label for="back5"><div id="left5" class="b_left"><span>＜</span></div></label>
   					<label for="next5"><div id="right5" class="b_right"><span>＞</span></div></label>
   				</div>
-  				<div id="photo6" class="pic"><img src="/images/bana1.jpeg">
+  				<div id="photo6" class="pic"><a href="https://ecpskey.herokuapp.com/"><img src="/images/bana1.jpeg"></a>
   				</div>
   			</div>
   		<div style="padding:9%;"></div>
@@ -53,7 +53,7 @@
               <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "topic2") %>
             </div>
             <p class="toku_toko">
-              <%= essay.text.html_safe.slice(0,75)+" ..." %>
+              <%= strip_tags(essay.text.html_safe.slice(0,75))+" ..." %>
             </p>
           </a>
         </div>
@@ -67,16 +67,16 @@
       <a href="/essays/<%= essay.id %>?page=1">
         <div class="mi_ti">
           <!-- <img src="./.jpg" class="tou_ti"> -->
-          <%= essay.title.slice(0,14) %>
+          <%= essay.title.slice(0,10) %>
         </div>
         <p class="mina_toko">
-          <%= essay.text.html_safe.slice(0,160)+" ..." %>
+          <%= strip_tags(essay.text.slice(0,160))+" ..." %>
         </p>
       </a>
     </div>
     <% end %>
     <div class="page">
-      <%= will_paginate @essays %>
+      <%= will_paginate(@essays,:class => "pagenation",:previous_label => "前", :next_label => "次") %>
     </div>
   </div>
 </div>

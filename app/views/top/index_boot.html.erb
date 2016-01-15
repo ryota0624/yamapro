@@ -1,0 +1,67 @@
+<div class="dodai">
+  <div class="top-post">
+    <h2 class="top_title">みんなの投稿</h2>
+    <ul class="list-group">
+    <% @essays.each_with_index do |essay, i| %>
+    <li class="list-group-item">
+    <a href="/essays/<%= essay.id %>?page=1">
+        <% if essay.user.image.present? %>
+          <%= image_tag(url_for(:controller => 'users', :action => 'image', :id => essay.user.id), :size => '80x80',:class => 'tou_ti')%>
+        <% else %>
+          <%= image_tag '/images/sample_image.png', :size => '30x30'%>
+        <% end %>
+        <p class="inti"><%= essay.title.slice(0,9) %></p>
+        <% if i == 0 then %>
+          <p class="inbu_tou1"><%= essay.text.slice(0,100) %></p>
+        <% else %>
+          <p class="inbu_tou1"><%= essay.text.slice(0,66) %></p>
+        <% end %>
+    </a>
+    <% end %>
+    </ul>
+  </div>
+  <div class="tokusyu">
+    <h2 class="top_title">特集</h2>
+    <div class="toku">
+      <% @posts.each_with_index do |post, i| %>
+      <div id="toku_<%= i+1 %>">
+        <a href="/essays/<%= post.id%>?page=1">
+          <p class="inti"><%= post.title.slice(0,9) %></p>
+
+          <% if i == 0 then%>
+            <p class="inbu_toku1">
+            <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "topic1") %>
+          <% else %>
+            <p class="inbu_toku2">
+            <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "topic2") %>
+          <% end %>
+          <%= post.text.slice(0, 100) %>
+          </p>
+        </a>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div id="osukiji">
+    <h2 class="top_title">質問</h2>
+    <% @questions.each do |recommend| %>
+      <div class="osusume">
+        <a href="/essays/<%= recommend.id%>?page=1">
+          <div class="mi_ti">
+            <% if recommend.user.image.present? %>
+              <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => recommend.user.id), :height => '150',:class => "osuicon")%>
+            <% else %>
+              <%= image_tag '/images/sample_image.png', :size => '30x30' %>
+            <% end %>
+            <p class="mina_ti"><%= recommend.title %></p>
+          </div>
+          <p class="inbu_osu">
+            <%= recommend.text %>
+          </p>
+        </a>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="clear"></div>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">

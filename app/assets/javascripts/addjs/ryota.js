@@ -1,13 +1,13 @@
 "use strict";
 
 var huko = document.createElement("h1");
-huko.innerHTML = "親不孝four";
+huko.innerHTML = "four";
 var header = document.getElementById("header");
 var title = document.getElementById("title");
 var copy = document.getElementById("copy");
 var path = document.location.pathname;
 huko.onclick = function () {
-  document.location.pathname = "/dodai_inbu_osu_saiko_css";
+	document.location.replace("https://sutpro.herokuapp.com");
 };
 console.log(path);
 
@@ -24,4 +24,3 @@ var headerChange = oyaHuko(header, huko, path);
 title.onmouseover = function () {
   copy.onclick = headerChange;
 };
-

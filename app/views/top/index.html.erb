@@ -36,7 +36,7 @@
             <p class="inbu_toku2">
             <%= image_tag(url_for(:controller => 'essays',:action => 'get_image', :id => @posts_img[i]), :class => "topic2") %>
           <% end %>
-          <%= post.text.slice(0, 100) %>
+          <%= strip_tags(post.text.slice(0, 100)) %>
           </p>
         </a>
       </div>
@@ -44,20 +44,26 @@
     </div>
   </div>
   <div id="osukiji">
-    <h2 class="top_title">質問</h2>
-    <% @recommends.each do |recommend| %>
+    <h2 class="top_title">
+      <% if logged_in?%>
+        おすすめ
+      <% else %>
+        質問
+      <% end %>
+    </h2>
+      <% @questions.each do |recommend| %>
       <div class="osusume">
         <a href="/essays/<%= recommend.id%>?page=1">
           <div class="mi_ti">
             <% if recommend.user.image.present? %>
               <%= image_tag(url_for(:controller => 'users',:action => 'image', :id => recommend.user.id), :height => '150',:class => "osuicon")%>
             <% else %>
-              <%= image_tag '/images/sample_image.png', :size => '30x30' %>
+              <%= image_tag '/images/sample_image.png', :class => 'osuicon' %>
             <% end %>
             <p class="mina_ti"><%= recommend.title %></p>
           </div>
           <p class="inbu_osu">
-            <%= recommend.text %>
+            <%= strip_tags(recommend.text.slice(0, 100)) %>
           </p>
         </a>
       </div>

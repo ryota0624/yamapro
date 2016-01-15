@@ -63,5 +63,38 @@ class Essay < ActiveRecord::Base
     result[:user_posts] = essays.where(pickup_f: false)
     result
   end
+  
+   def Essay.sugest_essays(current_user)
+    rankerEssay = Proc.new {
+      if current_user.blank? 
+        mylist = Mylist.group(:essay_id).count().to_a.sort {|a, b| -(a[1].to_i <=> b[1].to_i)}
+        mylist.map { |essay_id|
+          Essay.find_by id: essay_id[0]
+        }.compact.slice(0, 3)
+      else
+        Essay.where(question: true).limit 3
+      end
+    }
+    if current_user.nil? then
+      return rankerEssay.call
+    end
+    
+    tag = current_user.tag_users.first
+    if tag then
+	   	userInfo = Usertag.find(tag.id)
+	    parentsTags = Tag.where(name: userInfo.fage)
+	    Essay.sugest_parent(parentsTags.first).concat(Essay.sugest_parent parentsTags.last).slice(0,3)
+    else
+      rankerEssay.call
+    end
+  end
 
+  def Essay.sugest_parent(parent_tag) 
+    if parent_tag.nil? then
+      return []
+    end
+    parent_tag.tag_essays.map {|tag|
+      Essay.find_by(id: tag.essay_id)
+	 }.compact
+  end
 end

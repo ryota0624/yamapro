@@ -22,12 +22,11 @@ class MypagesController < ApplicationController
 
   def add_my_list
     if Mylist.exists?(essay_id: session[:essay_id], user_id: current_user.id) #存在したらtrue お気に入りしてなければfalse
-      redirect_to my_list_mypages_path
+			redirect_to "/essays/"+session[:essay_id]+"?page=1"
     else
       add = User.add_mylist(current_user.id, session[:essay_id])
       if add
-        redirect_to essay_path session[:essay_id]
-        #redirect_to my_list_mypages_path
+        redirect_to "/essays/"+session[:essay_id]+"?page=1"
       end
     end
   end
@@ -36,13 +35,14 @@ class MypagesController < ApplicationController
     essay = Mylist.where(essay_id: params[:essay_id], user_id: current_user.id)[0]
     if essay.destroy
       essay = Essay.find(params[:essay_id])
-      redirect_to essay_path params[:essay_id]
+			redirect_to "/essays/"+session[:essay_id]+"?page=1"
+      # redirect_to essay_path params[:essay_id]
     end
   end
 
   def my_list #記事のお気に入り
     @list = Mylist.where(user_id: current_user.id)
-    @essaylist = @list.map {|listItem| listItem.essay }
+    @essaylist = @list.map {|listItem| listItem.essay }.compact
 
     @essay_tags = Array.new
     @essaylist.each_with_index do |essay, i|
@@ -65,14 +65,4 @@ class MypagesController < ApplicationController
     # logger.debug @image
     send_data(@image.image, :disposition => "inline", :type => "image/jpeg")
   end
-
-  # def my_fav #つぶやきのお気に入り
-  #   fav = Fav.where(user_id: 3)
-  #   @essaylist = @list.map {|listItem| listItem.essay }
-  # end
-
-  # def my_post
-  # 	@my_posts = post.where(user: my_account)
-  # end
-
 end

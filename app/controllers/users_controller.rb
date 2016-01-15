@@ -64,7 +64,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to mypages_path , notice: "会員情報を更新しました。"
     else
-      render 'index/mypages'
+      redirect_to mypages_path, notice: "失敗"
     end
   end
 
@@ -88,6 +88,10 @@ class UsersController < ApplicationController
   private
     def user_params
       params.require(:user).permit(:confirming, :name, :password, :password_confirmation, :gender, :business, :data, :content_type, :usertag, image_attributes: [:image, :id, :uploaded_image])
+    end
+    
+    def nopass_user_params
+      params.require(:user).permit(:confirming, :name, :gender, :business, :data, :content_type, :usertag, image_attributes: [:image, :id, :uploaded_image])
     end
 
     def user_tag_params
