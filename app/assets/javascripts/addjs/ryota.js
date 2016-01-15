@@ -24,4 +24,3 @@ var headerChange = oyaHuko(header, huko, path);
 title.onmouseover = function () {
   copy.onclick = headerChange;
 };
-
