@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   post "comment" => "comments#create"
 
   resources :posts #つぶやき
+	post 'img' => "imgs#upload"
+	get 'img/:name' => "imgs#show"
 
   # マイページ
   resources :mypages, only: [:index] do

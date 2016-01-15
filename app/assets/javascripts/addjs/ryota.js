@@ -1,13 +1,13 @@
 "use strict";
 
 var huko = document.createElement("h1");
-huko.innerHTML = "click me";
+huko.innerHTML = "four";
 var header = document.getElementById("header");
 var title = document.getElementById("title");
 var copy = document.getElementById("copy");
 var path = document.location.pathname;
 huko.onclick = function () {
-  document.location.replace("https://sutpro.herokuapp.com");
+	document.location.replace("https://sutpro.herokuapp.com");
 };
 console.log(path);
 
@@ -24,4 +24,3 @@ var headerChange = oyaHuko(header, huko, path);
 title.onmouseover = function () {
   copy.onclick = headerChange;
 };
-
