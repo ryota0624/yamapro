@@ -8,9 +8,9 @@
         <%= form.fields_for :image do |imgf| %>
             <% if !imgf.object.new_record? && imgf.object.errors.empty? %>
               <div>
-                <%= user_image_tag @user, size: "150" %>
-                <%#= imgf.check_box :_destroy , {:checked => true} %>
-                <%#= imgf.label "削除" %>
+                <%= user_image_tag @user, size: "150" %><br />
+                <%= imgf.check_box :_destroy , {:checked => true} %>
+                <span class="kasi"><%= imgf.label "画像を変更する場合チェックを\n入れてください" %></span><br />
                 <%= imgf.hidden_field :id %>
               </div>
             <% else %>
@@ -20,9 +20,7 @@
         <% end %>
       </div>
       <div id="prof_waku">
-
       <div id="myto">
-
         <br />
         職種：
           <%= form.radio_button :business, 0 %>
