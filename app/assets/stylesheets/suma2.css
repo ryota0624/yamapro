@@ -3,26 +3,26 @@ html{
 }
 
 body {
- background-image:url("/images/test.png");
+ background-image:url("./test.png");
  height: 100%;
  font-family: 'Hiragino Maru Gothic Pro', sans-serif;
 }
 
-div.dodai{
+div.dodai, div.yohaku{ 
 	width:100%;
 	height:100%;
 	margin:0;
+	padding: 0;
 }
-div.yohaku {
-	padding:10px;
-}
+ 
+p.ki{	margin: 10px 0 5px 20px; color:#aaa;}
+p.ki a{	color:#ae5e00}
 header{
 	width: 100%;
 	background-color:#FEFEFA;
-  text-align:center;
 }
-header img.logo{
-	width:20%;
+header img.logo{ 
+	width:40%;
 	height:auto;
 	margin:10px;
 	box-sizing:border-box;
@@ -33,22 +33,11 @@ a{
 }
 /*  メインメニュー  */
 
-div.nav  {
-    display:table;
-}
-div.nav div{
-    display:table-cell;
-}
-
-
 nav ul li{
 	box-sizing:border-box;
-	/*border-top:#26394C 1px solid;
-	border-bottom:#26394C 1px solid;*/
 	border-left:#ffaa9d 1px solid;
 	width:20%;
 	height:35px;
-	/*padding:9px 2px;*/
 	text-align:center;
 	float:left;
 	font-size:7.5pt;
@@ -68,6 +57,16 @@ div#search_in{
 	text-align:center;
 	padding-top:6px;
 	height: 30px;
+}
+a#tag_button{/*new*/
+	box-sizing: border-box;
+    border: #aaa 1px solid;
+    background: #eee;
+    font-size: 8pt;
+    width: 50px;
+    margin:0 0 0 30px;
+    padding:3px;
+    text-align: center;
 }
 nav ul li a {
     background: linear-gradient(to bottom, #f9a89f, #c44628 100%);
@@ -91,12 +90,13 @@ nav ul li a.koko {
 article div.sub{
  box-sizing:border-box;
  width:100%;
- background-color: #AF8562;
+ height:120px;
 }
 
 div.name , div#new a{
  box-sizing:border-box;
  border-top:#C9902A 1px solid;
+ width:15%;
  height:45px;
  float:left;
  text-align:center;
@@ -105,7 +105,8 @@ div.name , div#new a{
  background:#AF8562;
  color:#E4ECCE;
 }
-div#account{
+/* サブメニューの「アカウント」の部分は一応色変えていて「投稿管理」とは別の色を指定しています。 */
+div#account{  
  background:#9E8B48;
  color:#E4ECCE;
  border-left:#C9902A 1px solid;
@@ -117,7 +118,7 @@ article div ul.act{
 }
 article div ul.sub_1{
  width:85%;
- box-sizing:border-box;
+ box-sizing:border-box; 
  float:left;
 }
 
@@ -167,10 +168,8 @@ article div.sub ul.act li:nth-child(2){border-left:#E5C276 1px solid;}
 article div button{
  box-sizing:border-box;
  float:left;
- margin:10px;
+ margin:10px; 
 }
-a#beta{ display: none;}
-li.beta{ display: none;}
 
 div#ank{ display: none;}
 div#q_a{
@@ -205,10 +204,11 @@ div.touko h2.top_title{
 	font-size:11pt;
 }
 
+
 div#tou1, div#tou2, div#tou3, div#tou4{
 	box-sizing:border-box;
 	width:100%;
-	height:120px;
+	height:123px; /*new*/
 	font-size:9pt;
 	line-height:1.5em;
 	overflow: hidden;
@@ -216,9 +216,13 @@ div#tou1, div#tou2, div#tou3, div#tou4{
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp:3;
 	margin-bottom:8px;
-	border:#26394C 1px solid;
-	padding:5px;
+	border:#caceca 1px solid;/*new*/
+	padding:7px;/*new*/
 	background-color:#FFF;
+/* 角丸 */  /*new*/
+	border-radius: 10px;       
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
 }
 
 div.clear{
@@ -233,6 +237,7 @@ div.clear{
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp:2;
 	height:35px;
+	width:auto;/*new*/
 	font-size:12pt;
 	color:#333333;
 }
@@ -240,9 +245,7 @@ div.clear{
 div#toku_1, div#toku_2, div#toku_3{
 	box-sizing:border-box;
 	min-height:60px;
-	width:100%;
-	border:#26394C 1px solid;
-	margin:10px auto;
+	border:#caceca 1px solid;/*new*/
 	padding:8px 8px 2px 8px;
 	font-size:9pt;
 	line-height: 1.5em;
@@ -251,7 +254,22 @@ div#toku_1, div#toku_2, div#toku_3{
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp:7;
 	background-color:#FFF;
+/* 角丸 */  /*new*/
+	border-radius: 10px;       
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
 }
+div#toku_1{/*new*/
+	width:100%;
+	margin:10px auto;
+}
+div#toku_2, div#toku_3{/*new*/
+	width:50%;
+	float:left;
+	height:180px;
+	margin-bottom:10px;
+}
+
 div.toku2{
 	box-sizing:border-box;
 	min-height:30px;
@@ -267,51 +285,61 @@ div.toku2{
 	overflow: hidden;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp:7;
+	-webkit-line-clamp:3;
 }
 p.inbu_toku1{
 	box-sizing:border-box;
 	float:left;
 	width:100%;
 }
-.topic1{
-	width:100px;
+.inbu_toku2 img, .inbu_toku3 img{/*new*/
+	height:auto;
+	width:100%;
 }
-.topic2{
-	width:100px;
+img.tokushu_img{/*new*/
+	height:auto;
+	width:100%;
+	margin:0 auto;
+	vertical-align:top;
 }
+.topic1{	width:100%;}
+.topic2{	width:100%;}
 /* top 特集 */
 
 /*　お気に入り　投稿　*/
 div.danwake{
 	box-sizing:border-box;
 	width:95%;
+	min-height:200px;/*new*/
+	height:auto;/*new*/
 	font-size:9pt;
 	line-height:1.5em;
-	margin-bottom:8px;
-	border:#26394C 1px solid;
-	padding:5px 5px 0 5px;
-	float:left;
+	margin: 0 auto 8px auto;/*new*/
+	border:#caceca 1px solid;/*new*/
+	padding:7px 7px 2px 7px;
 	background-color:#FFF;
+/* 角丸 */  /*new*/
+	border-radius: 10px;       
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
 }
-.mytoko{
+p.mytoko{
 	box-sizing:border-box;
 	width:100%;
 	height:90px;
-	margin-top:15px;
-	float:left;
+	margin:15px 0 5px 0;/*new*/
 	line-height:1.5em;
+	font-size:9pt;/*new*/
 	overflow: hidden;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp:5;
-	padding-bottom:3px;
 }
 .mytoko2{
 	box-sizing:border-box;
 	width:100%;
-	margin-top:15px;
-	float:left;
+	height:90px;/*new*/
+	margin-top:7px;/*new*/
 	line-height:1.5em;
 	overflow: hidden;
 	display: -webkit-box;
@@ -319,29 +347,32 @@ div.danwake{
 	-webkit-line-clamp:4;
 	padding-bottom:3px;
 }
-p.mytoko{
-	font-size:9pt;
-	line-height:1.5em;
-	padding:0 5px 0 5px;
-}
+
 .toko_p{
-	box-sizing:border-box;
+	box-sizing:border-box;	
 	width:100%;
 	margin-top:10px;
-	height:80px;
-	float:left;
+	height:50px;/*new*/
 	overflow:hidden;
 }
 div.totawa{
 	box-sizing:border-box;
-	border-top:#26394C 1px solid;
-	float:left;
+	border-top:#caceca 1px solid;/*new*/
+	min-height:90px;/*new*/
+	padding: 5px 0 0 0;/*new*/
 }
 div.tota{
 	box-sizing:border-box;
-	border:#26394C 1px solid;
+	background:#eaffcf;/*new*/
+	border:#c0ed7d 1px solid;/*new*/
 	float:left;
-	margin:3px 3px 3px 3px;
+	margin:3px;/*new*/
+	padding: 0 2px;/*new*/
+	font-size: 9pt;/*new*/
+/* 角丸 */  /*new*/
+	border-radius: 5px;       
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
 }
 /*　お気に入り　投稿　*/
 
@@ -357,10 +388,14 @@ div.osusume{
 	box-sizing:border-box;
 	width:100%;
 	height:120px;
-	border:#26394C 1px solid;
-	padding:0 5px;
+	border:#caceca 1px solid;/*new*/
+	padding:7px;/*new*/
 	margin:10px auto;
 	background-color:#FFF;
+/* 角丸 */  /*new*/
+	border-radius: 10px;       
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
 }
 p.inbu_osu{
 	font-size:9pt;
@@ -386,7 +421,7 @@ p.mina_ti{
 	-webkit-line-clamp:1;
 	height: auto;
     font-size:11pt;
-    padding: 5px 0 0 5px;
+    padding: 0;/*new*/
 }
 footer{
 	background-color:#fedfd9;
@@ -422,19 +457,27 @@ div.tokusyu{
 div.minato_new{
 	box-sizing:border-box;
 	min-height:75px;
-	width:85%;
-	border:#26394C 1px solid;
+	width:90%;/*new*/
+	border:#caceca 1px solid;/*new*/
 	margin:10px auto;
-	padding:5px;
+	padding:7px;/*new*/
 	background-color:#FFF;
+/* 角丸 */  /*new*/
+	border-radius: 10px;       
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
 }
 div.minato_ki_ko{
 	box-sizing:border-box;
-	width:85%;
-	border:#26394C 1px solid;
+	width:90%;/*new*/
+	border:#caceca 1px solid;/*new*/
 	margin:10px auto;
-	padding:5px;
+	padding:7px;/*new*/
 	background-color:#FFF;
+/* 角丸 */  /*new*/
+	border-radius: 10px;       
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
 }
 .tou_ti{
 	float:left;
@@ -469,7 +512,7 @@ div.minato_ki_ko{
 }
 
 .mi_ti{
-	padding:5px 0 18px 0;
+	padding-bottom:18px;/*new*/
 }
 p.toku_toko{
 	overflow: hidden;
@@ -477,10 +520,63 @@ p.toku_toko{
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp:8;
 	font-size:10.5pt;
+	line-height: 1.5em;/*new*/
 }
 
 
-/*  ログイン  */
+/*  ログイン  */  /*new ここから*/
+.name_login{ display: none;}
+
+#top_log{
+	box-sizing:border-box;
+	width:70%;
+	padding:0;
+	background:#fad2a7;
+	float:left;
+	bottom:0;
+	line-height:0.5em;
+	font-family: 'HiraKakuProN-W6', sans-serif;
+	color:#995500;
+	font-size:9pt;
+	text-align:right;
+}
+table.logt {
+	border-spacing:0px;
+	float:left;
+	width:60%;
+	margin-left:5%;
+}
+table.logt tr{width:60%;}
+table.logt tr th{	width:0; margin: 0; padding:0;}
+table.logt tr td {
+	font-size:7pt;
+	padding: 3px 0;
+	text-align:left;
+	width:100%;
+}
+
+.gray{
+	box-sizing:border-box;
+	padding: 3px;
+}
+.error{
+	color:red;
+	padding: 2% 0% 2% 3%;
+	font-size:9pt;
+	line-height:1em;
+}
+div#new a#shinki{
+	box-sizing:border-box;
+	height:50px;
+	width: 30%;
+	font-size:9pt;
+	padding: 18px 0px;
+}
+
+/*new ここまで*/
+
+
+
 table.Input_form{
  width: 80%;
  border-collapse: collapse;
@@ -513,70 +609,20 @@ div#agreement div#btn{
  box-sizing:border-box;
  height:150px;
 }
-
 div#agreement div#btn input{
  width:100%;
  height:50px;
  font-size:11pt;
- background:#ffffe0;
- border: #9e7f69 2px solid;
+ background:#fedfd9;
+ border: #9e7f69 1px solid;
  box-sizing: border-box;
  margin:10px;
 }
-#agreement div#btn input a{
-	color: #9e7f69;
-	text-decoration:none;
-	padding:4%;
-	display: block;
+div#agreement div#btn input a{
+ color: #9e7f69;
 }
-
-div#agreement div#btn input#entry{	border: #744924 1px solid;}
-div#agreement div#btn input#entry a{	color: #744924;}
-#agreement div#btn input a:hover,#entry a:hover{
-	color: #aa0000 !important;
-}
-#entry{
-	background:#ffe5d0 !important;
-	margin-bottom:20px;
-	color:#9e7f69 !important;
-	border:#9e7f69 2px solid;
-	padding: 17px;
-	width: 100%;
-	height: 50px;
-	font-size: 11pt;
-	box-sizing: border-box;
-	text-align:center;
-  margin:10px;
-
-}
-#entry a{
-	text-decoration:none;
-	display: block;
-}
-
-#entry:hover{
-	background:#fba68b;
-}
-
-#entry2{
-	background:#ffffe0 !important;
-	margin-bottom:20px;
-	color:#9e7f69 !important;
-	border:#9e7f69 2px solid;
-	padding: 17px;
-	width: 100%;
-	height: 50px;
-	font-size: 11pt;
-	box-sizing: border-box;
-  margin:10px;
-  text-align:center;
-}
-#entry2 a{
-	text-decoration:none;
-}
-
-
-
+#entry{	border: #744924 1px solid;}
+#entry a{	color: #744924;}
 
 div.shinkou{
 	box-sizing: border-box;
@@ -688,24 +734,57 @@ button#send{
 p.toukou button {
 	margin:0;
 }
-div#check{
-	font-size:9pt;
+
+/* ラジオボタン */    /*new ここから*/
+div#check{	font-size:9pt;}
+div#check input {	display: none;}
+div#check label{
+	box-sizing:border-box;
+	display: block;
+	float: left;
+	cursor: pointer;
+	width: 50%;
+	margin: 0;
+	padding: 7px;
+	background: #bdc3c7;
+	color: #869198;
+	font-size: 12px;
+	text-align: center;
+	line-height: 1;
+	transition: .tou;
+}
+div#check label:first-of-type{
+	border-radius: 3px 0 0 3px;
+}
+div#check label:last-of-type{
+	border-radius: 0 3px 3px 0;
+}
+div#check input[type="radio"]:checked + .switch-on {
+	background-color: #a1b91d;
+	color: #fff;
+}
+div#check input[type="radio"]:checked + .switch-off {
+	background-color: #e67168;
+	color: #fff;
 }
 
+/*new ここまで*/
+
+
+
 /* --- 質問 --- */
-div.situ_dai{
+div#situ_dai{
 	width: 100%;
-	height:100%;
+	height:auto;/*new*/
 }
 div.situ_ko{
 	box-sizing:border-box;
-	margin:10px auto;
+	margin:5px auto;/*new*/
 	padding:5px;
 	width:90%;
-	height:auto;
+	height:43px;/*new*/
 	border:#dddddd 1px solid;
 	font-size:9pt;
-	float:left;
 	background-color:#FFF;
 }
 img.situ_icon{
@@ -713,15 +792,17 @@ img.situ_icon{
 	width:30px;
 	vertical-align:middle;
 	float:left;
+	margin-right:3px;/*new*/
 }
 div.page{
 	text-align:center;
 	width: 80px;
-	height:auto;
+	height:auto;/*new*/
 	margin:10px auto;
 }
 .situ_ti{
 	width:90%;
+	height:auto;
 	overflow: hidden;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
@@ -729,6 +810,11 @@ div.page{
 	float:left;
 	padding-top: 8px;
 }
+div.yohaku p.kirikae{/*new*/
+	margin: 10px 0 10px 20px;
+	color:#aaa;
+}
+
 
 /* サイトについて gaiyo.html */
 div.yohaku2{
@@ -790,7 +876,7 @@ p.gaiyou{
 /*各写真の並び位置を設定
 #photo1, #photo2, #photo3, #photo4, #photo5 */
 #photo0 { left:  0%; }
-#photo1 { left:100%; }
+#photo1 { left:100%; } 
 #photo2 { left:200%; }
 #photo3 { left:300%; }
 #photo4 { left:400%; }
@@ -815,7 +901,7 @@ p.gaiyou{
 	color:#EEE;
 }
 .b_left span {
-	left: 5%;;
+	left: 5%;;	
 }
 .b_right span {
 	left: 91%;
@@ -831,14 +917,14 @@ p.gaiyou{
 }
 /* 各送りボタンクリック時のanimation設定 */
 #next1:checked ~ #photos {
-	animation: imgPassToLeft1 30s infinite;
+	animation: imgPassToLeft1 30s infinite;	
 	animation-delay: -4.8s;
-	-webkit-animation: imgPassToLeft1 30s infinite;
+	-webkit-animation: imgPassToLeft1 30s infinite;	
 	-webkit-animation-delay: -4.8s;
 }
 #next2:checked ~ #photos {
-
-
+	
+	
 	animation: imgPassToLeft2 30s infinite;
 	animation-delay: -10.8s;
 	-webkit-animation: imgPassToLeft2 30s infinite;
@@ -1236,12 +1322,14 @@ p.tata{/*タグ 見出し*/
  -webkit-border-top-left-radius: 20px;
  -webkit-border-bottom-left-radius: 20px;
  font-size:9pt;
-
+ 
 }
 .taguwaku{
  box-sizing:border-box;
  width:100%;
  line-height:1.5em;
+ font-size:10pt;/*new*/
+margin:10px 0; /*new*/
 }
 .tawa{
  box-sizing:border-box;
@@ -1290,21 +1378,21 @@ ul.tagu li, ul.tagu2 li, ul.tagu3 li{
 /*  マイページ  ---new---  */
 div.myto_ko{
  box-sizing:border-box;
- border:#26394C 1px solid;
- float:left;
+ border:#caceca 1px solid;/*new*/
  margin:0 20px 20px 10px;
+ padding:7px;
  background-color:#FFF;
+/* 角丸 */  /*new*/
+	border-radius: 10px;       
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
 }
-div.totawa{
- box-sizing:border-box;
- border-top:#26394C 1px solid;
 
-}
 .myicon{
  box-sizing:border-box;
  height:200px;
  width:200px;
- float:center;
+ float:left;
 }
 table.prof{
 	box-sizing:border-box;
@@ -1334,7 +1422,7 @@ div#myto{
 	height:220px;
 	margin:5px auto;
 }
-.mysou{
+div.mysou{
 	box-sizing:border-box;
 	border: #aaa 1px solid;
 	background:#eee;
@@ -1343,9 +1431,8 @@ div#myto{
 	width:80px;
 	text-align:center;
 	margin:10px auto;
-
 }
-.mysou a{
+div.mysou a{
 	box-sizing:border-box;
 	padding:7% 0% 7% 5%;
 	color:#888;
@@ -1361,12 +1448,12 @@ div#myto{
 	text-align:center;
 }
 #pass a{
-
+	
 	text-decoration:none;
 	padding:15px 10px 15px 10px;
 	color:#fff;
 	display: block;
-
+	
 }
 div#myicon_waku{
 	box-sizing:border-box;
@@ -1391,10 +1478,6 @@ p.coco{
 	padding:5px 0 5px 5px;
 	font-size:9pt;
 }
-div.tota{
-	font-size:9pt;
-	background-color:#FFF;
-}
 div.set_kisyowa{
 	padding-top:65px;
 }
@@ -1410,9 +1493,14 @@ div.kowa{
 }
 div.kome{
 	box-sizing:border-box;
-	border:#26394C 1px solid;
+	border:#caceca 1px solid;/*new*/
 	margin-bottom:10px;
 	background-color:#FFF;
+	padding:7px;/*new*/
+/* 角丸 */  /*new*/
+	border-radius: 5px;       
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
 }
 /*詳細 アイコン*/
 div.set_kipro{
@@ -1450,21 +1538,7 @@ div.set_kipro{
 .koi{
 	width:50px;
 	height:50px;
+	vertical-align: middle;/*new*/
+	margin-right:7px;/*new*/
 }
 
-.error{
-	color:red;
-	padding: 2% 0% 2% 3%;
-	font-size:9pt;
-	line-height:1em;
-}
-
-#photo{
-	box-sizing:border-box;
-	float:left;
-	text-align:left;
-	width:100%;
-}
-.to_img{
-	height:100px;
-}

@@ -1,4 +1,4 @@
-<div class="sub nav">
+<div class="sub">
 <% if logged_in? %>
 <div class="name">投稿管理</div>
   <ul class="sub_1">
@@ -16,30 +16,30 @@
 
 <% else %>
 
-<div class="name login">ログイン</div>
-<div id="top_log" class="nav">
-  <table class="logt">
+<div class="name_login">ログイン</div>
+
+  <div id="top_log">
+    <table class="logt">
       <%= form_for UserSession.new, url: user_session_path do |f| %>
-    <tr>
-    <div class="error">
-      <%= flash[:alert] %>
-    </div>
-    </tr>
-    <tr>
-      <td><%= f.text_field :name ,:class => 'log' ,:placeholder=> "name"%></td>
-    </tr>
-    <tr>
-      <td><%= f.password_field :password ,:class => 'log', :placeholder => "pass"%></td>
-    </tr>
-  </table>
-  <div id="logbt">
-    <%= f.submit "Login"%>
+<!--       <tr>
+        <div class="error">
+          <%= flash[:alert] %>
+        </div>
+      </tr> -->
+      <tr>
+        <td><%= f.text_field :name ,:class => 'log' ,:placeholder=> "name"%></td>
+      </tr>
+      <tr>
+        <td><%= f.password_field :password ,:class => 'log', :placeholder => "pass"%></td>
+      </tr>
+    </table>
+
+    <div id="logbt"><button value="button"><%= f.submit "ログイン"%></button></div>
+    <% end %>
   </div>
-  <% end %>
-</div>
-<div class="name login">初めての方</div>
+<div class="name_login">初めての方</div>
 <div id="new">
-  <%= link_to "新規登録", signup_path %>
+  <%= link_to "新規登録", signup_path, :id => "shinki" %>
 </div>
 <div class="clear"></div>
 <% end %>
