@@ -1,0 +1,84 @@
+ <head>
+  <title>親こうfour β</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+	<%= csrf_meta_tags %>
+	   <%= stylesheet_link_tag 'ryo', 'data-turbolinks-track' => true %>
+</head>
+	
+<body>
+      <nav>
+      <div class="nav-wrapper container">
+      <a class="brand-logo"  >親こうfourβ</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <%= link_to "親こうfour", root_path, :class => "brand-logo" %>
+ <!--      <%= link_to image_tag('/images/title.png', :class => "brand-logo", :id => 'title'), root_path %> -->
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><%= link_to "特集", pickup_essays_path %></li>
+        <li><%= link_to "みんなの投稿", essays_path %></li>
+      	<li><%= link_to "サイトについて", about_path %></li>
+				<li><%= link_to "βページ", "http://sutpro.herokuapp.com/" %></li>
+			</ul>
+        <ul class="side-nav" id="mobile-demo">
+				<li><%= link_to "特集", pickup_essays_path %></li>
+        <li><%= link_to "みんなの投稿", essays_path %></li>
+				        <li><%= link_to "サイトについて", about_path %></li>
+      </ul>
+      </div>
+      <div class="search" hidden>
+        <div id="search_in">
+        <%= form_tag('/essays/title_search',id: "search-bar") do %>
+        <select id="select-search" name="example">
+        <option value="/essays/title_search">タイトル</option>
+        <option value="/essays/search">本文</option>
+        </select>
+          <%= text_field_tag 'keyword', "", placeholder: "キーワードを入力"  %>
+          <%= submit_tag "検索" %>
+          <a href="/essays/tags">タグ一覧へ</a>
+        <% end %>
+        </div>
+      </div>
+      <div class="clear">
+      </div>
+    </nav>
+    <%= javascript_tag do %>
+    window.editor = {};
+    window.editor.userId = <%= current_user.id %>;
+    window.editor.redirect = "<%= raw root_path %>";
+    window.editor.target  = "<%= img_path %>";
+    window.editor.post = "<%= api_addessay_path %>";
+    window.editor.admin = "<%= current_user.admin %>";
+    console.log(window.editor)
+  	<% end %>
+  <main>
+    <div id="app"></div>
+  </main>
+	<footer class="page-footer">
+  <div class="container">
+  <div class="row">
+              <div class="col l2 s12">
+                <ul>
+                    <li><%= link_to "ヘルプ", help_path, class: "grey-text text-lighten-3" %></li>
+                    <li><%= link_to "サイトについて", about_path, class: "grey-text text-lighten-3" %></li>
+                    <li><%= link_to "みんなの投稿", essays_path, class: "grey-text text-lighten-3" %></li>
+                    <li><%= link_to "みんなの質問", question_essays_path, class: "grey-text text-lighten-3" %></li>
+                    <li><%= link_to "特集", pickup_essays_path, class: "grey-text text-lighten-3" %></li>
+                  </ul>
+              </div>
+            </div>
+  </div>
+    <div class="footer-copyright">
+    <div class="container">
+    &copy; Copyright  by ryt
+    </div>
+    </div>
+</footer>
+<%= javascript_include_tag "addjs/ryota.js" %>
+
+  <%= javascript_include_tag "addjs/mdEditer.js" %>
+</body>
+</html>

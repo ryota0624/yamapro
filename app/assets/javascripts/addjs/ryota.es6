@@ -5,7 +5,7 @@ let title = document.getElementById("title");
 let copy = document.getElementById("copy");
 var path = document.location.pathname;
 huko.onclick = () => {
-  document.location.pathname = "/dodai_inbu_osu_saiko_css"
+	document.location.replace("https://sutpro.herokuapp.com");
 }
 console.log(path)
 

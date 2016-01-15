@@ -3,6 +3,7 @@
 <div class="name">投稿管理</div>
   <ul class="sub_1">
     <li><%= link_to "記事投稿", new_essay_path %></li>
+		<li class="beta"><%= link_to "記事投稿β版", new_essay_path+"?type=b",id: "beta" %></li>
     <li><%= link_to "自分の投稿", my_essay_mypages_path %></li>
     <li><%= link_to "お気に入り", my_list_mypages_path %></li>
   </ul>

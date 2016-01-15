@@ -169,6 +169,8 @@ article div button{
  float:left;
  margin:10px;
 }
+a#beta{ display: none;}
+li.beta{ display: none;}
 
 div#ank{ display: none;}
 div#q_a{
